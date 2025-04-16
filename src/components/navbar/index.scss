@@ -1,0 +1,109 @@
+/* 05 Navigation/08 Top Navigation/01 Light */
+
+.top-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  background: #0e0d0d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+  z-index: 100;
+  color: #f7f7f8;
+
+  .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f7f7f8;
+    white-space: nowrap;
+  }
+
+  .search-bar {
+    flex: 1;
+    margin: 0 40px;
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+
+    input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      background: #1a1a1a;
+      color: #f7f7f8;
+      outline: none;
+
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .icon {
+      font-size: 18px;
+      cursor: pointer;
+      color: #f7f7f8;
+    }
+
+    .user-name {
+      font-weight: 600;
+      color: #f7f7f8;
+      white-space: nowrap;
+    }
+  }
+}
+
+/* Responsive Layout */
+
+/* Tablets (768px to 1023px) */
+@media (max-width: 1023px) {
+  .top-navbar {
+    .search-bar {
+      margin: 0 20px;
+    }
+
+    .user-name {
+      display: none; // hide name for space
+    }
+  }
+}
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+  .top-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px 16px;
+
+    .logo {
+      margin-bottom: 8px;
+    }
+
+    .search-bar {
+      margin: 8px 0;
+      width: 100%;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .nav-right {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
