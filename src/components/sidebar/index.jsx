@@ -1,5 +1,5 @@
-import React from "react";
-import "./index.scss";
+import React from 'react';
+import './index.scss';
 import {
   Home,
   Tag,
@@ -13,7 +13,7 @@ import {
   Award,
   ShieldUser,
   Settings,
-} from "lucide-react";
+} from 'lucide-react';
 
 function Sidebar() {
   return (

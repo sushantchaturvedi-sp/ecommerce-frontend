@@ -1,6 +1,6 @@
-import React from "react";
-import "./index.scss";
-import { Bell, ShoppingCart, MessageSquareText, Search } from "lucide-react";
+import React from 'react';
+import './index.scss';
+import { Bell, ShoppingCart, MessageSquareText, Search } from 'lucide-react';
 
 function TopNavbar() {
   return (
