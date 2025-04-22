@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { login } from '../../services/api';
+import { login as apiLogin } from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import './index.scss';
@@ -10,7 +10,7 @@ function Login() {
   const [keepSignedIn, setKeepSignedIn] = useState(false);
   const [error, setError] = useState('');
 
-  const { setUser } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -23,8 +23,8 @@ function Login() {
     };
 
     try {
-      const response = await login(loginData);
-      setUser(response.data);
+      const response = await apiLogin(loginData);
+      login(response.data);
       navigate('/');
     } catch (error) {
       if (
