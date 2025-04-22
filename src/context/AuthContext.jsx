@@ -8,24 +8,27 @@ export const AuthProvider = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
-  useEffect(() => {
-    if (user) {
-      sessionStorage.setItem('user', JSON.stringify(user));
-    } else {
-      sessionStorage.removeItem('user');
-    }
-  }, [user]);
+  const isAuthenticated = !!user;
+  const isAdmin = user?.role === 'admin';
 
   const login = (userData) => {
     setUser(userData);
+    sessionStorage.setItem('user', JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
+    sessionStorage.removeItem('user');
   };
 
+  useEffect(() => {
+    if (!user) {
+      sessionStorage.removeItem('user');
+    }
+  }, [user]);
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );
