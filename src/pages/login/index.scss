@@ -1,111 +1,162 @@
-.loginContainer {
+$primary-color: #1e2753;
+$primary-hover: darken($primary-color, 7%);
+$input-bg: #f4f5fa;
+$input-border: #d9e1ec;
+$input-text: #131523;
+$input-placeholder: #9ca3af;
+$font-body: 'Inter', sans-serif;
+
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+  background: #fff;
+  position: absolute;
+  left: 31.25%;
+  right: 31.25%;
+  top: 7.91%;
+  bottom: 21.68%;
+  box-shadow: 0px 1px 4px rgba(21, 34, 50, 0.08);
+  border-radius: 6px;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+
+  h1, h2 {
+    font-family: $font-body;
+    font-weight: 700;
+    font-size: 28px;
+    color: $input-text;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: $font-body;
+    font-weight: 400;
+    font-size: 16px;
+    color: #5a607f;
+  }
+
+  .link {
+    color: #1e5eff;
+    cursor: pointer;
+    margin-left: 5px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .error,
+  .success {
+    font-size: 0.875rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+
+  .success {
+    background-color: #d1fae5;
+    color: #047857;
+  }
+
+  form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 85vh;
-    background: linear-gradient(180deg, #134E5E 0%, #71B280 100%);
-    position: absolute;
-    left: 31.25%;
-    right: 31.25%;
-    top: 7.91%;
-    bottom: 21.68%;
-    background: #fff;
-    box-shadow: 0px 1px 4px rgba(21, 34, 50, 0.08);
-  
-    border-radius: 6px;
-    padding: 20px;
-  
-    margin: 0 auto;
-    max-width: 400px;
+    gap: 1.2rem;
     width: 100%;
-  
-    text-align: center;
 
-    checkbox{
-        direction: flex;
-    }
-  
-    h1 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 32px;
-      color: #131523;
-    }
-    p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      color: #5a607f;
-    }
-  
-    .link {
-      color: #1e5eff;
-      cursor: pointer;
-      margin-left: 5px;
-    }
-  
-    .errorMessage {
-      background-color: #fee2e2;
-      color: #b91c1c;
-      padding: 0.75rem;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      margin-bottom: 1rem;
-    }
-  
-    form {
+    .inputGroup {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-  
-      .inputGroup {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-  
-        label {
-          font-size: 0.875rem;
-          font-weight: 500;
-          margin-bottom: 0.4rem;
-          color: #374151;
+      text-align: left;
+
+      label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+        color: #374151;
+      }
+
+      input[type='email'],
+      input[type='password'],
+      input[type='text'] {
+        padding: 0.75rem 1rem;
+        border: 1px solid $input-border;
+        border-radius: 4px;
+        background-color: $input-bg;
+        font-size: 0.875rem;
+        color: $input-text;
+
+        &::placeholder {
+          color: $input-placeholder;
         }
-  
-        input {
-          padding: 0.75rem 1rem;
-          border: 1px solid #d9e1ec;
-          border-radius: 4px;
-          background-color: #f4f5fa;
-          font-size: 0.875rem;
-          color: #a1a7c4;
-  
-          &::placeholder {
-            color: #9ca3af;
-          }
-  
-          &:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
-          }
+
+        &:focus {
+          outline: none;
+          border-color: #2563eb;
+          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
         }
       }
-  
-      .submitButton {
-        margin-top: 1rem;
-        background-color: #1e2753;
-        color: #fff;
-        font-size: 0.95rem;
-        font-weight: 600;
-        padding: 0.75rem;
-        border-radius: 8px;
+    }
+
+    .inputGroup:nth-of-type(3) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.5rem;
+
+      input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin: 0;
         cursor: pointer;
-  
-        &:hover {
-          background-color: darken(#1e2753, 7%);
-        }
+        accent-color: #1e5eff;
+      }
+
+      label {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+
+    .loginButton,
+    .changePasswordButton {
+      margin-top: 1rem;
+      background-color: $primary-color;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary-hover;
       }
     }
   }
-  
+}
+
+.loginContainer {
+  @extend .authContainer;
+}
+
+.changePasswordContainer {
+  @extend .authContainer;
+}

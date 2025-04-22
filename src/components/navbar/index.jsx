@@ -1,6 +1,9 @@
 import React from 'react';
 import './index.scss';
 import { Bell, ShoppingCart, MessageSquareText, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+
 
 function TopNavbar() {
   return (
@@ -18,7 +21,10 @@ function TopNavbar() {
         <span className="icon">
           <Bell />
         </span>
-        <span className="user-name">Sushant</span>
+        <Link to="/signup" className="user-name">
+        <button> Signup / Login </button>
+</Link>
+        {/* <span className="user-name">Sushant</span> */}
       </div>
     </div>
   );
