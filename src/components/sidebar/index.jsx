@@ -14,6 +14,7 @@ import {
   ShieldUser,
   Settings,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
   return (
@@ -27,8 +28,11 @@ function Sidebar() {
             <List size={18} /> Orders
           </li>
           <li>
+            <Link to="admin/products">
+          
             <Tag size={18} /> Products
-          </li>
+            </Link>
+            </li>
           <li>
             <Folder size={18} /> Categories
           </li>

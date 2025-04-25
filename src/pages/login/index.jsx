@@ -25,8 +25,14 @@ function Login() {
     try {
       const response = await apiLogin(loginData);
       login(response.data);
+      // console.log(response);
+
+      const token = response.data.data.token;
+      
+       localStorage.setItem("token", token);
       navigate('/');
     } catch (error) {
+      console.log(error);
       if (
         error.response &&
         error.response.data &&

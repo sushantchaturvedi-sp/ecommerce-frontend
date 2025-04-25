@@ -1,0 +1,139 @@
+$primary-color: #1e2753;
+$primary-hover: darken($primary-color, 7%);
+$input-bg: #f4f5fa;
+$input-border: #d9e1ec;
+$input-text: #131523;
+$input-placeholder: #9ca3af;
+$font-body: 'Inter', sans-serif;
+$success: #047857;
+$error: #b91c1c;
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(21, 34, 50, 0.08);
+  font-family: $font-body;
+
+  .inputForm {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #374151;
+    }
+
+    input,
+    textarea {
+      padding: 0.75rem 1rem;
+      border: 1px solid $input-border;
+      border-radius: 4px;
+      background-color: $input-bg;
+      font-size: 0.875rem;
+      color: $input-text;
+
+      &::placeholder {
+        color: $input-placeholder;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+  }
+
+  button[type='submit'] {
+    margin-top: 1rem;
+    background-color: $primary-color;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $primary-hover;
+    }
+  }
+}
+
+.product-list {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(21, 34, 50, 0.08);
+  font-family: $font-body;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: $primary-color;
+  }
+
+  .product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+
+    span {
+      font-size: 0.95rem;
+      color: $input-text;
+    }
+
+    button {
+      margin-left: 0.5rem;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:first-of-type {
+        background-color: #2563eb;
+        color: white;
+
+        &:hover {
+          background-color: darken(#2563eb, 7%);
+        }
+      }
+
+      &:last-of-type {
+        background-color: #ef4444;
+        color: white;
+
+        &:hover {
+          background-color: darken(#ef4444, 7%);
+        }
+      }
+    }
+  }
+
+  .product-item:last-of-type {
+    border-bottom: none;
+  }
+}
