@@ -1,40 +1,3 @@
-// .layout-wrapper-user {
-//     display: flex;
-//     flex-direction: column;
-//     font-family: var(--font-body);
-//     background-color: var(--bg-color);
-//     height: 100vh;
-//     overflow: scroll;
-//   }
-  
-//   .outlet-layout-user {
-//     flex: 1;
-//     // overflow-y: auto;
-
-//     overflow: auto;
-//     padding: 30px;
-//     height: 70vh;
-//     min-height: 50vh;
-//     font-family: var(--font-body);
-//     background: var(--bg-color);
-//     padding: 20px;
-//     box-sizing: border-box;
-//     background: #fff;
-//   }
-  
-//   .footer-layout-user {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     min-height: 100px;
-//     background-color: var(--primary-color);
-//     color: #fff;
-//     font-size: 14px;
-//     text-align: center;
-//     width: 100%;
-//   }
-
-
 html, body {
     height: 100%;
     margin: 0;
@@ -74,7 +37,7 @@ top: 1653px;
   }
   
   .main-content {
-    flex: 1; // Fill the remaining space
+    flex: 1;
     overflow-y: auto;
     padding: 20px;
     background-color: #f9f9f9;

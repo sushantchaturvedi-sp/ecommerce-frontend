@@ -1,6 +1,6 @@
 .footer {
-    background-color: #000; // Black background color
-    color: #fff; // White text color
+    background-color: #000;
+    color: #fff;
     padding: 40px 20px;
     display: flex;
     flex-wrap: wrap;
@@ -12,20 +12,20 @@
   
       h2 {
         margin-bottom: 10px;
-        color: #fff; // White color for headings
-        font-size: 24px; // Adjusted font size for h2
+        color: #fff;
+        font-size: 24px;
       }
   
       h3 {
         margin-bottom: 10px;
-        color: #fff; // White color for headings
-        font-size: 20px; // Adjusted font size for h3
+        color: #fff;
+        font-size: 20px;
       }
   
       p {
         margin-bottom: 10px;
-        color: #fff; // White text color
-        font-size: 16px; // Adjusted font size for paragraphs
+        color: #fff;
+        font-size: 16px;
       }
   
       .footer__search {
@@ -38,10 +38,10 @@
           border-radius: 5px;
           width: 70%;
           background-color: #333;
-          color: #fff; // White text color for input
-          font-size: 16px; // Adjusted font size for input
+          color: #fff;
+          font-size: 16px;
           ::placeholder {
-            color: #ccc; // Light grey placeholder text
+            color: #ccc;
           }
         }
   
@@ -49,14 +49,14 @@
           padding: 10px;
           border: none;
           border-radius: 4px;
-          background-color: #ffcc00; // Yellow background for button
-          color: #000; // Black text color for button
+          background-color: #ffcc00;
+          color: #000;
           margin-left: 10px;
           cursor: pointer;
-          font-size: 16px; // Adjusted font size for button
+          font-size: 16px;
   
           &:hover {
-            background-color: #e6b800; // Darker yellow on hover
+            background-color: #e6b800;
           }
         }
       }
@@ -70,8 +70,8 @@
   
           a {
             text-decoration: none;
-            color: #fff; // White color for links
-            font-size: 16px; // Adjusted font size for links
+            color: #fff;
+            font-size: 16px;
   
             &:hover {
               text-decoration: underline;
@@ -95,17 +95,17 @@
           flex-direction: column;
   
           button {
-            background-color: #fff; // White background for buttons
-            color: #000; // Black text color for buttons
+            background-color: #fff;
+            color: #000;
             border: none;
             padding: 10px;
             margin-bottom: 5px;
             cursor: pointer;
             border-radius: 4px;
-            font-size: 16px; // Adjusted font size for buttons
+            font-size: 16px;
   
             &:hover {
-              background-color: #ccc; // Light grey background on hover
+              background-color: #ccc;
             }
           }
         }
@@ -116,13 +116,13 @@
       width: 100%;
       text-align: center;
       margin-top: 20px;
-      border-top: 1px solid #444; // Darker border color
+      border-top: 1px solid #444;
       padding-top: 10px;
   
       p {
         margin: 0;
-        color: #fff; // White text color
-        font-size: 14px; // Adjusted font size for bottom text
+        color: #fff;
+        font-size: 14px;
       }
     }
   }

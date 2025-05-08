@@ -190,20 +190,21 @@ function Checkout() {
           <strong>₹{total}</strong>
         </div>
 
-        {/* <div className="payment-method">
-          <label>
+        <div className="payment-method">
+          <label className="payment-option">
             <input
               type="radio"
               name="payment"
               value="bank"
+              checked={paymentMethod === 'bank'}
               onChange={() => setPaymentMethod('bank')}
             />
-            Bank
-            <span className="cards">
-              <CreditCard Size={18} />
+            <span className="payment-label">
+              <CreditCard size={18} className="bank-icon" />
+              Bank
             </span>
           </label>
-          <label>
+          <label className="payment-option">
             <input
               type="radio"
               name="payment"
@@ -211,36 +212,9 @@ function Checkout() {
               checked={paymentMethod === 'cod'}
               onChange={() => setPaymentMethod('cod')}
             />
-            Cash on delivery
+            <span className="payment-label">Cash on delivery</span>
           </label>
-        </div> */}
-
-<div className="payment-method">
-  <label className="payment-option">
-    <input
-      type="radio"
-      name="payment"
-      value="bank"
-      checked={paymentMethod === 'bank'}
-      onChange={() => setPaymentMethod('bank')}
-    />
-    <span className="payment-label">
-      <CreditCard size={18} className="bank-icon" />
-      Bank
-    </span>
-  </label>
-  <label className="payment-option">
-    <input
-      type="radio"
-      name="payment"
-      value="cod"
-      checked={paymentMethod === 'cod'}
-      onChange={() => setPaymentMethod('cod')}
-    />
-    <span className="payment-label">Cash on delivery</span>
-  </label>
-</div>
-
+        </div>
 
         <div className="coupon">
           <input

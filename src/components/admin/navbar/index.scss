@@ -63,9 +63,7 @@
 }
 
 
-/* Responsive Layout */
 
-/* Tablets (768px to 1023px) */
 @media (max-width: 1023px) {
   .top-navbar {
     .search-bar {
@@ -73,7 +71,7 @@
     }
 
     .user-name {
-      display: none; // hide name for space
+      display: none;
     }
   }
 }
