@@ -14,6 +14,7 @@ import {
   ShieldUser,
   Settings,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
   return (
@@ -21,13 +22,17 @@ function Sidebar() {
       <div className="nav-section">
         <ul className="nav-list">
           <li>
-            <Home size={18} /> Dashboard
+            <Link to="/">
+              <Home size={18} /> Dashboard
+            </Link>
           </li>
           <li>
             <List size={18} /> Orders
           </li>
           <li>
-            <Tag size={18} /> Products
+            <Link to="/admin/products">
+              <Tag size={18} /> Products
+            </Link>
           </li>
           <li>
             <Folder size={18} /> Categories

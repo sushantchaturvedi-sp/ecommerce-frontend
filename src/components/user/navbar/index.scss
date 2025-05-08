@@ -1,0 +1,64 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #333;
+    }
+  
+    .navbar-nav {
+      list-style-type: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+  
+      .nav-item {
+        margin-right: 20px;
+  
+        a {
+          text-decoration: none;
+          color: #333;
+          font-size: 1rem;
+          transition: color 0.3s;
+  
+          &:hover {
+            color: #007bff;
+          }
+        }
+      }
+    }
+  
+    .navbar-search {
+      display: flex;
+      align-items: center;
+  
+      input[type='text'] {
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+        background-color: #fff; // ✅ Add this line to ensure white background
+    color: #333; // Optional: ensure text color is dark for contrast
+      }
+  
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #333;
+        margin-right: 10px;
+  
+        &:hover {
+          color: #007bff;
+        }
+      }
+    }
+  }
+  

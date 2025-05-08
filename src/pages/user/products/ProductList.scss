@@ -1,0 +1,142 @@
+$product-bg: #ffffff;
+$product-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+$product-hover-shadow: 0 6px 16px #2563eb40;
+$primary-color: #000000;
+$highlight-red: #DB4444;
+$text-color: #000;
+$font-body: 'Inter', sans-serif;
+$border-color: #e0e0e0;
+
+.product-list-container {
+  width: 100%;
+  // max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: $font-body;
+  background: $product-bg;
+  box-sizing: border-box;
+  flex: 1;
+
+  h2 {
+    text-align: center;
+    color: $primary-color;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .no-results {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+    margin-top: 40px;
+  }
+
+  .product-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .product-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 16px;
+    background: $product-bg;
+    border-radius: 12px;
+    border: 1px solid $border-color;
+    box-shadow: $product-shadow;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $product-hover-shadow;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .product-details {
+      flex: 1;
+
+      h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: $text-color; // Black text
+        margin-bottom: 8px;
+      }
+
+      .price {
+        font-size: 16px;
+        font-weight: 600;
+        color: $highlight-red; // Red price
+        margin-bottom: 6px;
+      }
+
+      .description {
+        font-size: 14px;
+        color: $text-color; // Black description
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 30px 0;
+
+    button {
+      padding: 8px 14px;
+      border: 1px solid #ccc;
+      background-color: #f4f5fa;
+      color: $primary-color;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &.active {
+        background-color: $primary-color;
+        color: #fff;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .product-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+    }
+
+    .product-details {
+      h3 {
+        font-size: 16px;
+      }
+
+      .description {
+        font-size: 13px;
+      }
+    }
+  }
+}

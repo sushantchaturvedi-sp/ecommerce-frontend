@@ -1,35 +1,39 @@
-.signupContainer {
+$primary-color: #1e2753;
+$primary-hover: darken($primary-color, 7%);
+$input-bg: #f4f5fa;
+$input-border: #d9e1ec;
+$input-text: #131523;
+$input-placeholder: #9ca3af;
+$font-body: 'Inter', sans-serif;
+
+.signup-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient($primary-color, $primary-hover);
+}
+
+.authContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 85vh;
-  background: linear-gradient(180deg, #f7f7f8 0%, #ffffff 100%);
-  position: absolute;
-  left: 31.25%;
-  right: 31.25%;
-  top: 7.91%;
-  bottom: 21.68%;
   background: #fff;
+  height: 85vh;
   box-shadow: 0px 1px 4px rgba(21, 34, 50, 0.08);
-
   border-radius: 6px;
   padding: 20px;
-
-  margin: 0 auto;
-  max-width: 400px;
-  width: 100%;
-
   text-align: center;
+  font-family: $font-body;
 
-  h1 {
-    font-family: 'Inter', sans-serif;
+  h1, h2 {
+    font-size: 28px;
     font-weight: 700;
-    font-size: 32px;
-    color: #131523;
+    color: $input-text;
+    margin-bottom: 1rem;
   }
+
   p {
-    font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #5a607f;
@@ -39,22 +43,36 @@
     color: #1e5eff;
     cursor: pointer;
     margin-left: 5px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .errorMessage,
+  .successMessage {
+    font-size: 0.875rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
   }
 
   .errorMessage {
     background-color: #fee2e2;
     color: #b91c1c;
-    padding: 0.75rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
+  }
+
+  .successMessage {
+    background-color: #d1fae5;
+    color: #047857;
   }
 
   form {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-    margin-bottom: 1.2rem;
+    width: 100%;
 
     .inputGroup {
       display: flex;
@@ -68,16 +86,18 @@
         color: #374151;
       }
 
-      input {
+      input[type='email'],
+      input[type='password'],
+      input[type='text'] {
         padding: 0.75rem 1rem;
-        border: 1px solid #d9e1ec;
+        border: 1px solid $input-border;
         border-radius: 4px;
-        background-color: #f4f5fa;
+        background-color: $input-bg;
         font-size: 0.875rem;
-        color: #a1a7c4;
+        color: $input-text;
 
         &::placeholder {
-          color: #9ca3af;
+          color: $input-placeholder;
         }
 
         &:focus {
@@ -90,17 +110,25 @@
 
     .submitButton {
       margin-top: 1rem;
-      background-color: #1e2753;
+      background-color: $primary-color;
       color: #fff;
       font-size: 0.95rem;
       font-weight: 600;
       padding: 0.75rem;
       border-radius: 8px;
+      border: none;
       cursor: pointer;
 
       &:hover {
-        background-color: darken(#1e2753, 7%);
+        background-color: $primary-hover;
       }
     }
   }
+}
+
+.signupContainer {
+  @extend .authContainer;
+  width: 25% !important;
+  margin: 5% auto;
+  box-shadow: 0px 0px 32px 6px rgba(229, 229, 229, 0.39);
 }

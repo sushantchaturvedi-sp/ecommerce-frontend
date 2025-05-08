@@ -2,7 +2,7 @@
 .sidebar {
   position: absolute;
   width: 250px;
-  height: 1106px;
+  height: 100vh;
   left: 0px;
   top: 68px;
 
@@ -16,7 +16,6 @@
     margin-bottom: 30px;
 
     .section-title {
-      font-size: 14px;
       font-weight: 600;
       color: #a0a4c4;
       margin-bottom: 10px;
