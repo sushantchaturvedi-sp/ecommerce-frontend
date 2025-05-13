@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -21,7 +21,7 @@ const Footer = () => {
         <h3>Account</h3>
         <ul>
           <li>
-            <a href="#myaccount">My Account</a>
+            <Link to="/MyAccount">My Account</Link>
           </li>
           <li>
             <Link to="/login">Login / Register</Link>
@@ -30,7 +30,7 @@ const Footer = () => {
             <Link to="/cart">Cart</Link>
           </li>
           <li>
-            <a href="#wishlist">Wishlist</a>
+            <Link to="/wishlist">Wishlist</Link>
           </li>
           <li>
             <Link to="/products">Shop</Link>
@@ -41,13 +41,13 @@ const Footer = () => {
         <h3>Quick Link</h3>
         <ul>
           <li>
-            <a href="#privacy">Privacy Policy</a>
+            <Link to="/PrivacyPolicy">Privacy Policy</Link>
           </li>
           <li>
-            <a href="#terms">Terms of Use</a>
+            <Link to="/Terms-of-Use">Terms of Use</Link>
           </li>
           <li>
-            <a href="#faq">FAQ</a>
+            <Link to="/FAQ">FAQ</Link>
           </li>
           <li>
             <Link to="/contact">Contact</Link>

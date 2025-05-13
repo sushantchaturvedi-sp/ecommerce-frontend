@@ -1,7 +1,7 @@
 import React from 'react';
-import './index.scss'; // Importing the SCSS file
-import { Heart, ShoppingCart } from 'lucide-react'; // Importing the Heart icon from lucide-react}
-import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
+import './index.scss';
+import { Heart, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (

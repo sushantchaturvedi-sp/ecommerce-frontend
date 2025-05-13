@@ -1,12 +1,10 @@
 import React from 'react';
 import './index.scss';
-import { Phone, Mail } from 'lucide-react'; // Importing the Phone icon from lucide-react
+import { Phone, Mail } from 'lucide-react';
 
 const ContactPage = () => {
   return (
     <div className="contact-page">
-      {/* <div className="breadcrumb">Home / Contact</div> */}
-
       <div className="contact-container">
         <div className="contact-info">
           <div className="info-block">

@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-// import { getUser } from '../services/api';
 
 export const AuthContext = createContext();
 
@@ -39,7 +38,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// ✅ This is where the `useAuth` hook is exported.
 export const useAuth = () => {
   return useContext(AuthContext);
 };

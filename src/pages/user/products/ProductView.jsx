@@ -35,10 +35,12 @@ function UserProductView() {
       return;
     }
 
-    const cartItem =[{
-      productId: product._id,
-      quantity: 1,
-    }];
+    const cartItem = [
+      {
+        productId: product._id,
+        quantity: 1,
+      },
+    ];
 
     addToCart(cartItem);
     alert('Item added to cart!');

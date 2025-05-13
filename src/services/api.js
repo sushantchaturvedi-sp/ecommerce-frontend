@@ -20,8 +20,6 @@ export const changePassword = (token, newPassword) =>
   API.put(`/auth/resetpassword/${token}`, { password: newPassword });
 
 // Product APIs
-// export const getProducts = () => API.get('/products');
-// Modified getProducts function to support pagination
 export const getProducts = (page = 1, limit = 10) => {
   return API.get(`/products?page=${page}&limit=${limit}`);
 };
@@ -55,9 +53,14 @@ export const deleteUserProduct = (userId, productId) =>
 // Cart APIs
 // Save or update user's cart
 export const saveCart = (userId, items) =>
-  API.post('/cart/add', { userId, items });
+  API.post(`/cart/${userId}/items`, { userId, items });
 
 // Get user's cart
-export const getCart = (userId) => API.get(`/cart/${userId}`);
+export const getCart = (userId) => API.get(`/cart/${userId}/items`);
 
-export const getUser = (userId) => API.post('/user/toggle/:id', { userId });
+export const getUser = (userId) => API.post(`/user/toggle/:id`, { userId });
+
+// Order API
+
+export const placeOrder = (items, paymentMethod, shippingAddress) =>
+  API.post('/orders/checkout', { items, paymentMethod, shippingAddress });

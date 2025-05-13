@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './index.scss';
 import { Bell, MessageSquareText } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthContext'; // Adjust path if needed
+import { AuthContext } from '../../../context/AuthContext';
 import { SearchContext } from '../../../context/SearchContext';
 
 function TopNavbar() {

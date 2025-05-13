@@ -3,6 +3,7 @@ import './index.scss';
 import { useCart } from '../../../context/CartContext';
 import { useAuth } from '../../../context/AuthContext';
 import { CreditCard } from 'lucide-react';
+import { placeOrder } from '../../../services/api';
 
 function Checkout() {
   const { cartItems, clearCart } = useCart();
@@ -27,17 +28,17 @@ function Checkout() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const shipping = 0; // Free shipping
+  const shipping = 0;
   const total = subtotal;
 
   useEffect(() => {
     if (user?.shippingAddress) {
-      setBillingDetails({
-        ...billingDetails,
+      setBillingDetails((prev) => ({
+        ...prev,
         street: user.shippingAddress.street || '',
         city: user.shippingAddress.city || '',
         email: user.email || '',
-      });
+      }));
     }
   }, [user]);
 
@@ -45,43 +46,45 @@ function Checkout() {
     setBillingDetails({ ...billingDetails, [e.target.name]: e.target.value });
   };
 
-  const placeOrder = async () => {
-    const orderData = {
-      userId: user?._id,
-      items: cartItems,
-      shippingInfo: {
+  const handlePlaceOrder = async () => {
+    if (!user) {
+      alert('Please login to place an order.');
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      alert('Cart is empty.');
+      return;
+    }
+
+    try {
+      const formattedItems = cartItems.map((item) => ({
+        productId: item.productId || item.id,
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+      }));
+
+      const payment = paymentMethod === 'cod' ? 'Cash on delivery' : 'Bank';
+
+      const shippingAddress = {
         street: billingDetails.street,
         city: billingDetails.city,
         state: '',
         zipcode: '',
         country: '',
-      },
-      contactInfo: {
-        name: billingDetails.firstName,
-        phone: billingDetails.phone,
-        email: billingDetails.email,
-      },
-      paymentMethod,
-      coupon,
-      totalAmount: total,
-    };
+      };
 
-    try {
-      const res = await fetch('http://localhost:4000/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderData),
-      });
+      await placeOrder(formattedItems, payment, shippingAddress);
 
-      if (res.ok) {
-        setOrderSuccess(true);
-        clearCart();
-      } else {
-        alert('Failed to place order');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Order error');
+      setOrderSuccess(true);
+      clearCart();
+    } catch (error) {
+      console.error('Order placement failed:', error);
+      alert(
+        error.response?.data?.message ||
+          'Failed to place order. Please try again.'
+      );
     }
   };
 
@@ -228,7 +231,7 @@ function Checkout() {
           </button>
         </div>
 
-        <button className="place-order-btn" onClick={placeOrder}>
+        <button className="place-order-btn" onClick={handlePlaceOrder}>
           Place Order
         </button>
       </div>

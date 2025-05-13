@@ -25,7 +25,6 @@ function Login() {
     try {
       const response = await apiLogin(loginData);
       login(response.data.data);
-      // console.log(response);
 
       const token = response.data.data.token;
 

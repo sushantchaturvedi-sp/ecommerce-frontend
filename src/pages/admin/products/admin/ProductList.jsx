@@ -91,7 +91,6 @@ const ProductList = () => {
                     : prod.description}
                 </td>
 
-                {/* <td>{prod.description}</td> */}
                 <td>
                   <Link
                     to={`/admin/products/edit/${prod._id}`}

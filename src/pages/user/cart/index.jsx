@@ -15,7 +15,6 @@ function CartPage() {
     0
   );
 
-
   return (
     <div className="cart-page">
       <h1>Your Cart</h1>
