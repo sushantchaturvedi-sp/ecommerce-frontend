@@ -6,7 +6,7 @@ import { CreditCard } from 'lucide-react';
 import { placeOrder } from '../../../services/api';
 
 function Checkout() {
-  const { cartItems, clearCart } = useCart();
+  const { cartItems } = useCart();
   const { user } = useAuth();
 
   const [billingDetails, setBillingDetails] = useState({
@@ -78,7 +78,6 @@ function Checkout() {
       await placeOrder(formattedItems, payment, shippingAddress);
 
       setOrderSuccess(true);
-      clearCart();
     } catch (error) {
       console.error('Order placement failed:', error);
       alert(

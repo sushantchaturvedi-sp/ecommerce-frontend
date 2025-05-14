@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   const isAdmin = user?.role === 'admin';
 
   const login = (userData) => {
-    console.log('Logging in user:', userData);
+    // console.log('Logging in user:', userData);
     setUser(userData);
     sessionStorage.setItem('user', JSON.stringify(userData));
   };

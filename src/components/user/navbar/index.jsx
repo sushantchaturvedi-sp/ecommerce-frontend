@@ -24,13 +24,13 @@ const Navbar = () => {
       <div className="navbar-search">
         <input type="text" placeholder="What are you looking for?" />
         <button>
-          <i className="">
+          <i className="wishlist-icon">
             <Heart size={18} />
           </i>
         </button>
         <Link to="/cart">
           <button>
-            <i className="">
+            <i className="shoppingcart-icon">
               <ShoppingCart size={18} />
             </i>
           </button>

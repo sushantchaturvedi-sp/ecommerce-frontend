@@ -112,6 +112,14 @@ $border-color: #ccc;
   }
 }
 
+.wishlist-icon{
+  border:none;
+}
+
+.shoppingcart-icon{
+  border:none;
+}
+
 @media (max-width: 480px) {
   .navbar {
     padding: 8px 12px;

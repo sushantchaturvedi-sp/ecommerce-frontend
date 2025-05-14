@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
+import QR from '../../../assets/QR.png';
 
 const Footer = () => {
   return (
@@ -56,9 +57,9 @@ const Footer = () => {
       </div>
       <div className="footer__section">
         <h3>Download App</h3>
-        <p>Save $3 with the app for new users only</p>
+        <p>Save ₹200 with the app for new users only</p>
         <div className="app-links">
-          {/* <img src="path/to/qr-code.png" alt="QR Code" /> */}
+          <img src={QR} alt="QR Code" />
           <div className="app-buttons">
             <button>Google Play</button>
             <button>App Store</button>
@@ -66,7 +67,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer__bottom">
-        <p>© Copyright hulululu 2025. All right reserved</p>
+        <p>© Copyright EXCLUSIVE 2025. All right reserved</p>
       </div>
     </footer>
   );
