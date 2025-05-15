@@ -1,0 +1,190 @@
+$primary-color: #1e2753;
+$primary-hover: darken($primary-color, 7%);
+$input-bg: #f4f5fa;
+$input-border: #d9e1ec;
+$input-text: #131523;
+$input-placeholder: #9ca3af;
+$font-body: 'Inter', sans-serif;
+
+
+.login-box{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient($primary-color, $primary-hover);
+}
+
+.resetPasswordContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient($primary-color, $primary-hover);
+}
+
+.change-Password{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient($primary-color, $primary-hover);
+}
+
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+  background: #fff;
+  // position: absolute;
+  // left: 31.25%;
+  // right: 31.25%;
+  top: 7.91%;
+  bottom: 21.68%;
+  box-shadow: 0px 1px 4px rgba(21, 34, 50, 0.08);
+  border-radius: 6px;
+  padding: 20px;
+  // margin: 0 auto;
+  width: 100%;
+  text-align: center;
+
+  h1, h2 {
+    font-family: $font-body;
+    font-weight: 700;
+    font-size: 28px;
+    color: $input-text;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: $font-body;
+    font-weight: 400;
+    font-size: 16px;
+    color: #5a607f;
+  }
+
+  .link {
+    color: #1e5eff;
+    cursor: pointer;
+    margin-left: 5px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .error,
+  .success {
+    font-size: 0.875rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+
+  .success {
+    background-color: #d1fae5;
+    color: #047857;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+
+    .inputGroup {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+
+      label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+        color: #374151;
+      }
+
+      input[type='email'],
+      input[type='password'],
+      input[type='text'] {
+        padding: 0.75rem 1rem;
+        border: 1px solid $input-border;
+        border-radius: 4px;
+        background-color: $input-bg;
+        font-size: 0.875rem;
+        color: $input-text;
+
+        &::placeholder {
+          color: $input-placeholder;
+        }
+
+        &:focus {
+          outline: none;
+          border-color: #2563eb;
+          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+      }
+    }
+
+    .inputGroup:nth-of-type(3) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.5rem;
+
+      input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        cursor: pointer;
+        accent-color: #1e5eff;
+      }
+
+      label {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+
+    .loginButton,
+    .changePasswordButton {
+      margin-top: 1rem;
+      background-color: $primary-color;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary-hover;
+      }
+    }
+  }
+}
+
+
+.loginContainer {
+  @extend .authContainer;
+  width: 25% !important;
+  margin: 5% auto;
+  box-shadow: 0px 0px 32px 6px rgb(229 229 229 / 39%);
+}
+
+.changePasswordContainer {
+  @extend .authContainer;
+  width: 25% !important;
+  margin: 5% auto;
+  box-shadow: 0px 0px 32px 6px rgb(229 229 229 / 39%);
+}

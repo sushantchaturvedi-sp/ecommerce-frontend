@@ -1,0 +1,166 @@
+$primary-color: #1e2753;
+$background-color: #f4f5f8;
+$card-bg: #ffffff;
+$border-color: #dfe3e8;
+$input-text: #1f2937;
+$input-bg: #f9fafb;
+$font-body: 'Inter', sans-serif;
+$shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+.formContainer,
+.productContainer {
+  background: $card-bg;
+  // border-radius: 10px;
+  padding: 0px;
+   width: 100%;
+  // max-width: 1200px;
+  margin: 20px;
+  box-shadow: $shadow;
+  font-family: $font-body;
+
+}
+
+h2 {
+  font-size: 22px;
+  color: $primary-color;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: $input-text;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 10px 14px;
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    background-color: $input-bg;
+    font-size: 14px;
+    color: $input-text;
+    font-family: $font-body;
+    border: 1px solid gray;
+    border-radius: 5px;
+
+    &::placeholder {
+      // color: $input-placeholder;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+  }
+}
+
+.submitButton,
+.addButton {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: darken($primary-color, 6%);
+  }
+}
+
+.productTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  
+  font-size: 14px;
+
+  th,
+  td {
+    padding: 14px;
+    border-bottom: 1px solid $border-color;
+    text-align: left;
+  }
+
+  th {
+    background: $input-bg;
+    color: $input-text;
+    font-weight: 600;
+  }
+
+  td {
+    color: #5a607f;
+  }
+
+  img.productImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+
+  .editButton,
+  .deleteButton {
+    background: none;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+
+    svg {
+      color: $primary-color;
+      transition: 0.3s;
+    }
+
+    &:hover svg {
+      color: #dc2626;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+
+  button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid $border-color;
+    background: $input-bg;
+    border-radius: 4px;
+    cursor: pointer;
+    color: $input-text;
+
+    &:hover {
+      background: lighten($input-bg, 5%);
+    }
+
+    &.active {
+      background: $primary-color;
+      color: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
