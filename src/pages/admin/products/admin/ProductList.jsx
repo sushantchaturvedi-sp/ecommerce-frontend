@@ -50,7 +50,7 @@ const ProductList = () => {
   return (
     <div className="productContainer">
       <div className="header">
-        <h2>Product List</h2>
+        <h2>Products</h2>
         <Link to="/admin/products/add" className="addButton">
           Add Product
         </Link>
@@ -92,18 +92,20 @@ const ProductList = () => {
                 </td>
 
                 <td>
-                  <Link
-                    to={`/admin/products/edit/${prod._id}`}
-                    className="editButton"
-                  >
-                    <PenLine size={18} />
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(prod._id)}
-                    className="deleteButton"
-                  >
-                    <Trash2 size={18} />
-                  </button>
+                  <div className="actionbtn">
+                    <Link
+                      to={`/admin/products/edit/${prod._id}`}
+                      className="editButton"
+                    >
+                      <PenLine size={18} />
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(prod._id)}
+                      className="deleteButton"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

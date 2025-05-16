@@ -7,14 +7,12 @@ import { SearchContext } from '../../../context/SearchContext';
 
 function TopNavbar() {
   const { searchQuery, setSearchQuery } = useContext(SearchContext);
-  const { user, setUser } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    sessionStorage.removeItem('user');
-    localStorage.removeItem('token');
-    setUser(null);
-    navigate('/login');
+    logout();
+    navigate('/');
   };
 
   return (
