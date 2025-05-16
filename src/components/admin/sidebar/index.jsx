@@ -30,7 +30,7 @@ function Sidebar() {
             <List size={18} /> Orders
           </li>
           <li>
-            <Link to="/admin/products">
+            <Link to="/admin">
               <Tag size={18} /> Products
             </Link>
           </li>

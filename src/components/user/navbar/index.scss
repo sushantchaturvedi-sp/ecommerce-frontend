@@ -1,6 +1,6 @@
-$primary-color: #333;
-$highlight-color: #007bff;
-$input-bg-color: #fff;
+$primary-color: white;
+$highlight-color: rgb(228, 131, 129);
+$input-bg-color: rgb(83, 17, 177);
 $border-color: #ccc;
 
 .navbar {
@@ -11,6 +11,7 @@ $border-color: #ccc;
   background-color: $input-bg-color;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
+  height: 60px;
   
   .navbar-brand {
     font-weight: bold;
@@ -25,6 +26,7 @@ $border-color: #ccc;
     padding: 0;
     
     .nav-item {
+      align-items: center;
       margin-right: 15px;
       
       a {
@@ -40,7 +42,18 @@ $border-color: #ccc;
     }
   }
 
-  .navbar-search {
+  .search-ph{
+    padding-right: 15rem; 
+    background-color: white;
+    margin-right: 10rem;
+    width: 191px;
+    color: black;
+    height: 2rem;
+    align-items: center;
+    
+  }
+
+  .buttons-nav {
     display: flex;
     align-items: center;
     

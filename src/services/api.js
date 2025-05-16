@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://192.168.0.167:4000/api/v1' });
+const API = axios.create({ baseURL: 'https://e-commerce-backend-nh74.onrender.com/api/v1' });
 
 // Automatically attach token
 API.interceptors.request.use((req) => {
