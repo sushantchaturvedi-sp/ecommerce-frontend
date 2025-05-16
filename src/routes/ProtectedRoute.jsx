@@ -3,10 +3,10 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 function ProtectedRoute({ children }) {
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   // Check if the user is authenticated and has a role of "admin" or "user"
-  if (isAuthenticated && (user?.role === 'admin' || user?.role === 'user')) {
+  if ( (user?.role === 'admin' || user?.role === 'user')) {
     return children;
   }
 

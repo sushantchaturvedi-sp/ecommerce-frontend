@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Layout from './components/admin/layout/index';
@@ -21,6 +20,8 @@ import CartPage from './pages/user/cart/index';
 
 import Checkout from './pages/user/checkout/index';
 
+import AdminRoute from './routes/AdminRoute';
+
 function App() {
   return (
     <>
@@ -30,16 +31,19 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/reset-password/:token" element={<ChangePassword />} />
 
-        <Route path="/admin" element={<Layout />}>
-          <Route path="products" element={<ProductList />} />
+
+
+        <Route path="/admin" element={<AdminRoute><Layout /></AdminRoute>}>
+          <Route path="" element={<ProductList />} />
           <Route path="products/add" element={<AddProduct />} />
           <Route path="products/edit/:id" element={<EditProduct />} />
           <Route path="products/all" element={<UserProductList />} />
-          <Route path="product/:id" element={<UserProductView />} />
+          <Route path="products/:id" element={<UserProductView />} />
         </Route>
 
+
         <Route path="/" element={<UserLayout />}>
-          <Route path="products" element={<UserProductList />} />
+          <Route path="" element={<UserProductList />} />
           <Route path="product/:id" element={<UserProductView />} />
           <Route path="contact" element={<ContactPage />} />\
           <Route path="about" element={<AboutPage />} />

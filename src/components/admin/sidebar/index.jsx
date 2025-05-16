@@ -52,7 +52,7 @@ function Sidebar() {
         </ul>
       </div>
 
-      <div className="nav-section">
+      {/* <div className="nav-section">
         <h4 className="section-title">Other Information</h4>
         <ul className="nav-list">
           <li>
@@ -62,9 +62,9 @@ function Sidebar() {
             <Award size={18} /> Product Updates
           </li>
         </ul>
-      </div>
+      </div> */}
 
-      <div className="nav-section">
+      {/* <div className="nav-section">
         <h4 className="section-title">Settings</h4>
         <ul className="nav-list">
           <li>
@@ -74,7 +74,7 @@ function Sidebar() {
             <Settings size={18} /> Global Settings
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 }

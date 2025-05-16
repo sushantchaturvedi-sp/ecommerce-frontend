@@ -42,7 +42,7 @@ function AddProduct() {
   return (
     <div
       style={{
-        width: '70%',
+        width: '95%',
         border: '1px solid #ccc',
         padding: '20px',
         borderRadius: '10px',

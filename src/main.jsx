@@ -5,7 +5,7 @@ import App from './App.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import { SearchProvider } from './context/SearchContext.jsx';
-import { CartProvider } from './context/CartContext.jsx'; // ✅ Import CartProvider
+import { CartProvider } from './context/CartContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

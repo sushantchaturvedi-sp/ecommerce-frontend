@@ -79,11 +79,20 @@ form {
   border-radius: 6px;
   cursor: pointer;
   transition: 0.3s;
+  margin-left: 86%;
+  
 
   &:hover {
     background-color: darken($primary-color, 6%);
   }
 }
+
+.actionbtn {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
 
 .productTable {
   width: 100%;

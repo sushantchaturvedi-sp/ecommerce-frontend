@@ -10,7 +10,7 @@ function Login() {
   const [keepSignedIn, setKeepSignedIn] = useState(false);
   const [error, setError] = useState('');
 
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -27,9 +27,14 @@ function Login() {
       login(response.data.data);
 
       const token = response.data.data.token;
+      const role = response.data.data.role;
 
       localStorage.setItem('token', token);
-      navigate('/');
+      if (role == 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
     } catch (error) {
       console.log(error);
       if (
