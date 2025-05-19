@@ -1,0 +1,78 @@
+// Variables
+$primary-color: #5311b1; // Purple
+$background-color: #ffffff; // White
+$text-color: #333;
+$border-color: #ddd;
+$input-bg: #f8f8f8;
+
+.account-page {
+  background-color: $background-color;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  color: $text-color;
+
+  h2 {
+    color: $primary-color;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      background-color: $input-bg;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+      color: $text-color;
+      font-weight: 600;
+
+//        &::placeholder {
+//     color: #888; // Set a visible gray placeholder color
+//     opacity: 1; // Ensure it's fully visible
+//   }
+
+      &:focus {
+        // border-color: $primary-color;
+        outline: none;
+      }
+    }
+
+    h4 {
+      color: $primary-color;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      background-color: $primary-color;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken($primary-color, 8%);
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .account-page {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}

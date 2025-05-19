@@ -26,7 +26,7 @@ function UserProductView() {
   if (!product) return <p className="loading">Loading product...</p>;
 
   const imageUrl = product?.images?.[0]
-    ? `https://e-commerce-backend-nh74.onrender.com/${product.images[0]}`
+    ? `http://localhost:4000/${product.images[0]}`
     : 'https://via.placeholder.com/450x500?text=No+Image';
 
   function handleAddToCart() {

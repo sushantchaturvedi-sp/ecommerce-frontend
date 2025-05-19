@@ -6,7 +6,7 @@ function ProtectedRoute({ children }) {
   const { user } = useContext(AuthContext);
 
   // Check if the user is authenticated and has a role of "admin" or "user"
-  if ( (user?.role === 'admin' || user?.role === 'user')) {
+  if (user?.role === 'admin' || user?.role === 'user') {
     return children;
   }
 

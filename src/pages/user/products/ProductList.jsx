@@ -128,7 +128,6 @@
 
 // // // // export default UserProductList;
 
-
 // // // import React, { useEffect, useState, useContext } from 'react';
 // // // import { useNavigate } from 'react-router-dom';
 // // // import { getProducts } from '../../../services/api';
@@ -265,7 +264,6 @@
 // // // }
 
 // // // export default UserProductList;
-
 
 // // import React, { useEffect, useState, useContext, useRef } from 'react';
 // // import { useNavigate } from 'react-router-dom';
@@ -406,7 +404,6 @@
 // // }
 
 // // export default UserProductList;
-
 
 // // import React, { useEffect, useState, useContext, useRef } from 'react';
 // // import { useNavigate } from 'react-router-dom';
@@ -563,7 +560,6 @@
 // // }
 
 // // export default UserProductList;
-
 
 // import React, { useEffect, useState, useContext, useRef } from 'react';
 // import { useNavigate } from 'react-router-dom';
@@ -725,8 +721,13 @@
 
 // export default UserProductList;
 
-
-import React, { useEffect, useState, useContext, useRef, useCallback } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  useCallback,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
@@ -854,7 +855,7 @@ function UserProductList() {
                   <img
                     src={
                       product?.images?.[0]
-                        ? `https://e-commerce-backend-nh74.onrender.com/${product.images[0]}`
+                        ? `http://localhost:4000/${product.images[0]}`
                         : 'fallback-image-url.jpg'
                     }
                     alt={product.name}
