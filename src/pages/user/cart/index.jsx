@@ -39,7 +39,7 @@ function CartPage() {
                     <td>
                       <div className="product-info">
                         <img
-                          src={`http://localhost:4000/${item.images[0]}`}
+                          src={`https://e-commerce-backend-nh74.onrender.com/${item.images[0]}`}
                           alt={item.name}
                         />
                         <span>{item.name}</span>

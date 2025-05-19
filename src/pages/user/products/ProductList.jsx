@@ -854,7 +854,7 @@ function UserProductList() {
                   <img
                     src={
                       product?.images?.[0]
-                        ? `http://localhost:4000/${product.images[0]}`
+                        ? `https://e-commerce-backend-nh74.onrender.com/${product.images[0]}`
                         : 'fallback-image-url.jpg'
                     }
                     alt={product.name}
