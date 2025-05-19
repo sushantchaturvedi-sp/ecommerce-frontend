@@ -1,6 +1,5 @@
-// Variables
-$primary-color: #5311b1; // Purple
-$background-color: #ffffff; // White
+$primary-color: #5311b1;
+$background-color: #ffffff;
 $text-color: #333;
 $border-color: #ddd;
 $input-bg: #f8f8f8;
@@ -35,13 +34,7 @@ $input-bg: #f8f8f8;
       color: $text-color;
       font-weight: 600;
 
-//        &::placeholder {
-//     color: #888; // Set a visible gray placeholder color
-//     opacity: 1; // Ensure it's fully visible
-//   }
-
       &:focus {
-        // border-color: $primary-color;
         outline: none;
       }
     }
