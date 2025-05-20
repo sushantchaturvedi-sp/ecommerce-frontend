@@ -2,6 +2,7 @@ $primary-color: white;
 $highlight-color: rgb(228, 131, 129);
 $input-bg-color: rgb(83, 17, 177);
 $border-color: #ccc;
+$background-hover-color: #575757;
 
 .navbar {
   display: flex;
@@ -129,7 +130,7 @@ $border-color: #ccc;
     margin-top: 10px;
 
     &:hover {
-      background-color: #575757;
+      background-color: $background-hover-color;
     }
   }
 }

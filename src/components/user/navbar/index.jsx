@@ -79,9 +79,6 @@ const Navbar = () => {
 
       {/* Sidebar */}
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-        {/* <span className="closebtn" onClick={toggleSidebar}>
-          &times;
-        </span> */}
 
         {user ? (
           <div className="sidebar-user">
