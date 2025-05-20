@@ -1,3 +1,6 @@
+$primary: #5A31DD;
+// $accent-color: #5A31DD;
+
 .about-page {
   padding: 40px 20px;
   font-family: 'Inter', sans-serif;
@@ -67,9 +70,9 @@
       }
 
       &.active {
-        background: #5A31DD;
+        background: $primary;
         color: #fff;
-        border-color: #5A31DD;
+        border-color: $primary;
 
         h2,
         p {

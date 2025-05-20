@@ -6,7 +6,7 @@ const Header = () => {
     <header className="header1">
       <div className="container">
         <div className="container-left">
-          Made for You. Shipped to Your Door.{' '}
+          <span>Made for You. Shipped to Your Door. </span>
           <Link to="/products"> ShopNow!</Link>
         </div>
       </div>
