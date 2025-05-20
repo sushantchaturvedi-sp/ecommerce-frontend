@@ -23,7 +23,7 @@ const MyAccount = () => {
     const fetchUser = async () => {
       try {
         const res = await getProfile();
-        const userData = res.data?.data; // fixed
+        const userData = res.data?.data;
 
         console.log('Fetched user:', userData);
 
