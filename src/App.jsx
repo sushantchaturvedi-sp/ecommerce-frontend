@@ -22,6 +22,10 @@ import Checkout from './pages/user/checkout/index';
 
 import AdminRoute from './routes/AdminRoute';
 
+import MyAccount from './pages/user/myAccount/index';
+
+import Orders from './pages/user/orders/index';
+
 function App() {
   return (
     <>
@@ -31,16 +35,20 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/reset-password/:token" element={<ChangePassword />} />
 
-
-
-        <Route path="/admin" element={<AdminRoute><Layout /></AdminRoute>}>
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <Layout />
+            </AdminRoute>
+          }
+        >
           <Route path="" element={<ProductList />} />
           <Route path="products/add" element={<AddProduct />} />
           <Route path="products/edit/:id" element={<EditProduct />} />
           <Route path="products/all" element={<UserProductList />} />
           <Route path="products/:id" element={<UserProductView />} />
         </Route>
-
 
         <Route path="/" element={<UserLayout />}>
           <Route path="" element={<UserProductList />} />
@@ -49,6 +57,8 @@ function App() {
           <Route path="about" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/account" element={<MyAccount />} />
+          <Route path="/orders" element={<Orders />} />
         </Route>
       </Routes>
     </>

@@ -39,7 +39,11 @@ function CartPage() {
                     <td>
                       <div className="product-info">
                         <img
-                          src={`https://e-commerce-backend-nh74.onrender.com/${item.images[0]}`}
+                          src={
+                            item.images?.[0]
+                              ? `${import.meta.env.VITE_IMAGE_URL}${item.images[0]}`
+                              : '/fallback-image.jpg' // Optional fallback
+                          }
                           alt={item.name}
                         />
                         <span>{item.name}</span>

@@ -12,7 +12,7 @@ const AboutPage = () => {
   const [activeStatIndex, setActiveStatIndex] = useState(null);
 
   const handleStatClick = (index) => {
-    setActiveStatIndex(index === activeStatIndex ? null : index); // toggle behavior
+    setActiveStatIndex(index === activeStatIndex ? null : index);
   };
 
   return (

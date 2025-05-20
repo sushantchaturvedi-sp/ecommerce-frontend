@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://e-commerce-backend-nh74.onrender.com/api/v1' });
+const API = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+});
 
 // Automatically attach token
 API.interceptors.request.use((req) => {
@@ -64,3 +66,10 @@ export const getUser = (userId) => API.post(`/user/toggle/:id`, { userId });
 
 export const placeOrder = (items, paymentMethod, shippingAddress) =>
   API.post('/orders/checkout', { items, paymentMethod, shippingAddress });
+
+// Authenticated User Profile
+// export const getProfile = () => API.get('/user/profile');
+export const getProfile = () => API.get('/users/profile');
+export const updateProfile = (formData) => API.put('/users/profile', formData);
+
+export const getMyOrders = () => API.get('/orders/my');

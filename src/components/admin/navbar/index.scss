@@ -1,3 +1,5 @@
+$input-border-color: #d9e1ec;
+
 .top-navbar {
   position: absolute;
   top: 0;
@@ -25,8 +27,7 @@
   .search-bar {
     input {
       padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid #d9e1ec;
+      border: 1px solid $input-border-color;
       font-size: 14px;
       width: 250px;
       background: #f4f5fa;
@@ -34,7 +35,6 @@
   
       &:focus {
         outline: none;
-        border-color: #2563eb;
       }
     }
   }
