@@ -2,7 +2,12 @@ import axios from 'axios';
 
 // const API = axios.create({ baseURL: 'https://e-commerce-backend-nh74.onrender.com/api/v1' });
 
-const API = axios.create({ baseURL: 'http://localhost:4000/api/v1' });
+const API = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  // console.log('API URL--------', baseURL);
+});
+
+
 
 // Automatically attach token
 API.interceptors.request.use((req) => {

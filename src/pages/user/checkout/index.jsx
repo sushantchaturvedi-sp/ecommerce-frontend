@@ -167,7 +167,7 @@ function Checkout() {
           {cartItems.map((item) => (
             <li key={item.productId || item.id} className="checkout-item">
               <img
-                src={`http://localhost:4000/${item.images?.[0]}`}
+                src={`${import.meta.env.VITE_IMAGE_URL}${item.images[0]}`}
                 alt={item.name}
                 className="checkout-item-img"
               />

@@ -46,7 +46,7 @@ const Orders = () => {
                     <img
                       src={
                         item.image
-                          ? `http://localhost:4000${item.image}`
+                          ? `${import.meta.env.VITE_IMAGE_URL}${item.image}`
                           : 'fallback-image-url.jpg'
                       }
                       alt={item.name}

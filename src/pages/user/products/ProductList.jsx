@@ -126,7 +126,7 @@ function UserProductList() {
                   <img
                     src={
                       product?.images?.[0]
-                        ? `http://localhost:4000/${product.images[0]}`
+                        ? `${import.meta.env.VITE_IMAGE_URL}/${product.images[0]}`
                         : 'fallback-image-url.jpg'
                     }
                     alt={product.name}
