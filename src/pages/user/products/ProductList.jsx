@@ -2,8 +2,11 @@ import { useEffect, useState, useContext, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './ProductList.scss';
+import Carousel from '../../../components/carousel';
+import NewLaunches from './NewLaunches';
+import TopSellingProducts from './TopSellingProducts';
 
 function UserProductList() {
   const [products, setProducts] = useState([]);
@@ -103,53 +106,63 @@ function UserProductList() {
   };
 
   return (
-    <div className="product-list-container">
-      <h2>Browse Products</h2>
+    <div className="">
+      <div className="carousel-container">
+        {' '}
+        <Carousel />
+      </div>
+      <NewLaunches />
+      <TopSellingProducts />
+      <div className="product-list-container">
+        <h2>Browse Products</h2>
+        {products.length === 0 && !isLoading ? (
+          <p className="no-results">No products match your search.</p>
+        ) : (
+          <>
+            {/* Scroll Buttons */}
+            <button className="scroll-arrow left" onClick={handleScrollLeft}>
+              <ChevronLeft />
+            </button>
 
-      {products.length === 0 && !isLoading ? (
-        <p className="no-results">No products match your search.</p>
-      ) : (
-        <>
-          {/* Scroll Buttons */}
-          <button className="scroll-arrow left" onClick={handleScrollLeft}>
-            <ArrowLeft />
-          </button>
-
-          <div className="product-grid horizontal-scroll" ref={productGridRef}>
-            {products.map((product) => (
-              <div
-                key={product._id}
-                className="product-card-wrapper"
-                onClick={() => handleClick(product._id)}
-              >
-                <div className="product-card">
-                  <img
-                    src={
-                      product?.images?.[0]
-                        ? `${import.meta.env.VITE_IMAGE_URL}/${product.images[0]}`
-                        : 'fallback-image-url.jpg'
-                    }
-                    alt={product.name}
-                    className="product-img"
-                  />
-                  <h3>{product.name}</h3>
-                  <p className="price">₹ {product.price}</p>
-                  <button className="add-to-cart">Add to Cart</button>
+            <div
+              className="product-grid horizontal-scroll"
+              ref={productGridRef}
+            >
+              {products.map((product) => (
+                <div
+                  key={product._id}
+                  className="product-card-wrapper"
+                  onClick={() => handleClick(product._id)}
+                >
+                  <div className="product-card">
+                    <img
+                      src={
+                        product?.images?.[0]
+                          ? `${product.images[0]}`
+                          : 'fallback-image-url.jpg'
+                      }
+                      alt={product.name}
+                      className="product-img"
+                    />
+                    <h3>{product.name}</h3>
+                    <p className="price">₹ {product.price}</p>
+                    <button className="add-to-cart">Add to Cart</button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
 
-            {/* Sentinel div to detect end of scroll */}
-            <div ref={sentinelRef} className="sentinel" />
-          </div>
+              {/* Sentinel div to detect end of scroll */}
+              <div ref={sentinelRef} className="sentinel" />
+            </div>
 
-          <button className="scroll-arrow right" onClick={handleScrollRight}>
-            <ArrowRight />
-          </button>
+            <button className="scroll-arrow right" onClick={handleScrollRight}>
+              <ChevronRight />
+            </button>
 
-          {isLoading && <p className="loading">Loading more products...</p>}
-        </>
-      )}
+            {isLoading && <p className="loading">Loading more products...</p>}
+          </>
+        )}
+      </div>
     </div>
   );
 }

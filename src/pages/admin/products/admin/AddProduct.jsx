@@ -26,7 +26,7 @@ function AddProduct() {
 
     await createProduct(data);
 
-    navigate('/admin/products');
+    navigate('/admin');
   };
 
   const handleChange = (event) => {

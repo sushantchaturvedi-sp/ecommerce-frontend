@@ -41,8 +41,8 @@ function CartPage() {
                         <img
                           src={
                             item.images?.[0]
-                              ? `${import.meta.env.VITE_IMAGE_URL}${item.images[0]}`
-                              : '/fallback-image.jpg' // Optional fallback
+                              ? `${item.images[0]}`
+                              : '/fallback-image.jpg'
                           }
                           alt={item.name}
                         />

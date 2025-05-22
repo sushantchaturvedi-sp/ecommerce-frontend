@@ -73,3 +73,14 @@ export const getProfile = () => API.get('/users/profile');
 export const updateProfile = (formData) => API.put('/users/profile', formData);
 
 export const getMyOrders = () => API.get('/orders/my');
+
+export const getTopSellingProducts = (limit = 7) =>
+  API.get(`/products?sort=orders_desc&limit=${limit}`);
+
+// Banner APIs
+export const getBanners = () => API.get('/banners');
+export const createBanner = (formData) =>
+  API.post('/banners', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+export const deleteBanner = (id) => API.delete(`/banners/${id}`);

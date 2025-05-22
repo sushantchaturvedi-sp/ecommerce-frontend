@@ -2,3 +2,7 @@
   margin: 0;
   padding: 0;
 }
+
+/* For slick carousel arrows and dots */
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';

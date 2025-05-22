@@ -50,7 +50,7 @@ function EditProduct() {
 
     try {
       await updateProduct(id, data);
-      navigate('/products');
+      navigate('/admin');
     } catch (error) {
       console.error('Error updating product:', error);
     }

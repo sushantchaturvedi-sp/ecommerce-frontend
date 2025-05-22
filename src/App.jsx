@@ -8,6 +8,9 @@ import ChangePassword from './pages/admin/login/ChangePassword';
 import ProductList from './pages/admin/products/admin/ProductList';
 import AddProduct from './pages/admin/products/admin/AddProduct';
 import EditProduct from './pages/admin/products/admin/EditProduct';
+
+import BannerManager from './components/admin/BannerManager';
+
 import UserProductList from './pages/user/products/ProductList';
 import UserProductView from './pages/user/products/ProductView';
 
@@ -48,6 +51,7 @@ function App() {
           <Route path="products/edit/:id" element={<EditProduct />} />
           <Route path="products/all" element={<UserProductList />} />
           <Route path="products/:id" element={<UserProductView />} />
+          <Route path="banners" element={<BannerManager />} />
         </Route>
 
         <Route path="/" element={<UserLayout />}>
