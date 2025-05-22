@@ -2,6 +2,8 @@ import { useEffect, useState, useContext, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
+import { useCart } from '../../../context/CartContext';
+import { AuthContext } from '../../../context/AuthContext';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './ProductList.scss';
 import Carousel from '../../../components/carousel';
@@ -16,6 +18,8 @@ function UserProductList() {
 
   const productsPerPage = 10;
   const { searchQuery } = useContext(SearchContext);
+  const { user } = useContext(AuthContext);
+  const { addToCart } = useCart();
   const navigate = useNavigate();
 
   const productGridRef = useRef(null);
@@ -58,7 +62,6 @@ function UserProductList() {
     }
   }, [currentPage]);
 
-  // Observe sentinel at the end of scroll
   const handleIntersection = useCallback(
     (entries) => {
       const target = entries[0];
@@ -87,6 +90,25 @@ function UserProductList() {
     navigate(`/product/${id}`);
   };
 
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation(); // Prevent navigation on card click
+
+    if (!user?._id) {
+      alert('Please log in to add items to your cart.');
+      return;
+    }
+
+    const cartItem = [
+      {
+        productId: product._id,
+        quantity: 1,
+      },
+    ];
+
+    addToCart(cartItem);
+    alert(`${product.name} added to cart!`);
+  };
+
   const handleScrollLeft = () => {
     if (productGridRef.current) {
       productGridRef.current.scrollBy({
@@ -108,18 +130,19 @@ function UserProductList() {
   return (
     <div className="">
       <div className="carousel-container">
-        {' '}
         <Carousel />
       </div>
+
       <NewLaunches />
       <TopSellingProducts />
+
       <div className="product-list-container">
         <h2>Browse Products</h2>
+
         {products.length === 0 && !isLoading ? (
           <p className="no-results">No products match your search.</p>
         ) : (
           <>
-            {/* Scroll Buttons */}
             <button className="scroll-arrow left" onClick={handleScrollLeft}>
               <ChevronLeft />
             </button>
@@ -137,21 +160,23 @@ function UserProductList() {
                   <div className="product-card">
                     <img
                       src={
-                        product?.images?.[0]
-                          ? `${product.images[0]}`
-                          : 'fallback-image-url.jpg'
+                        product.images?.[0] ||
+                        'https://via.placeholder.com/300x400?text=No+Image'
                       }
                       alt={product.name}
                       className="product-img"
                     />
                     <h3>{product.name}</h3>
                     <p className="price">₹ {product.price}</p>
-                    <button className="add-to-cart">Add to Cart</button>
+                    <button
+                      className="add-to-cart"
+                      onClick={(e) => handleAddToCart(e, product)}
+                    >
+                      Add to Cart
+                    </button>
                   </div>
                 </div>
               ))}
-
-              {/* Sentinel div to detect end of scroll */}
               <div ref={sentinelRef} className="sentinel" />
             </div>
 
