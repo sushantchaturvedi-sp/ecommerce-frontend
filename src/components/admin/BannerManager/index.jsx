@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { getBanners, createBanner, deleteBanner } from '../../../services/api';
 import './index.scss';
 
-// const BASE_URL = import.meta.env.VITE_IMAGE_URL;
-
 const BannerManager = () => {
   const [banners, setBanners] = useState([]);
   const [productId, setProductId] = useState('');

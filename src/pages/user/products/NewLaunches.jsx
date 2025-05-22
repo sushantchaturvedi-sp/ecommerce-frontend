@@ -22,8 +22,8 @@ function NewLaunches() {
     const fetchNewLaunches = async () => {
       setIsLoading(true);
       try {
-        const res = await getProducts(1, 1000, { filter: 'new' });
-        let fetchedProducts = res.data.products || [];
+        const { data: { products: fetchedProducts = [] } = {} } = await getProducts(1, 1000, { filter: 'new' });
+
 
         if (searchQuery) {
           const lower = searchQuery.toLowerCase();

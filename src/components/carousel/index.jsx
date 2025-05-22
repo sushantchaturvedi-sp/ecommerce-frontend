@@ -8,14 +8,41 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const Carousel = () => {
   const [banners, setBanners] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await getBanners();
-      setBanners(data);
+    let isMounted = true;
+
+    const fetchBanners = async () => {
+      try {
+        const { data } = await getBanners();
+
+        if (
+          isMounted &&
+          data &&
+          Array.isArray(data) &&
+          data.length > 0 &&
+          data.every((banner) => banner.image && banner.productId)
+        ) {
+          setBanners(data);
+        } else {
+          console.warn('Invalid or incomplete banner data:', data);
+          setBanners([]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch banners:', error);
+        setBanners([]);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
     };
-    fetchData();
+
+    fetchBanners();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const settings = {
@@ -27,21 +54,28 @@ const Carousel = () => {
     slidesToScroll: 1,
   };
 
-  if (banners.length === 0) return null;
+  if (loading) return null; // You can show a spinner here
+  if (!banners.length) return null;
 
   return (
     <div className="banner-carousel">
       <Slider {...settings}>
-        {banners.map((banner) => (
+        {banners.map(({ _id, image, productId }) => (
           <div
-            key={banner._id}
+            key={_id}
             className="banner-slide"
-            onClick={() => navigate(`/product/${banner.productId}`)}
+            onClick={() =>
+              productId ? navigate(`/product/${productId}`) : null
+            }
           >
             <img
-              src={banner.image}
+              src={image || '/placeholder.jpg'}
               alt="Banner"
               className="carousel-image clickable"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/placeholder.jpg';
+              }}
             />
           </div>
         ))}

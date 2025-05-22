@@ -1,3 +1,5 @@
+$primary-color: #101138;
+
 .container{
   position: relative;
   width: 80%;
@@ -21,7 +23,7 @@
   position: relative;
   width: 100%;
   height: 60px;
-  background-color: #101138;
+  background-color: $primary-color;
   color: #fff;
   overflow: hidden;
   display: flex;
