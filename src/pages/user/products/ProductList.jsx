@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useContext, useRef, useCallback } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  useCallback,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -46,9 +52,7 @@ const UserProductList = () => {
         );
       }
 
-      setProducts(prev =>
-        page === 1 ? fetched : [...prev, ...fetched]
-      );
+      setProducts((prev) => (page === 1 ? fetched : [...prev, ...fetched]));
       setTotalProducts(res?.data?.total || 0);
     } catch (error) {
       console.error('Failed to load products:', error);
@@ -73,7 +77,11 @@ const UserProductList = () => {
   const handleIntersection = useCallback(
     (entries) => {
       const target = entries[0];
-      if (target.isIntersecting && !isLoading && products.length < totalProducts) {
+      if (
+        target.isIntersecting &&
+        !isLoading &&
+        products.length < totalProducts
+      ) {
         setCurrentPage((prev) => prev + 1);
       }
     },
@@ -127,11 +135,17 @@ const UserProductList = () => {
           <p className="no-results">No products match your search.</p>
         ) : (
           <>
-            <button className="scroll-arrow left" onClick={() => scroll('left')}>
+            <button
+              className="scroll-arrow left"
+              onClick={() => scroll('left')}
+            >
               <ChevronLeft />
             </button>
 
-            <div className="product-grid horizontal-scroll" ref={productGridRef}>
+            <div
+              className="product-grid horizontal-scroll"
+              ref={productGridRef}
+            >
               {products.map((product) => (
                 <div
                   key={product._id}
@@ -161,7 +175,10 @@ const UserProductList = () => {
               <div ref={sentinelRef} className="sentinel" />
             </div>
 
-            <button className="scroll-arrow right" onClick={() => scroll('right')}>
+            <button
+              className="scroll-arrow right"
+              onClick={() => scroll('right')}
+            >
               <ChevronRight />
             </button>
 

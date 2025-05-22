@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useContext, useRef, useCallback } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  useCallback,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
@@ -40,7 +46,10 @@ function NewLaunches() {
     setIsLoading(true);
     try {
       const fetchedProducts = await fetchProducts();
-      const filteredProducts = filterProductsBySearchQuery(fetchedProducts, searchQuery);
+      const filteredProducts = filterProductsBySearchQuery(
+        fetchedProducts,
+        searchQuery
+      );
       setProducts(filteredProducts.slice(0, 7));
     } catch (error) {
       console.error('Failed to load new launches:', error);
@@ -57,7 +66,10 @@ function NewLaunches() {
   const handleScroll = (direction) => {
     if (productGridRef.current) {
       const scrollValue = direction === 'left' ? -300 : 300;
-      productGridRef.current.scrollBy({ left: scrollValue, behavior: 'smooth' });
+      productGridRef.current.scrollBy({
+        left: scrollValue,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -84,7 +96,10 @@ function NewLaunches() {
         <p className="no-results">No new products found.</p>
       ) : (
         <>
-          <button className="scroll-arrow left" onClick={() => handleScroll('left')}>
+          <button
+            className="scroll-arrow left"
+            onClick={() => handleScroll('left')}
+          >
             <ChevronLeft />
           </button>
 
@@ -97,7 +112,10 @@ function NewLaunches() {
               >
                 <div className="product-card">
                   <img
-                    src={product.images?.[0] || 'https://via.placeholder.com/300x400?text=No+Image'}
+                    src={
+                      product.images?.[0] ||
+                      'https://via.placeholder.com/300x400?text=No+Image'
+                    }
                     alt={product.name}
                     className="product-img"
                   />
@@ -114,7 +132,10 @@ function NewLaunches() {
             ))}
           </div>
 
-          <button className="scroll-arrow right" onClick={() => handleScroll('right')}>
+          <button
+            className="scroll-arrow right"
+            onClick={() => handleScroll('right')}
+          >
             <ChevronRight />
           </button>
 

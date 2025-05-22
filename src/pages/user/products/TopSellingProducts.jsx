@@ -1,37 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { getTopSellingProducts } from '../../../services/api';
-import './TopSellingProducts.scss';
 import { Link } from 'react-router-dom';
+import './TopSellingProducts.scss';
 
 const TopSellingProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-    const fetchTopSelling = async () => {
-      try {
-        const { data } = await getTopSellingProducts(10);
-        console.log('Top selling response:', data);
+  const fetchTopSelling = useCallback(async () => {
+    setLoading(true);
+    try {
+      const { data } = await getTopSellingProducts(10);
+      const productList = Array.isArray(data?.products)
+        ? data.products
+        : Array.isArray(data)
+          ? data
+          : [];
 
-        const productList = Array.isArray(data?.products)
-          ? data.products
-          : Array.isArray(data)
-            ? data
-            : [];
-
-        setProducts(productList);
-      } catch (err) {
-        console.error('Error fetching top selling products:', err);
-        setProducts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTopSelling();
+      setProducts(productList);
+    } catch (err) {
+      console.error('Error fetching top selling products:', err);
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchTopSelling();
+  }, [fetchTopSelling]);
 
   const scroll = (direction) => {
     const scrollAmount = 250;
@@ -49,7 +48,7 @@ const TopSellingProducts = () => {
 
       {loading ? (
         <div className="loading">Loading top selling products...</div>
-      ) : !products || products.length === 0 ? (
+      ) : products.length === 0 ? (
         <div className="no-results">No products found</div>
       ) : (
         <>
@@ -58,7 +57,7 @@ const TopSellingProducts = () => {
           </button>
 
           <div className="product-scroll" ref={scrollRef}>
-            {products?.map((product) => (
+            {products.map((product) => (
               <div className="product-card-wrapper" key={product._id}>
                 <Link to={`/product/${product._id}`} className="product-card">
                   <img
@@ -73,7 +72,7 @@ const TopSellingProducts = () => {
                     className={`order-count ${
                       product.orderCount > 10
                         ? 'highlight'
-                        : product.orderCount === 0 || product.orderCount == null
+                        : !product.orderCount
                           ? 'first-order'
                           : ''
                     }`}
