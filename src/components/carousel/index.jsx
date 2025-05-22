@@ -60,7 +60,7 @@ const Carousel = () => {
   return (
     <div className="banner-carousel">
       <Slider {...settings}>
-        {banners.map(({ _id, image, productId }) => (
+        {banners?.map(({ _id, image, productId }) => (
           <div
             key={_id}
             className="banner-slide"
