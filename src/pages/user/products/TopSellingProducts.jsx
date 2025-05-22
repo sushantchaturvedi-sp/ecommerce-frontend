@@ -58,7 +58,7 @@ const TopSellingProducts = () => {
           </button>
 
           <div className="product-scroll" ref={scrollRef}>
-            {products.map((product) => (
+            {products?.map((product) => (
               <div className="product-card-wrapper" key={product._id}>
                 <Link to={`/product/${product._id}`} className="product-card">
                   <img
