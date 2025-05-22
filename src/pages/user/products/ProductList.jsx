@@ -1,11 +1,27 @@
-import { useEffect, useState, useContext, useRef, useCallback } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  useCallback,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { useCart } from '../../../context/CartContext';
+import { AuthContext } from '../../../context/AuthContext';
+
+import Carousel from '../../../components/carousel';
+import NewLaunches from './NewLaunches';
+import TopSellingProducts from './TopSellingProducts';
+
 import './ProductList.scss';
 
-function UserProductList() {
+const UserProductList = () => {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,34 +29,37 @@ function UserProductList() {
 
   const productsPerPage = 10;
   const { searchQuery } = useContext(SearchContext);
+  const { user } = useContext(AuthContext);
+  const { addToCart } = useCart();
   const navigate = useNavigate();
 
   const productGridRef = useRef(null);
   const sentinelRef = useRef(null);
 
-  const fetchProducts = async (page) => {
+  const fetchProducts = async (page = 1) => {
     setIsLoading(true);
     try {
       const res = await getProducts(page, productsPerPage);
-      let fetchedProducts = res.data.products || [];
+      let fetched = res?.data?.products || [];
 
+      // Filter by search query
       if (searchQuery) {
-        const lower = searchQuery.toLowerCase();
-        fetchedProducts = fetchedProducts.filter(
+        const q = searchQuery.toLowerCase();
+        fetched = fetched.filter(
           (p) =>
-            p.name.toLowerCase().includes(lower) ||
-            p.description.toLowerCase().includes(lower)
+            p.name.toLowerCase().includes(q) ||
+            p.description.toLowerCase().includes(q)
         );
       }
 
-      setProducts((prev) =>
-        page === 1 ? fetchedProducts : [...prev, ...fetchedProducts]
-      );
-      setTotalProducts(res.data.total || 0);
+      setProducts((prev) => (page === 1 ? fetched : [...prev, ...fetched]));
+      setTotalProducts(res?.data?.total || 0);
     } catch (error) {
       console.error('Failed to load products:', error);
+      toast.error('Something went wrong while fetching products.');
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -50,12 +69,11 @@ function UserProductList() {
   }, [searchQuery]);
 
   useEffect(() => {
-    if (currentPage !== 1) {
+    if (currentPage > 1) {
       fetchProducts(currentPage);
     }
   }, [currentPage]);
 
-  // Observe sentinel at the end of scroll
   const handleIntersection = useCallback(
     (entries) => {
       const target = entries[0];
@@ -67,7 +85,7 @@ function UserProductList() {
         setCurrentPage((prev) => prev + 1);
       }
     },
-    [isLoading, products, totalProducts]
+    [isLoading, products.length, totalProducts]
   );
 
   useEffect(() => {
@@ -75,83 +93,101 @@ function UserProductList() {
       root: productGridRef.current,
       threshold: 1.0,
     });
-
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
   }, [handleIntersection]);
 
-  const handleClick = (id) => {
-    navigate(`/product/${id}`);
-  };
-
-  const handleScrollLeft = () => {
-    if (productGridRef.current) {
-      productGridRef.current.scrollBy({
-        left: -300,
-        behavior: 'smooth',
-      });
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation();
+    if (!user?._id) {
+      toast.warn('Please log in to add items to your cart.');
+      return;
     }
+
+    addToCart([{ productId: product._id, quantity: 1 }]);
+    toast.success(`${product.name} added to cart!`);
   };
 
-  const handleScrollRight = () => {
+  const handleProductClick = (id) => navigate(`/product/${id}`);
+
+  const scroll = (dir) => {
     if (productGridRef.current) {
-      productGridRef.current.scrollBy({
-        left: 300,
-        behavior: 'smooth',
-      });
+      const offset = dir === 'left' ? -300 : 300;
+      productGridRef.current.scrollBy({ left: offset, behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="product-list-container">
-      <h2>Browse Products</h2>
+    <div className="user-product-list">
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
 
-      {products.length === 0 && !isLoading ? (
-        <p className="no-results">No products match your search.</p>
-      ) : (
-        <>
-          {/* Scroll Buttons */}
-          <button className="scroll-arrow left" onClick={handleScrollLeft}>
-            <ArrowLeft />
-          </button>
+      <div className="carousel-container">
+        <Carousel />
+      </div>
 
-          <div className="product-grid horizontal-scroll" ref={productGridRef}>
-            {products.map((product) => (
-              <div
-                key={product._id}
-                className="product-card-wrapper"
-                onClick={() => handleClick(product._id)}
-              >
-                <div className="product-card">
-                  <img
-                    src={
-                      product?.images?.[0]
-                        ? `${import.meta.env.VITE_IMAGE_URL}/${product.images[0]}`
-                        : 'fallback-image-url.jpg'
-                    }
-                    alt={product.name}
-                    className="product-img"
-                  />
-                  <h3>{product.name}</h3>
-                  <p className="price">₹ {product.price}</p>
-                  <button className="add-to-cart">Add to Cart</button>
+      <NewLaunches />
+      <TopSellingProducts />
+
+      <div className="product-list-container">
+        <h2>Browse Products</h2>
+
+        {products.length === 0 && !isLoading ? (
+          <p className="no-results">No products match your search.</p>
+        ) : (
+          <>
+            <button
+              className="scroll-arrow left"
+              onClick={() => scroll('left')}
+            >
+              <ChevronLeft />
+            </button>
+
+            <div
+              className="product-grid horizontal-scroll"
+              ref={productGridRef}
+            >
+              {products.map((product) => (
+                <div
+                  key={product._id}
+                  className="product-card-wrapper"
+                  onClick={() => handleProductClick(product._id)}
+                >
+                  <div className="product-card">
+                    <img
+                      src={
+                        product.images?.[0] ||
+                        'https://via.placeholder.com/300x400?text=No+Image'
+                      }
+                      alt={product.name}
+                      className="product-img"
+                    />
+                    <h3>{product.name}</h3>
+                    <p className="price">₹ {product.price}</p>
+                    <button
+                      className="add-to-cart"
+                      onClick={(e) => handleAddToCart(e, product)}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+              <div ref={sentinelRef} className="sentinel" />
+            </div>
 
-            {/* Sentinel div to detect end of scroll */}
-            <div ref={sentinelRef} className="sentinel" />
-          </div>
+            <button
+              className="scroll-arrow right"
+              onClick={() => scroll('right')}
+            >
+              <ChevronRight />
+            </button>
 
-          <button className="scroll-arrow right" onClick={handleScrollRight}>
-            <ArrowRight />
-          </button>
-
-          {isLoading && <p className="loading">Loading more products...</p>}
-        </>
-      )}
+            {isLoading && <p className="loading">Loading more products...</p>}
+          </>
+        )}
+      </div>
     </div>
   );
-}
+};
 
 export default UserProductList;

@@ -25,7 +25,6 @@ const ProductList = () => {
     }
   };
 
-  // Delete a product
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
@@ -37,10 +36,10 @@ const ProductList = () => {
     }
   };
 
-  // Fetch products when the component mounts or when the page changes
   useEffect(() => {
     fetchProducts(currentPage);
   }, [currentPage]);
+
   const handlePageChange = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
@@ -51,9 +50,14 @@ const ProductList = () => {
     <div className="productContainer">
       <div className="header">
         <h2>Products</h2>
-        <Link to="/admin/products/add" className="addButton">
-          Add Product
-        </Link>
+        <div className="actionGroup">
+          <Link to="/admin/products/add" className="addButton">
+            Add Product
+          </Link>
+          <Link to="/admin/banners" className="bannerButton">
+            Create Banner
+          </Link>
+        </div>
       </div>
 
       {isLoading ? (
@@ -78,7 +82,7 @@ const ProductList = () => {
                 <td>
                   <img
                     className="productImage"
-                    src={`${import.meta.env.VITE_IMAGE_URL}/${prod?.images[0]}`}
+                    src={`${prod?.images[0]}`}
                     alt={prod.name}
                   />
                 </td>
@@ -90,7 +94,6 @@ const ProductList = () => {
                     ? prod.description.slice(0, 40) + '...'
                     : prod.description}
                 </td>
-
                 <td>
                   <div className="actionbtn">
                     <Link
