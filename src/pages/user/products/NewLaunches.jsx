@@ -5,6 +5,8 @@ import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './NewLaunches.scss';
 
 function NewLaunches() {
@@ -22,21 +24,25 @@ function NewLaunches() {
     const fetchNewLaunches = async () => {
       setIsLoading(true);
       try {
-        const { data: { products: fetchedProducts = [] } = {} } =
-          await getProducts(1, 1000, { filter: 'new' });
+        const {
+          data: { products: fetchedProducts = [] } = {},
+        } = await getProducts(1, 1000, { filter: 'new' });
+
+        let filteredProducts = fetchedProducts;
 
         if (searchQuery) {
           const lower = searchQuery.toLowerCase();
-          fetchedProducts = fetchedProducts.filter(
+          filteredProducts = fetchedProducts.filter(
             (p) =>
               p.name.toLowerCase().includes(lower) ||
               p.description.toLowerCase().includes(lower)
           );
         }
 
-        setProducts(fetchedProducts.slice(0, 7));
+        setProducts(filteredProducts.slice(0, 7));
       } catch (error) {
         console.error('Failed to load new launches:', error);
+        toast.error('Failed to load new products');
       }
       setIsLoading(false);
     };
@@ -59,10 +65,10 @@ function NewLaunches() {
   };
 
   const handleAddToCart = (e, product) => {
-    e.stopPropagation(); // Prevent card click navigation
+    e.stopPropagation();
 
     if (!user?._id) {
-      alert('Please log in to add items to your cart.');
+      toast.warn('Please log in to add items to your cart.');
       return;
     }
 
@@ -74,11 +80,12 @@ function NewLaunches() {
     ];
 
     addToCart(cartItem);
-    alert(`${product.name} added to cart!`);
+    toast.success(`${product.name} added to cart!`);
   };
 
   return (
     <div className="new-launches-container">
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
       <h2>New Launches</h2>
 
       {products.length === 0 && !isLoading ? (
