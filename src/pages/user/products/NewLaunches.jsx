@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
+import React, { useEffect, useState, useContext, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
@@ -8,6 +8,22 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './NewLaunches.scss';
+
+const fetchProducts = async () => {
+  const response = await getProducts(1, 1000, { filter: 'new' });
+  return response?.data?.products || [];
+};
+
+const filterProductsBySearchQuery = (products, query) => {
+  if (!query) return products;
+
+  const lower = query.toLowerCase();
+  return products.filter(
+    (p) =>
+      p.name.toLowerCase().includes(lower) ||
+      p.description.toLowerCase().includes(lower)
+  );
+};
 
 function NewLaunches() {
   const [products, setProducts] = useState([]);
@@ -20,80 +36,41 @@ function NewLaunches() {
 
   const productGridRef = useRef(null);
 
-  useEffect(() => {
-    const fetchNewLaunches = async () => {
-      setIsLoading(true);
-
-      try {
-        // Fetch products with a filter for 'new'
-        const fetchedProducts = await fetchProducts();
-
-        // Filter products based on search query if present
-        const filteredProducts = filterProductsBySearchQuery(
-          fetchedProducts,
-          searchQuery
-        );
-
-        // Limit to first 7 products
-        setProducts(filteredProducts.slice(0, 7));
-      } catch (error) {
-        console.error('Failed to load new launches:', error);
-        toast.error('Failed to load new products');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    // Fetch products with a filter for new launches
-    const fetchProducts = async () => {
-      const response = await getProducts(1, 1000, { filter: 'new' });
-      return response?.data?.products || [];
-    };
-
-    // Filter products based on the search query
-    const filterProductsBySearchQuery = (products, query) => {
-      if (!query) return products;
-
-      const lowerCaseQuery = query.toLowerCase();
-      return products.filter(
-        (product) =>
-          product.name.toLowerCase().includes(lowerCaseQuery) ||
-          product.description.toLowerCase().includes(lowerCaseQuery)
-      );
-    };
-
-    fetchNewLaunches();
+  const fetchNewLaunches = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const fetchedProducts = await fetchProducts();
+      const filteredProducts = filterProductsBySearchQuery(fetchedProducts, searchQuery);
+      setProducts(filteredProducts.slice(0, 7));
+    } catch (error) {
+      console.error('Failed to load new launches:', error);
+      toast.error('Failed to load new products');
+    } finally {
+      setIsLoading(false);
+    }
   }, [searchQuery]);
+
+  useEffect(() => {
+    fetchNewLaunches();
+  }, [fetchNewLaunches]);
 
   const handleScroll = (direction) => {
     if (productGridRef.current) {
       const scrollValue = direction === 'left' ? -300 : 300;
-      productGridRef.current.scrollBy({
-        left: scrollValue,
-        behavior: 'smooth',
-      });
+      productGridRef.current.scrollBy({ left: scrollValue, behavior: 'smooth' });
     }
   };
 
-  const handleProductClick = (id) => {
-    navigate(`/product/${id}`);
-  };
+  const handleProductClick = (id) => navigate(`/product/${id}`);
 
   const handleAddToCart = (e, product) => {
     e.stopPropagation();
-
     if (!user?._id) {
       toast.warn('Please log in to add items to your cart.');
       return;
     }
 
-    const cartItem = [
-      {
-        productId: product._id,
-        quantity: 1,
-      },
-    ];
-
+    const cartItem = [{ productId: product._id, quantity: 1 }];
     addToCart(cartItem);
     toast.success(`${product.name} added to cart!`);
   };
@@ -107,10 +84,7 @@ function NewLaunches() {
         <p className="no-results">No new products found.</p>
       ) : (
         <>
-          <button
-            className="scroll-arrow left"
-            onClick={() => handleScroll('left')}
-          >
+          <button className="scroll-arrow left" onClick={() => handleScroll('left')}>
             <ChevronLeft />
           </button>
 
@@ -123,10 +97,7 @@ function NewLaunches() {
               >
                 <div className="product-card">
                   <img
-                    src={
-                      product.images?.[0] ||
-                      'https://via.placeholder.com/300x400?text=No+Image'
-                    }
+                    src={product.images?.[0] || 'https://via.placeholder.com/300x400?text=No+Image'}
                     alt={product.name}
                     className="product-img"
                   />
@@ -143,10 +114,7 @@ function NewLaunches() {
             ))}
           </div>
 
-          <button
-            className="scroll-arrow right"
-            onClick={() => handleScroll('right')}
-          >
+          <button className="scroll-arrow right" onClick={() => handleScroll('right')}>
             <ChevronRight />
           </button>
 
