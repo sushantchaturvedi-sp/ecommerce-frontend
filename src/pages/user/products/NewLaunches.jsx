@@ -23,28 +23,43 @@ function NewLaunches() {
   useEffect(() => {
     const fetchNewLaunches = async () => {
       setIsLoading(true);
+
       try {
-        const {
-          data: { products: fetchedProducts = [] } = {},
-        } = await getProducts(1, 1000, { filter: 'new' });
+        // Fetch products with a filter for 'new'
+        const fetchedProducts = await fetchProducts();
 
-        let filteredProducts = fetchedProducts;
+        // Filter products based on search query if present
+        const filteredProducts = filterProductsBySearchQuery(
+          fetchedProducts,
+          searchQuery
+        );
 
-        if (searchQuery) {
-          const lower = searchQuery.toLowerCase();
-          filteredProducts = fetchedProducts.filter(
-            (p) =>
-              p.name.toLowerCase().includes(lower) ||
-              p.description.toLowerCase().includes(lower)
-          );
-        }
-
+        // Limit to first 7 products
         setProducts(filteredProducts.slice(0, 7));
       } catch (error) {
         console.error('Failed to load new launches:', error);
         toast.error('Failed to load new products');
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
+    };
+
+    // Fetch products with a filter for new launches
+    const fetchProducts = async () => {
+      const response = await getProducts(1, 1000, { filter: 'new' });
+      return response?.data?.products || [];
+    };
+
+    // Filter products based on the search query
+    const filterProductsBySearchQuery = (products, query) => {
+      if (!query) return products;
+
+      const lowerCaseQuery = query.toLowerCase();
+      return products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(lowerCaseQuery) ||
+          product.description.toLowerCase().includes(lowerCaseQuery)
+      );
     };
 
     fetchNewLaunches();
