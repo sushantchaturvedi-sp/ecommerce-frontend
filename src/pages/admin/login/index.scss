@@ -2,26 +2,13 @@ $primary-color: #1e2753;
 $primary-hover: darken($primary-color, 7%);
 $input-bg: #101137;
 $input-border: #d9e1ec;
-$input-text: #131523;
+$input-text: #e0e0e0;
 $input-placeholder: #9ca3af;
 $font-body: 'Inter', sans-serif;
 
-
-.login-box{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background: linear-gradient($primary-color, $primary-hover);
-}
-
-.resetPasswordContainer{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background: linear-gradient($primary-color, $primary-hover);
-}
-
-.change-Password{
+.login-box,
+.resetPasswordContainer,
+.change-Password {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -35,23 +22,18 @@ $font-body: 'Inter', sans-serif;
   justify-content: center;
   height: 85vh;
   background: #fff;
-  // position: absolute;
-  // left: 31.25%;
-  // right: 31.25%;
-  top: 7.91%;
-  bottom: 21.68%;
   box-shadow: 0px 1px 4px rgba(21, 34, 50, 0.08);
   border-radius: 6px;
   padding: 20px;
-  // margin: 0 auto;
   width: 100%;
   text-align: center;
+  transition: width 0.4s ease, height 0.4s ease;
 
   h1, h2 {
-    font-family: $font-body;
+      font-family: $font-body;
     font-weight: 700;
     font-size: 28px;
-    color: $input-text;
+    color: black;
     margin-bottom: 1rem;
   }
 
@@ -101,8 +83,7 @@ $font-body: 'Inter', sans-serif;
       display: flex;
       flex-direction: column;
       text-align: left;
-      color:white;
-      
+      color: white;
 
       label {
         font-size: 0.875rem;
@@ -120,15 +101,23 @@ $font-body: 'Inter', sans-serif;
         background-color: $input-bg;
         font-size: 0.875rem;
         color: $input-text;
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
 
         &::placeholder {
           color: $input-placeholder;
+          background-color: transparent;
+          transition: color 0.3s ease;
         }
 
         &:focus {
           outline: none;
-          // border-color: #2563eb;
-          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+          border-color: #2563eb;
+
+          &::placeholder {
+            color: lighten($input-placeholder, 15%);
+            background-color: transparent;
+          }
         }
       }
     }
@@ -168,6 +157,10 @@ $font-body: 'Inter', sans-serif;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      width: 330px;
+      max-width: 100%;
+      text-align: center;
+      transition: background-color 0.3s ease, width 0.4s ease;
 
       &:hover {
         background-color: $primary-hover;
@@ -176,17 +169,49 @@ $font-body: 'Inter', sans-serif;
   }
 }
 
-
-.loginContainer {
-  @extend .authContainer;
-  width: 25% !important;
-  margin: 5% auto;
-  box-shadow: 0px 0px 32px 6px rgb(229 229 229 / 39%);
-}
-
+.loginContainer,
 .changePasswordContainer {
   @extend .authContainer;
-  width: 25% !important;
+  width: 25%;
+  max-width: 400px;
   margin: 5% auto;
-  box-shadow: 0px 0px 32px 6px rgb(229 229 229 / 39%);
+  box-shadow: 0px 0px 32px 6px rgba(229, 229, 229, 0.39);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .loginContainer,
+  .changePasswordContainer {
+    width: 40%;
+    max-width: 360px;
+  }
+  .loginButton,
+  .changePasswordButton {
+    width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .loginContainer,
+  .changePasswordContainer {
+    width: 60%;
+    max-width: 320px;
+  }
+  .loginButton,
+  .changePasswordButton {
+    width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginContainer,
+  .changePasswordContainer {
+    width: 90%;
+    padding: 15px;
+    height: auto;
+  }
+  .loginButton,
+  .changePasswordButton {
+    width: 100%;
+  }
 }

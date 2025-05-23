@@ -25,8 +25,10 @@ $font-body: 'Inter', sans-serif;
   padding: 20px;
   text-align: center;
   font-family: $font-body;
+  transition: width 0.4s ease, height 0.4s ease;
 
-  h1, h2 {
+  h1,
+  h2 {
     font-size: 28px;
     font-weight: 700;
     color: $input-text;
@@ -95,29 +97,36 @@ $font-body: 'Inter', sans-serif;
         background-color: $input-bg;
         font-size: 0.875rem;
         color: $input-text;
+        transition: box-shadow 0.3s ease;
 
         &::placeholder {
           color: $input-placeholder;
+          background-color: transparent;
+          transition: color 0.3s ease;
         }
 
         &:focus {
           outline: none;
-          // border-color: #2563eb;
-          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
         }
       }
     }
 
     .submitButton {
-      margin-top: 1rem;
+      display: block;
+      margin: 1rem auto 0;
+      width: 330px;
+      max-width: 100%;
       background-color: $primary-color;
       color: #fff;
       font-size: 0.95rem;
       font-weight: 600;
-      padding: 0.75rem;
+      padding: 0.75rem 0;
       border-radius: 8px;
       border: none;
       cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease, width 0.4s ease;
 
       &:hover {
         background-color: $primary-hover;
@@ -128,7 +137,39 @@ $font-body: 'Inter', sans-serif;
 
 .signupContainer {
   @extend .authContainer;
-  width: 25% !important;
+  width: 25%;
+  max-width: 400px;
   margin: 5% auto;
   box-shadow: 0px 0px 32px 6px rgba(229, 229, 229, 0.39);
+}
+
+@media (max-width: 1024px) {
+  .signupContainer {
+    width: 40%;
+    max-width: 360px;
+  }
+  .submitButton {
+    width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .signupContainer {
+    width: 60%;
+    max-width: 320px;
+  }
+  .submitButton {
+    width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signupContainer {
+    width: 90%;
+    padding: 15px;
+    height: auto;
+  }
+  .submitButton {
+    width: 100%;
+  }
 }
