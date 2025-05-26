@@ -42,12 +42,9 @@ const Orders = () => {
               <ul>
                 {order.items.map((item, index) => (
                   <li key={index} className="order-item">
-                    {/* Use fallback if item.image doesn't exist */}
                     <img
                       src={
-                        item.image
-                          ? `${import.meta.env.VITE_IMAGE_URL}${item.image}`
-                          : 'fallback-image-url.jpg'
+                        item.image ? `${item.image}` : 'fallback-image-url.jpg'
                       }
                       alt={item.name}
                       className="order-item-image"

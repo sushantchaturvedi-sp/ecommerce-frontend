@@ -4,6 +4,7 @@ $gray-light: #f3f3f3;
 $gray-dark: #555;
 $border-color: #d5d9d9;
 $accent: #5A31DD;
+$product-primary: #1e2753;
 
 .product-page {
   font-family: 'Amazon Ember', Arial, sans-serif;
@@ -54,9 +55,10 @@ $accent: #5A31DD;
       }
 
       .price {
-        font-size: 28px;
-        font-weight: 500;
-        color: black;
+        font-size: 1.75rem;
+        color: $product-primary;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
       }
 
       .description {

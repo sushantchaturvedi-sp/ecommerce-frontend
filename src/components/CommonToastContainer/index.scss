@@ -1,0 +1,13 @@
+.Toastify__toast-container {
+  width: 320px;       // Small container width
+  top: 1rem !important;    // Distance from the top
+  right: 1rem !important;  // Distance from the right
+  z-index: 9999;      // Make sure it’s on top
+
+  // Optional: add a subtle shadow and rounded corners for toasts
+  .Toastify__toast {
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+  }
+}

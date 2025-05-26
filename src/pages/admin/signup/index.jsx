@@ -10,7 +10,7 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const { setUser } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -24,7 +24,7 @@ function Signup() {
 
     try {
       const response = await signup(signupData);
-      setUser(response.data);
+      login(response.data.user);
       navigate('/');
     } catch (error) {
       if (

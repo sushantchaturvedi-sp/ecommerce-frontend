@@ -6,9 +6,8 @@ import React, {
   useCallback,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
@@ -119,8 +118,6 @@ const UserProductList = () => {
 
   return (
     <div className="user-product-list">
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-
       <div className="carousel-container">
         <Carousel />
       </div>

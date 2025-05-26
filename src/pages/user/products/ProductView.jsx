@@ -5,6 +5,8 @@ import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
 import './ProductView.scss';
 
+import { toast } from 'react-toastify';
+
 function UserProductView() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -31,7 +33,7 @@ function UserProductView() {
 
   function handleAddToCart() {
     if (!user?._id) {
-      alert('Please log in to add items to your cart.');
+      toast.error('Please log in to add items to your cart.');
       return;
     }
 
@@ -43,7 +45,7 @@ function UserProductView() {
     ];
 
     addToCart(cartItem);
-    alert('Item added to cart!');
+    toast.success('Item added to cart!');
   }
 
   return (
