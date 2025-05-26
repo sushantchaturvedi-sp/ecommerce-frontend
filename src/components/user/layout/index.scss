@@ -18,7 +18,6 @@ html, body {
   
   .header {
     height: 60px;
-    // background-color: black;
   }
   
   .navbar {
@@ -40,5 +39,9 @@ top: 1653px;
     flex: 1;
     overflow-y: auto;
     padding: 20px;
+    background-color: #f9f9f9;
+  }
+
+  .outlet-layout-user{
     background-color: #f9f9f9;
   }

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useState, useCallback } from 'react';
+import Slider from 'react-slick';
 import { getTopSellingProducts } from '../../../services/api';
 import { Link } from 'react-router-dom';
 import './TopSellingProducts.scss';
@@ -7,7 +7,6 @@ import './TopSellingProducts.scss';
 const TopSellingProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const scrollRef = useRef(null);
 
   const fetchTopSelling = useCallback(async () => {
     setLoading(true);
@@ -18,7 +17,6 @@ const TopSellingProducts = () => {
         : Array.isArray(data)
           ? data
           : [];
-
       setProducts(productList);
     } catch (err) {
       console.error('Error fetching top selling products:', err);
@@ -32,14 +30,33 @@ const TopSellingProducts = () => {
     fetchTopSelling();
   }, [fetchTopSelling]);
 
-  const scroll = (direction) => {
-    const scrollAmount = 250;
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
+  const settings = {
+    dots: false,
+    infinite: products.length > 5,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
   };
 
   return (
@@ -51,48 +68,35 @@ const TopSellingProducts = () => {
       ) : products.length === 0 ? (
         <div className="no-results">No products found</div>
       ) : (
-        <>
-          <button className="scroll-arrow left" onClick={() => scroll('left')}>
-            <ChevronLeft />
-          </button>
-
-          <div className="product-scroll" ref={scrollRef}>
-            {products.map((product) => (
-              <div className="product-card-wrapper" key={product._id}>
-                <Link to={`/product/${product._id}`} className="product-card">
-                  <img
-                    src={product.images?.[0] || '/placeholder.jpg'}
-                    alt={product.name}
-                    className="product-img"
-                    onError={(e) => (e.target.src = '/placeholder.jpg')}
-                  />
-                  <h3>{product.name}</h3>
-                  <div className="price">₹{product.price}</div>
-                  <div
-                    className={`order-count ${
-                      product.orderCount > 10
-                        ? 'highlight'
-                        : !product.orderCount
-                          ? 'first-order'
-                          : ''
-                    }`}
-                  >
-                    {product.orderCount > 0
-                      ? `Ordered ${product.orderCount} ${product.orderCount === 1 ? 'time' : 'times'}`
-                      : 'Be the first to order!'}
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-
-          <button
-            className="scroll-arrow right"
-            onClick={() => scroll('right')}
-          >
-            <ChevronRight />
-          </button>
-        </>
+        <Slider {...settings}>
+          {products.map((product) => (
+            <div className="product-card-wrapper" key={product._id}>
+              <Link to={`/product/${product._id}`} className="product-card">
+                <img
+                  src={product.images?.[0] || '/placeholder.jpg'}
+                  alt={product.name}
+                  className="product-img"
+                  onError={(e) => (e.target.src = '/placeholder.jpg')}
+                />
+                <h3>{product.name}</h3>
+                <div className="price">₹{product.price}</div>
+                <div
+                  className={`order-count ${
+                    product.orderCount > 10
+                      ? 'highlight'
+                      : !product.orderCount
+                        ? 'first-order'
+                        : ''
+                  }`}
+                >
+                  {product.orderCount > 0
+                    ? `Ordered ${product.orderCount} ${product.orderCount === 1 ? 'time' : 'times'}`
+                    : 'Be the first to order!'}
+                </div>
+              </Link>
+            </div>
+          ))}
+        </Slider>
       )}
     </div>
   );
