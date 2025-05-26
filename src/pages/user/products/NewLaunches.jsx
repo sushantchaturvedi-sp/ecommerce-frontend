@@ -1,34 +1,14 @@
-import React, {
-  useEffect,
-  useState,
-  useContext,
-  useRef,
-  useCallback,
-} from 'react';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Slider from 'react-slick';
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { toast } from 'react-toastify';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './NewLaunches.scss';
-
-const fetchProducts = async () => {
-  const response = await getProducts(1, 1000, { filter: 'new' });
-  return response?.data?.products || [];
-};
-
-const filterProductsBySearchQuery = (products, query) => {
-  if (!query) return products;
-
-  const lower = query.toLowerCase();
-  return products.filter(
-    (p) =>
-      p.name.toLowerCase().includes(lower) ||
-      p.description.toLowerCase().includes(lower)
-  );
-};
 
 function NewLaunches() {
   const [products, setProducts] = useState([]);
@@ -39,17 +19,19 @@ function NewLaunches() {
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
-  const productGridRef = useRef(null);
-
   const fetchNewLaunches = useCallback(async () => {
     setIsLoading(true);
     try {
-      const fetchedProducts = await fetchProducts();
-      const filteredProducts = filterProductsBySearchQuery(
-        fetchedProducts,
-        searchQuery
-      );
-      setProducts(filteredProducts.slice(0, 7));
+      const response = await getProducts(1, 1000, { filter: 'new' });
+      const fetched = response?.data?.products || [];
+      const filtered = searchQuery
+        ? fetched.filter(
+            (p) =>
+              p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              p.description.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+        : fetched;
+      setProducts(filtered.slice(0, 10)); // Limit to 10 products
     } catch (error) {
       console.error('Failed to load new launches:', error);
       toast.error('Failed to load new products');
@@ -62,16 +44,6 @@ function NewLaunches() {
     fetchNewLaunches();
   }, [fetchNewLaunches]);
 
-  const handleScroll = (direction) => {
-    if (productGridRef.current) {
-      const scrollValue = direction === 'left' ? -300 : 300;
-      productGridRef.current.scrollBy({
-        left: scrollValue,
-        behavior: 'smooth',
-      });
-    }
-  };
-
   const handleProductClick = (id) => navigate(`/product/${id}`);
 
   const handleAddToCart = (e, product) => {
@@ -80,65 +52,69 @@ function NewLaunches() {
       toast.warn('Please log in to add items to your cart.');
       return;
     }
-
-    const cartItem = [{ productId: product._id, quantity: 1 }];
-    addToCart(cartItem);
+    addToCart([{ productId: product._id, quantity: 1 }]);
     toast.success(`${product.name} added to cart!`);
+  };
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: { slidesToShow: 3 },
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: 1 },
+      },
+    ],
   };
 
   return (
     <div className="new-launches-container">
       <h2>New Launches</h2>
 
-      {products.length === 0 && !isLoading ? (
+      {isLoading ? (
+        <p className="loading">Loading...</p>
+      ) : products.length === 0 ? (
         <p className="no-results">No new products found.</p>
       ) : (
-        <>
-          <button
-            className="scroll-arrow left"
-            onClick={() => handleScroll('left')}
-          >
-            <ChevronLeft />
-          </button>
-
-          <div className="product-grid horizontal-scroll" ref={productGridRef}>
-            {products.map((product) => (
-              <div
-                key={product._id}
-                className="product-card-wrapper"
-                onClick={() => handleProductClick(product._id)}
-              >
-                <div className="product-card">
-                  <img
-                    src={
-                      product.images?.[0] ||
-                      'https://via.placeholder.com/300x400?text=No+Image'
-                    }
-                    alt={product.name}
-                    className="product-img"
-                  />
-                  <h3>{product.name}</h3>
-                  <p className="price">₹ {product.price}</p>
-                  <button
-                    className="add-to-cart"
-                    onClick={(e) => handleAddToCart(e, product)}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
+        <Slider {...settings}>
+          {products.map((product) => (
+            <div
+              key={product._id}
+              className="product-card-wrapper"
+              onClick={() => handleProductClick(product._id)}
+            >
+              <div className="product-card">
+                <img
+                  src={
+                    product.images?.[0] ||
+                    'https://via.placeholder.com/300x400?text=No+Image'
+                  }
+                  alt={product.name}
+                  className="product-img"
+                />
+                <h3>{product.name}</h3>
+                <p className="price">₹ {product.price}</p>
+                <button
+                  className="add-to-cart"
+                  onClick={(e) => handleAddToCart(e, product)}
+                >
+                  Add to Cart
+                </button>
               </div>
-            ))}
-          </div>
-
-          <button
-            className="scroll-arrow right"
-            onClick={() => handleScroll('right')}
-          >
-            <ChevronRight />
-          </button>
-
-          {isLoading && <p className="loading">Loading...</p>}
-        </>
+            </div>
+          ))}
+        </Slider>
       )}
     </div>
   );

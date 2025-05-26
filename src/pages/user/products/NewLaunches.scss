@@ -1,5 +1,5 @@
 .new-launches-container {
-  padding: 2rem;
+  padding: 0.8rem;
   position: relative;
   background-color: #f9f9f9;
 
@@ -8,7 +8,7 @@
     font-size: 2rem;
     font-weight: 700;
     color: #000;
-    display: inline-block; // Ensures underline matches text width
+    display: inline-block;
     margin-bottom: 1.5rem;
 
     &::after {
@@ -31,25 +31,53 @@
     margin-top: 2rem;
   }
 
-  .product-grid {
+  // Slick adjustments
+  .slick-slider {
+    position: relative;
+  }
+
+  .slick-slide {
     display: flex;
-    overflow-x: hidden;
-    gap: 1rem;
-    scroll-behavior: smooth;
+    justify-content: center;
+  }
+
+  .slick-list {
     padding-bottom: 1rem;
+  }
 
-    &::-webkit-scrollbar {
-      height: 8px;
-    }
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
 
-    &::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
-    }
+  &:before {
+    font-size: 24px !important;
+    color: white !important;
+    opacity: 1 !important;
+  }
 
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+
+  .slick-prev {
+    left: 5px;
+  }
+
+  .slick-next {
+    right: 5px;
   }
 
   .product-card-wrapper {
@@ -57,7 +85,8 @@
     flex-shrink: 0;
     cursor: pointer;
     transition: transform 0.2s ease;
-    align-items: center;
+    display: flex;
+    justify-content: center;
 
     &:hover {
       transform: translateY(-4px);
@@ -67,7 +96,7 @@
   .product-card {
     background-color: #fff;
     color: #000;
-    width: 160px;
+    width: 180px;
     height: 280px;
     border-radius: 10px;
     display: flex;
@@ -80,7 +109,7 @@
 
     img.product-img {
       width: 100%;
-      height: 120px;
+      height: 140px;
       object-fit: cover;
       border-radius: 6px;
       transition: transform 0.3s ease;
@@ -118,38 +147,6 @@
       &:hover {
         background-color: rgb(60, 30, 180);
       }
-    }
-  }
-
-  .scroll-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-    background: transparent;
-    color: black;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    padding: 0.6rem;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    &.left {
-      left: 0.5rem;
-    }
-
-    &.right {
-      right: 0.5rem;
-    }
-
-    &:hover {
-      background-color: rgba(240, 240, 240, 0.7);
     }
   }
 

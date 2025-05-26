@@ -1,14 +1,8 @@
-import React, {
-  useEffect,
-  useState,
-  useContext,
-  useRef,
-  useCallback,
-} from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+import Slider from 'react-slick';
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
@@ -32,7 +26,7 @@ const UserProductList = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
-  const productGridRef = useRef(null);
+  const sliderRef = useRef(null);
   const sentinelRef = useRef(null);
 
   const fetchProducts = async (page = 1) => {
@@ -41,7 +35,6 @@ const UserProductList = () => {
       const res = await getProducts(page, productsPerPage);
       let fetched = res?.data?.products || [];
 
-      // Filter by search query
       if (searchQuery) {
         const q = searchQuery.toLowerCase();
         fetched = fetched.filter(
@@ -73,28 +66,35 @@ const UserProductList = () => {
     }
   }, [currentPage]);
 
-  const handleIntersection = useCallback(
-    (entries) => {
-      const target = entries[0];
-      if (
-        target.isIntersecting &&
-        !isLoading &&
-        products.length < totalProducts
-      ) {
-        setCurrentPage((prev) => prev + 1);
-      }
-    },
-    [isLoading, products.length, totalProducts]
-  );
-
+  // Lazy load
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: productGridRef.current,
-      threshold: 1.0,
-    });
-    if (sentinelRef.current) observer.observe(sentinelRef.current);
-    return () => observer.disconnect();
-  }, [handleIntersection]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (
+          entries[0].isIntersecting &&
+          !isLoading &&
+          products.length < totalProducts
+        ) {
+          setCurrentPage((prev) => prev + 1);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 1.0,
+      }
+    );
+
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
+
+    return () => {
+      if (sentinelRef.current) {
+        observer.unobserve(sentinelRef.current);
+      }
+    };
+  }, [products, totalProducts, isLoading]);
 
   const handleAddToCart = (e, product) => {
     e.stopPropagation();
@@ -109,11 +109,27 @@ const UserProductList = () => {
 
   const handleProductClick = (id) => navigate(`/product/${id}`);
 
-  const scroll = (dir) => {
-    if (productGridRef.current) {
-      const offset = dir === 'left' ? -300 : 300;
-      productGridRef.current.scrollBy({ left: offset, behavior: 'smooth' });
-    }
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 3 },
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: 1 },
+      },
+    ],
   };
 
   return (
@@ -132,17 +148,7 @@ const UserProductList = () => {
           <p className="no-results">No products match your search.</p>
         ) : (
           <>
-            <button
-              className="scroll-arrow left"
-              onClick={() => scroll('left')}
-            >
-              <ChevronLeft />
-            </button>
-
-            <div
-              className="product-grid horizontal-scroll"
-              ref={productGridRef}
-            >
+            <Slider ref={sliderRef} {...settings} className="product-grid">
               {products.map((product) => (
                 <div
                   key={product._id}
@@ -157,6 +163,10 @@ const UserProductList = () => {
                       }
                       alt={product.name}
                       className="product-img"
+                      onError={(e) =>
+                        (e.target.src =
+                          'https://via.placeholder.com/300x400?text=No+Image')
+                      }
                     />
                     <h3>{product.name}</h3>
                     <p className="price">₹ {product.price}</p>
@@ -169,15 +179,9 @@ const UserProductList = () => {
                   </div>
                 </div>
               ))}
-              <div ref={sentinelRef} className="sentinel" />
-            </div>
+            </Slider>
 
-            <button
-              className="scroll-arrow right"
-              onClick={() => scroll('right')}
-            >
-              <ChevronRight />
-            </button>
+            <div ref={sentinelRef} className="sentinel" />
 
             {isLoading && <p className="loading">Loading more products...</p>}
           </>

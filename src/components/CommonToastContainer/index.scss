@@ -1,13 +1,87 @@
-.Toastify__toast-container {
-  width: 320px;       // Small container width
-  top: 1rem !important;    // Distance from the top
-  right: 1rem !important;  // Distance from the right
-  z-index: 9999;      // Make sure it’s on top
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-  // Optional: add a subtle shadow and rounded corners for toasts
-  .Toastify__toast {
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    font-size: 14px;
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  min-width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+// Toast content + icon
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+// Toast close button
+.toast-close {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #999;
+  cursor: pointer;
+}
+
+// Progress bar base
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+// Toast types
+.toast-info {
+  .toast-progress { background-color: #2196f3; }
+  .toast-icon { color: #2196f3; }
+}
+
+.toast-success {
+  .toast-progress { background-color: #4caf50; }
+  .toast-icon { color: #4caf50; }
+}
+
+.toast-error {
+  .toast-progress { background-color: #f44336; }
+  .toast-icon { color: #f44336; }
+}
+
+.toast-warning {
+  .toast-progress { background-color: #ff9800; }
+  .toast-icon { color: #ff9800; }
+}
+
+.toast-pending {
+  .toast-icon {
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    padding: 4px;
   }
+  .toast-progress {
+    background-color: #ccc;
+  }
+}
+
+.toast-custom {
+  .toast-progress { background-color: #ff4081; } // Example pink bar
+  .toast-icon { color: #ff5722; } // Custom icon color
 }
