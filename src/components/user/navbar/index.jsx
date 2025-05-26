@@ -38,8 +38,9 @@ const Navbar = () => {
         <span className="menu-icon" onClick={toggleSidebar}>
           &#9776;
         </span>
-        <div className="navbar-brand">Exclusive</div>
-
+        <div className="navbar-brand">
+          <Link to="/">Exclusive</Link>
+        </div>
         <ul className="navbar-nav">
           <input
             className="search-ph"

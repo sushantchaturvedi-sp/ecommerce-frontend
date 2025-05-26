@@ -11,8 +11,7 @@ import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import './NewLaunches.scss';
 
 const fetchProducts = async () => {
@@ -89,7 +88,6 @@ function NewLaunches() {
 
   return (
     <div className="new-launches-container">
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
       <h2>New Launches</h2>
 
       {products.length === 0 && !isLoading ? (

@@ -5,6 +5,7 @@ import {
 import { useAuth } from './AuthContext';
 
 import React, { createContext, useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const CartContext = createContext();
 
@@ -22,6 +23,7 @@ export const CartProvider = ({ children }) => {
       await getCart();
     } catch (error) {
       console.error('Error adding to cart:', error);
+      toast.error('Failed to add items to cart.');
     } finally {
       setLoading(false);
     }
@@ -31,7 +33,7 @@ export const CartProvider = ({ children }) => {
     console.log('Fetching cart items...');
 
     if (!user?._id) {
-      alert('You must be logged in to view the cart.');
+      toast.error('You must be logged in to view the cart.');
       return;
     }
 
@@ -52,10 +54,11 @@ export const CartProvider = ({ children }) => {
       setCartItems(formattedCart);
     } catch (error) {
       console.error('Error fetching cart:', error);
+      toast.error('Failed to fetch cart.');
     }
   };
 
-  //Update quantity
+  // Update quantity
   const updateQuantity = (id, quantity) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
@@ -64,11 +67,10 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  //Update cart
-
+  // Update cart
   const updateCart = async () => {
     if (!user?._id) {
-      alert('You must be logged in to update the cart.');
+      toast.error('You must be logged in to update the cart.');
       return;
     }
 
@@ -79,10 +81,10 @@ export const CartProvider = ({ children }) => {
       }));
 
       await saveCartAPI(user._id, formattedItems);
-      alert('Cart updated successfully!');
+      toast.success('Cart updated successfully!');
     } catch (error) {
       console.error('Error updating cart:', error);
-      alert('Failed to update cart');
+      toast.error('Failed to update cart');
     }
   };
 
