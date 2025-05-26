@@ -44,9 +44,7 @@ const Orders = () => {
                   <li key={index} className="order-item">
                     <img
                       src={
-                        item.image
-                          ? `${item.image}`
-                          : 'fallback-image-url.jpg'
+                        item.image ? `${item.image}` : 'fallback-image-url.jpg'
                       }
                       alt={item.name}
                       className="order-item-image"

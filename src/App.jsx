@@ -29,8 +29,6 @@ import MyAccount from './pages/user/myAccount/index';
 
 import Orders from './pages/user/orders/index';
 
-// import './styles/toastify.scss';
-
 function App() {
   return (
     <>

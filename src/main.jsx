@@ -10,7 +10,7 @@ import CommonToastContainer from './components/CommonToastContainer/index.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-        <CommonToastContainer />  {/* Place here for global availability */}
+    <CommonToastContainer />
     <AuthProvider>
       <SearchProvider>
         <CartProvider>

@@ -83,7 +83,8 @@ function Checkout() {
     } catch (error) {
       console.error('Order placement failed:', error);
       toast.error(
-        error.response?.data?.message || 'Failed to place order. Please try again.'
+        error.response?.data?.message ||
+          'Failed to place order. Please try again.'
       );
     }
   };
