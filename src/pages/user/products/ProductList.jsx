@@ -118,7 +118,7 @@ const UserProductList = () => {
     arrows: true,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: { slidesToShow: 3 },
       },
       {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createProduct } from '../../../../services/api';
+import { createProduct } from '../../../../services/api'; // assumes it handles authenticated requests
 import './index.scss';
 
 function AddProduct() {
@@ -11,7 +11,7 @@ function AddProduct() {
     price: '',
     description: '',
     category: '',
-    image: null,
+    images: [],
   });
 
   const handleSubmit = async (event) => {
@@ -22,10 +22,13 @@ function AddProduct() {
     data.append('price', formData.price);
     data.append('description', formData.description);
     data.append('category', formData.category);
-    data.append('image', formData.image);
 
-    await createProduct(data);
+    // Append multiple images using field name 'image'
+    formData.images.forEach((img) => {
+      data.append('image', img);
+    });
 
+    await createProduct(data); // assumes token is included by default (e.g., axios withCredentials or headers set)
     navigate('/admin');
   };
 
@@ -33,7 +36,7 @@ function AddProduct() {
     const { name, value, files } = event.target;
 
     if (name === 'image') {
-      setFormData({ ...formData, image: files[0] });
+      setFormData({ ...formData, images: Array.from(files) });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -101,11 +104,12 @@ function AddProduct() {
         </div>
 
         <div className="inputGroup">
-          <label>Product Image</label>
+          <label>Product Images</label>
           <input
             type="file"
             name="image"
             accept="image/*"
+            multiple
             onChange={handleChange}
             required
           />
