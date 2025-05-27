@@ -69,12 +69,12 @@ const Carousel = () => {
             }
           >
             <img
-              src={image || '/placeholder.jpg'}
+              src={image || ''}
               alt="Banner"
               className="carousel-image clickable"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = '/placeholder.jpg';
+                e.target.src = '';
               }}
             />
           </div>

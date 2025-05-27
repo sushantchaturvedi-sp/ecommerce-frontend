@@ -6,13 +6,11 @@ import { getProfile } from '../../../services/api';
 
 import { useCart } from '../../../context/CartContext'; // adjust path as needed
 
-
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState(null);
 
-    const { cartItems } = useCart();
-
+  const { cartItems } = useCart();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -38,9 +36,10 @@ const Navbar = () => {
     fetchUser();
   }, []);
 
-
-    const totalCartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
+  const totalCartCount = cartItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
   return (
     <>
@@ -55,7 +54,7 @@ const Navbar = () => {
           <input
             className="search-ph"
             type="text"
-            placeholder="🔍︎ What are you looking for?"
+            placeholder=" 🔍︎   What are you looking for?"
           />
         </ul>
 
@@ -79,14 +78,14 @@ const Navbar = () => {
           </Link>
 
           <Link to="/cart">
-            <button className='cart-count'>
+            <button className="cart-count">
               <>
-              <i className="shoppingcart-icon">
-                <ShoppingCart size={18} />
-              </i>
-              </> 
+                <i className="shoppingcart-icon">
+                  <ShoppingCart size={18} />
+                </i>
+              </>
               <span className="cart-count-badge">{totalCartCount}</span>
-                         </button>
+            </button>
           </Link>
         </div>
       </nav>

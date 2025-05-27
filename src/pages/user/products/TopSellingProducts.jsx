@@ -42,21 +42,21 @@ const TopSellingProducts = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-        }
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
-        }
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   return (
@@ -73,10 +73,10 @@ const TopSellingProducts = () => {
             <div className="product-card-wrapper" key={product._id}>
               <Link to={`/product/${product._id}`} className="product-card">
                 <img
-                  src={product.images?.[0] || '/placeholder.jpg'}
+                  src={product.images?.[0] || ''}
                   alt={product.name}
                   className="product-img"
-                  onError={(e) => (e.target.src = '/placeholder.jpg')}
+                  onError={(e) => (e.target.src = '')}
                 />
                 <h3>{product.name}</h3>
                 <div className="price">₹{product.price}</div>
