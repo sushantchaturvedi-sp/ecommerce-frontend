@@ -4,9 +4,15 @@ import { Heart, ShoppingCart, CircleUserRound, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getProfile } from '../../../services/api';
 
+import { useCart } from '../../../context/CartContext'; // adjust path as needed
+
+
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState(null);
+
+    const { cartItems } = useCart();
+
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -31,6 +37,10 @@ const Navbar = () => {
 
     fetchUser();
   }, []);
+
+
+    const totalCartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
 
   return (
     <>
@@ -69,11 +79,14 @@ const Navbar = () => {
           </Link>
 
           <Link to="/cart">
-            <button>
+            <button className='cart-count'>
+              <>
               <i className="shoppingcart-icon">
                 <ShoppingCart size={18} />
               </i>
-            </button>
+              </> 
+              <span className="cart-count-badge">{totalCartCount}</span>
+                         </button>
           </Link>
         </div>
       </nav>
