@@ -59,6 +59,50 @@ $background-hover-color: #575757;
     }
   }
 
+  .cart-count {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .shoppingcart-icon {
+    position: relative;
+
+    svg {
+      fill: #333;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .cart-count-badge {
+    position: absolute;
+    top: -4px;
+    right: -1px;
+    background-color: $input-bg-color;
+    color: $highlight-color;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 15px;
+    height: 15px;
+    line-height: 0;
+    box-shadow: 0 0 0 2px white;
+    z-index: 1;
+  }
+
+  &:hover .shoppingcart-icon svg {
+    transform: scale(1.1);
+  }
+}
+
+
   .search-ph {
     padding-right: 15rem;
     background-color: white;
