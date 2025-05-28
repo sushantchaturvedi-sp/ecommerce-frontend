@@ -12,10 +12,11 @@ function EditProduct() {
     price: '',
     description: '',
     category: '',
-    image: null,
+    images: [],
   });
 
-  // Fetch product data for editing
+  const [existingImages, setExistingImages] = useState([]);
+
   const fetchProduct = async () => {
     try {
       const res = await getProductById(id);
@@ -25,8 +26,9 @@ function EditProduct() {
         price: product.price,
         description: product.description,
         category: product.category,
-        image: null,
+        images: [],
       });
+      setExistingImages(product.images || []);
     } catch (error) {
       console.error('Error fetching product:', error);
     }
@@ -44,9 +46,10 @@ function EditProduct() {
     data.append('price', formData.price);
     data.append('description', formData.description);
     data.append('category', formData.category);
-    if (formData.image) {
-      data.append('image', formData.image);
-    }
+
+    formData.images.forEach((img) => {
+      data.append('image', img);
+    });
 
     try {
       await updateProduct(id, data);
@@ -60,7 +63,7 @@ function EditProduct() {
     const { name, value, files } = event.target;
 
     if (name === 'image') {
-      setFormData({ ...formData, image: files[0] });
+      setFormData({ ...formData, images: Array.from(files) });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -121,14 +124,31 @@ function EditProduct() {
         </div>
 
         <div className="inputGroup">
-          <label>Product Image</label>
+          <label>Upload New Images</label>
           <input
             type="file"
             name="image"
             accept="image/*"
+            multiple
             onChange={handleChange}
           />
         </div>
+
+        {existingImages.length > 0 && (
+          <div className="inputGroup">
+            <label>Existing Images</label>
+            <div className="imagePreviewWrapper">
+              {existingImages.map((url, index) => (
+                <img
+                  key={index}
+                  src={url}
+                  alt={`Product ${index}`}
+                  className="imagePreview"
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         <button type="submit" className="submitButton">
           Update Product

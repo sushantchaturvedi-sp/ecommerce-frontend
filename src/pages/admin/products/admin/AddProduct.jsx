@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createProduct } from '../../../../services/api'; // assumes it handles authenticated requests
+import { createProduct } from '../../../../services/api';
 import './index.scss';
 
 function AddProduct() {
