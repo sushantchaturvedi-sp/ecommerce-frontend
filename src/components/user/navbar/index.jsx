@@ -1,40 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './index.scss';
-import { Heart, ShoppingCart, CircleUserRound, Phone } from 'lucide-react';
+import {
+  Heart,
+  ShoppingCart,
+  CircleUserRound,
+  Phone,
+  LogOut,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getProfile } from '../../../services/api';
-
-import { useCart } from '../../../context/CartContext'; // adjust path as needed
+import { useCart } from '../../../context/CartContext';
+import { useAuth } from '../../../context/AuthContext';
 
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [user, setUser] = useState(null);
-
   const { cartItems } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
-    if (!sidebarOpen) {
-      // Add the 'blurred' class to the content behind the sidebar when it's opened
-      document.getElementById('content-wrapper').classList.add('blurred');
-    } else {
-      // Remove the 'blurred' class when the sidebar is closed
-      document.getElementById('content-wrapper').classList.remove('blurred');
+    const contentWrapper = document.getElementById('content-wrapper');
+    if (contentWrapper) {
+      contentWrapper.classList.toggle('blurred', !sidebarOpen);
     }
   };
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const { data } = await getProfile();
-        setUser(data.data);
-      } catch (err) {
-        console.error('Error fetching user profile:', err);
-      }
-    };
-
-    fetchUser();
-  }, []);
 
   const totalCartCount = cartItems.reduce(
     (sum, item) => sum + item.quantity,
@@ -71,19 +59,23 @@ const Navbar = () => {
             </i>
           </button>
 
-          <Link to="/signup">
-            <button className="nav-item">
-              <CircleUserRound size={18} />
+          {isAuthenticated ? (
+            <button className="nav-item" onClick={logout} title="Logout">
+              <LogOut size={18} />
             </button>
-          </Link>
+          ) : (
+            <Link to="/signup">
+              <button className="nav-item">
+                <CircleUserRound size={18} />
+              </button>
+            </Link>
+          )}
 
           <Link to="/cart">
             <button className="cart-count">
-              <>
-                <i className="shoppingcart-icon">
-                  <ShoppingCart size={18} />
-                </i>
-              </>
+              <i className="shoppingcart-icon">
+                <ShoppingCart size={18} />
+              </i>
               <span className="cart-count-badge">{totalCartCount}</span>
             </button>
           </Link>
@@ -92,10 +84,10 @@ const Navbar = () => {
 
       {/* Sidebar */}
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-        {user ? (
+        {isAuthenticated ? (
           <div className="sidebar-user">
             <p>
-              Hello, <strong>{user.username}</strong>
+              Hello, <strong>{user?.username}</strong>
             </p>
           </div>
         ) : (
