@@ -6,6 +6,7 @@ import Login from './pages/admin/login/index';
 import ResetPassword from './pages/admin/login/ResetPassword';
 import ChangePassword from './pages/admin/login/ChangePassword';
 import ProductList from './pages/admin/products/admin/ProductList';
+
 import AddProduct from './pages/admin/products/admin/AddProduct';
 import EditProduct from './pages/admin/products/admin/EditProduct';
 
@@ -13,6 +14,7 @@ import BannerManager from './components/admin/BannerManager';
 
 import UserProductList from './pages/user/products/ProductList';
 import UserProductView from './pages/user/products/ProductView';
+import AllProductList from './pages/user/products/AllProductList';
 
 import UserLayout from './components/user/layout/index';
 
@@ -61,6 +63,7 @@ function App() {
         <Route path="/" element={<UserLayout />}>
           <Route path="" element={<UserProductList />} />
           <Route path="product/:id" element={<UserProductView />} />
+          <Route path="products" element={<AllProductList />} />
           <Route path="contact" element={<ContactPage />} />\
           <Route path="about" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
