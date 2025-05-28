@@ -1,0 +1,119 @@
+$black: #0f1111;
+$white: #ffffff;
+$gray-light: #f3f3f3;
+$gray-dark: #555;
+$border-color: #d5d9d9;
+$accent: #6c2bd9;
+$product-primary: #1e2753;
+
+.new-product-page {
+  padding: 2rem;
+  background-color: $gray-light;
+  font-family: 'Arial', sans-serif;
+
+  .section-title {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $black;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 30%;
+      height: 4px;
+      background-color: $accent;
+      border-radius: 4px;
+    }
+  }
+
+  .no-results,
+  .loading {
+    font-size: 1.1rem;
+    color: $gray-dark;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-item {
+    background-color: $white;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 360px;
+
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      .product-image {
+        max-width: 100%;
+        max-height: 160px;
+        object-fit: contain;
+      }
+    }
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+
+      .product-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: $black;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .product-price {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 0.75rem;
+      }
+
+      .product-cart-button {
+        padding: 0.5rem 1rem;
+        background-color: rgb(90, 49, 221);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 4px;
+        width: 100%;
+
+        &:hover {
+          background-color: rgb(60, 30, 180);
+        }
+      }
+    }
+  }
+
+  .sentinel {
+    height: 1px;
+  }
+}
