@@ -79,7 +79,7 @@ const MyAccount = () => {
   // Define the fields for dynamic mapping
   const fields = [
     { name: 'username', placeholder: 'Username' },
-    { name: 'email', placeholder: 'Email' },
+    { name: 'email', placeholder: 'Email', readOnly: true },
     { name: 'phone', placeholder: 'Phone Number' },
     { name: 'address.street', placeholder: 'Street' },
     { name: 'address.city', placeholder: 'City' },
@@ -111,6 +111,8 @@ const MyAccount = () => {
                 placeholder={field.placeholder}
                 value={fieldValue}
                 onChange={handleChange}
+                readOnly={field.readOnly || false}
+                className={field.readOnly ? 'readonly-field' : ''}
               />
             );
           })}
