@@ -13,6 +13,13 @@ $input-bg: #f8f8f8;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   color: $text-color;
 
+
+  .readonly-field {
+  background-color: #f0f0f0;
+  color: $text-color;
+  cursor: not-allowed;
+}
+
   h2 {
     color: $primary-color;
     margin-bottom: 1.5rem;
