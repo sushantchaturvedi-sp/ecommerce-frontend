@@ -29,7 +29,11 @@ import MyAccount from './pages/user/myAccount/index';
 
 import Orders from './pages/user/orders/index';
 
+import cartUpdate from './hooks/cartUpdate';
+
 function App() {
+  cartUpdate();
+
   return (
     <>
       <Routes>
