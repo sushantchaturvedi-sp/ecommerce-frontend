@@ -30,6 +30,15 @@
   flex-grow: 1;
 }
 
+.toast-name {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px; // or whatever fits your layout
+}
+
+
 // Toast close button
 .toast-close {
   background: transparent;

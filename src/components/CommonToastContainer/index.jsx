@@ -1,5 +1,8 @@
 import React from 'react';
-import { ToastContainer as ReactToastifyContainer } from 'react-toastify';
+import {
+  Bounce,
+  ToastContainer as ReactToastifyContainer,
+} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.scss';
 
@@ -15,7 +18,7 @@ const CommonToastContainer = () => {
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme="colored"
+      theme="light"
     />
   );
 };
