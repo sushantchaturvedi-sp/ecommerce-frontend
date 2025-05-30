@@ -5,7 +5,7 @@ import './index.scss';
 
 const NotFound = () => {
   const navigate = useNavigate();
-  const gifURL = import.meta.env.REACT_APP_404_GIF;
+  const gifURL = import.meta.env.VITE_404_GIF;
 
   return (
     <div className="notfound-container">
