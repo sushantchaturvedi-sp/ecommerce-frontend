@@ -5,11 +5,12 @@ import './index.scss';
 
 const NotFound = () => {
   const navigate = useNavigate();
+  const gifURL = import.meta.env.REACT_APP_404_GIF;
 
   return (
     <div className="notfound-container">
       <img
-        src="https://media1.tenor.com/m/nEn_wAIEISEAAAAC/error-404.gif"
+        src={gifURL}
         alt="404 Background"
         className="background-gif"
       />
