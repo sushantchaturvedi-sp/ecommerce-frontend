@@ -1,217 +1,221 @@
+// Variables
 $primary-color: #1e2753;
 $primary-hover: darken($primary-color, 7%);
-$input-bg: #101137;
-$input-border: #d9e1ec;
-$input-text: #e0e0e0;
-$input-placeholder: #9ca3af;
 $font-body: 'Inter', sans-serif;
+$input-bg: #f9fafb;
+$input-border: #d1d5db;
+$input-text: #111827;
+$input-placeholder: #9ca3af;
 
+// Common box wrapper
+.signup-box,
 .login-box,
-.resetPasswordContainer,
+.reset-password-box,
 .change-Password {
   width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  background: linear-gradient($primary-color, $primary-hover);
+  align-items: center;
+  background: linear-gradient(135deg, $primary-color, $primary-hover);
+  font-family: $font-body;
+  padding: 16px;
 }
 
-.authContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 85vh;
+// Container for forms
+.signupContainer,
+.loginContainer,
+.reset-passwordContainer {
   background: #fff;
-  box-shadow: 0px 1px 4px rgba(21, 34, 50, 0.08);
-  border-radius: 6px;
-  padding: 20px;
   width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
   text-align: center;
-  transition: width 0.4s ease, height 0.4s ease;
 
-  h1, h2 {
-      font-family: $font-body;
-    font-weight: 700;
-    font-size: 28px;
-    color: black;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-family: $font-body;
-    font-weight: 400;
-    font-size: 16px;
-    color: #5a607f;
-  }
+  .forgot-password-inputGroup {
+  font-size: 0.75rem;
+  color: #374151;
 
   .link {
-    color: #1e5eff;
-    cursor: pointer;
-    margin-left: 5px;
-    text-decoration: none;
+    font-size: 0.75rem;
+    color: #2563eb;
 
     &:hover {
       text-decoration: underline;
     }
   }
+}
 
-  .error,
-  .success {
-    font-size: 0.875rem;
-    padding: 0.75rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+
+  h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: $input-text;
   }
 
+  p {
+    font-size: 0.78rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+
+    .link {
+      color: #2563eb;
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .errorMessage,
   .error {
     background-color: #fee2e2;
     color: #b91c1c;
+    font-size: 0.75rem;
+    padding: 0.65rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: left;
   }
 
   .success {
-    background-color: #d1fae5;
-    color: #047857;
+    background-color: #dcfce7;
+    color: #15803d;
+    font-size: 0.75rem;
+    padding: 0.65rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: left;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
-    width: 100%;
+    gap: 0.9rem;
 
     .inputGroup {
       display: flex;
       flex-direction: column;
-      text-align: left;
-      color: white;
+      align-items: flex-start;
+
+      &.checkboxGroup {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: -0.4rem;
+
+        input[type='checkbox'] {
+          width: auto;
+          margin: 0;
+        }
+
+        label {
+          font-size: 0.75rem;
+          color: #374151;
+          margin: 0;
+        }
+      }
 
       label {
-        font-size: 0.875rem;
+        font-size: 0.75rem;
         font-weight: 500;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.3rem;
         color: #374151;
       }
 
       input[type='email'],
       input[type='password'],
       input[type='text'] {
-        padding: 0.75rem 1rem;
-        border: 1px solid $input-border;
-        border-radius: 4px;
-        background-color: $input-bg;
-        font-size: 0.875rem;
+        width: 100%;
+        padding: 0.6rem 0.9rem;
+        font-size: 0.8rem;
         color: $input-text;
-        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        background-color: $input-bg;
+        border: 1px solid $input-border;
+        border-radius: 6px;
 
         &::placeholder {
           color: $input-placeholder;
-          background-color: transparent;
-          transition: color 0.3s ease;
         }
 
         &:focus {
           outline: none;
-          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-          border-color: #2563eb;
+          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+      }
 
-          &::placeholder {
-            color: lighten($input-placeholder, 15%);
-            background-color: transparent;
+      // Password with eye icon
+      &.passwordInput {
+        .passwordField {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          position: relative;
+
+          input {
+            width: 100%;
+            padding-right: 2.2rem;
+          }
+
+          .eyeButton {
+            position: absolute;
+            right: 0.7rem;
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+
+            &:hover {
+              color: #111827;
+            }
           }
         }
       }
     }
 
-    .inputGroup:nth-of-type(3) {
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 0.5rem;
-
-      input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
-        margin: 0;
-        cursor: pointer;
-        accent-color: #1e5eff;
-      }
-
-      label {
-        margin: 0;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: #374151;
-        cursor: pointer;
-        user-select: none;
-      }
-    }
-
-    .loginButton,
-    .changePasswordButton {
-      margin-top: 1rem;
+    .submitButton,
+    .loginButton {
+      margin-top: 0.4rem;
       background-color: $primary-color;
       color: #fff;
-      font-size: 0.95rem;
       font-weight: 600;
-      padding: 0.75rem;
+      font-size: 0.85rem;
+      padding: 0.6rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 7px;
       cursor: pointer;
-      width: 330px;
-      max-width: 100%;
-      text-align: center;
-      transition: background-color 0.3s ease, width 0.4s ease;
 
       &:hover {
         background-color: $primary-hover;
       }
     }
   }
-}
 
-.loginContainer,
-.changePasswordContainer {
-  @extend .authContainer;
-  width: 25%;
-  max-width: 400px;
-  margin: 5% auto;
-  box-shadow: 0px 0px 32px 6px rgba(229, 229, 229, 0.39);
-}
+  .terms {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #6b7280;
 
-/* Responsive Breakpoints */
-@media (max-width: 1024px) {
-  .loginContainer,
-  .changePasswordContainer {
-    width: 40%;
-    max-width: 360px;
-  }
-  .loginButton,
-  .changePasswordButton {
-    width: 260px;
+    .link {
+      color: #2563eb;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
+// Responsive
 @media (max-width: 768px) {
+  .signupContainer,
   .loginContainer,
-  .changePasswordContainer {
-    width: 60%;
-    max-width: 320px;
-  }
-  .loginButton,
-  .changePasswordButton {
-    width: 220px;
-  }
-}
-
-@media (max-width: 480px) {
-  .loginContainer,
-  .changePasswordContainer {
-    width: 90%;
-    padding: 15px;
-    height: auto;
-  }
-  .loginButton,
-  .changePasswordButton {
-    width: 100%;
+  .reset-passwordContainer {
+    padding: 1.8rem 1.2rem;
   }
 }

@@ -1,3 +1,4 @@
+// Variables
 $primary-color: #1e2753;
 $primary-hover: darken($primary-color, 7%);
 $input-bg: #f4f5fa;
@@ -6,170 +7,189 @@ $input-text: #131523;
 $input-placeholder: #9ca3af;
 $font-body: 'Inter', sans-serif;
 
-.signup-box {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+// Reset + Global
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: $font-body;
   background: linear-gradient($primary-color, $primary-hover);
 }
 
-.authContainer {
+// Layout Container
+.signup-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+// Card
+.signupContainer {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.8rem 2.2rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  height: 85vh;
-  box-shadow: 0px 1px 4px rgba(21, 34, 50, 0.08);
-  border-radius: 6px;
-  padding: 20px;
+  align-items: stretch;
   text-align: center;
-  font-family: $font-body;
-  transition: width 0.4s ease, height 0.4s ease;
+}
 
-  h1,
-  h2 {
-    font-size: 28px;
-    font-weight: 700;
-    color: $input-text;
-    margin-bottom: 1rem;
+// Headings
+.signupContainer h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $input-text;
+  margin-bottom: 0.5rem;
+}
+
+.signupContainer > p {
+  font-size: 0.95rem;
+  color: #5a607f;
+  margin-bottom: 1.5rem;
+}
+
+.link {
+  color: #1e5eff;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
   }
+}
 
-  p {
-    font-weight: 400;
-    font-size: 16px;
-    color: #5a607f;
-  }
+// Error message
+.errorMessage {
+  font-size: 0.875rem;
+  color: #b91c1c;
+  background-color: #fee2e2;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
 
-  .link {
-    color: #1e5eff;
-    cursor: pointer;
-    margin-left: 5px;
-    text-decoration: none;
+// Form Styling
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+// Input Group
+.inputGroup {
+  display: flex;
+  flex-direction: column;
 
-  .errorMessage,
-  .successMessage {
+  label {
     font-size: 0.875rem;
-    padding: 0.75rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    color: #374151;
   }
 
-  .errorMessage {
-    background-color: #fee2e2;
-    color: #b91c1c;
-  }
-
-  .successMessage {
-    background-color: #d1fae5;
-    color: #047857;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+  input {
     width: 100%;
+    padding: 0.65rem 1rem;
+    border: 1px solid $input-border;
+    border-radius: 6px;
+    background-color: $input-bg;
+    font-size: 0.95rem;
+    color: $input-text;
 
-    .inputGroup {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-
-      label {
-        font-size: 0.875rem;
-        font-weight: 500;
-        margin-bottom: 0.4rem;
-        color: #374151;
-      }
-
-      input[type='email'],
-      input[type='password'],
-      input[type='text'] {
-        padding: 0.75rem 1rem;
-        border: 1px solid $input-border;
-        border-radius: 4px;
-        background-color: $input-bg;
-        font-size: 0.875rem;
-        color: $input-text;
-        transition: box-shadow 0.3s ease;
-
-        &::placeholder {
-          color: $input-placeholder;
-          background-color: transparent;
-          transition: color 0.3s ease;
-        }
-
-        &:focus {
-          outline: none;
-          box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-        }
-      }
+    &::placeholder {
+      color: $input-placeholder;
     }
 
-    .submitButton {
-      display: block;
-      margin: 1rem auto 0;
-      width: 330px;
-      max-width: 100%;
-      background-color: $primary-color;
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 0.75rem 0;
-      border-radius: 8px;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+  }
+}
+
+// Password Toggle Field
+.passwordInput {
+  .passwordField {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+      flex: 1;
+      padding-right: 2.5rem;
+    }
+
+    .eyeButton {
+      position: absolute;
+      right: 0.75rem;
+      background: transparent;
       border: none;
       cursor: pointer;
-      text-align: center;
-      transition: background-color 0.3s ease, width 0.4s ease;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 0%;
+      color: #6b7280;
 
       &:hover {
-        background-color: $primary-hover;
+        color: #111827;
       }
+      &:focus {
+      outline: none;
+    }
     }
   }
 }
 
-.signupContainer {
-  @extend .authContainer;
-  width: 25%;
-  max-width: 400px;
-  margin: 5% auto;
-  box-shadow: 0px 0px 32px 6px rgba(229, 229, 229, 0.39);
-}
+// Submit Button
+.submitButton {
+  margin-top: 0.4rem;
+  align-items: center;
+  background-color: $primary-color;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.85rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
-@media (max-width: 1024px) {
-  .signupContainer {
-    width: 40%;
-    max-width: 360px;
-  }
-  .submitButton {
-    width: 260px;
-  }
-}
-
-@media (max-width: 768px) {
-  .signupContainer {
-    width: 60%;
-    max-width: 320px;
-  }
-  .submitButton {
-    width: 220px;
+  &:hover {
+    background-color: $primary-hover;
   }
 }
 
+// Terms Text
+.terms {
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+// Responsive
 @media (max-width: 480px) {
   .signupContainer {
-    width: 90%;
-    padding: 15px;
-    height: auto;
+    padding: 1.5rem;
   }
+
+  .signupContainer h1 {
+    font-size: 1.5rem;
+  }
+
   .submitButton {
-    width: 100%;
+    font-size: 0.95rem;
   }
 }
