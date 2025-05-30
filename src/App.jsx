@@ -33,6 +33,8 @@ import Orders from './pages/user/orders/index';
 
 import cartUpdate from './hooks/cartUpdate';
 
+import NotFound from './pages/user/notFound';
+
 function App() {
   cartUpdate();
 
@@ -71,6 +73,8 @@ function App() {
           <Route path="/account" element={<MyAccount />} />
           <Route path="/orders" element={<Orders />} />
         </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

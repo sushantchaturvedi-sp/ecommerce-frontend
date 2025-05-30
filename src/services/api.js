@@ -17,7 +17,7 @@ API.interceptors.request.use((req) => {
 export const signup = (formData) => API.post('/auth/register', formData);
 export const login = (formData) => API.post('/auth/login', formData);
 export const resetPassword = (email) =>
-  API.post('/auth/forgotPassword', { email });
+  API.post('/auth/forgotpassword', { email });
 export const changePassword = (token, newPassword) =>
   API.put(`/auth/resetpassword/${token}`, { password: newPassword });
 

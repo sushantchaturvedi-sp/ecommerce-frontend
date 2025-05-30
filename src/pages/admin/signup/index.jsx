@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import { signup } from '../../../services/api';
 import { AuthContext } from '../../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
@@ -8,6 +9,7 @@ function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
   const { login } = useContext(AuthContext);
@@ -15,23 +17,12 @@ function Signup() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const signupData = {
-      username: username,
-      email: email,
-      password: password,
-    };
-
     try {
-      const response = await signup(signupData);
+      const response = await signup({ username, email, password });
       login(response.data.user);
       navigate('/');
     } catch (error) {
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
+      if (error.response?.data?.message) {
         setError(error.response.data.message);
       } else {
         setError('Signup failed');
@@ -45,9 +36,7 @@ function Signup() {
         <h1>Create an Account</h1>
         <p>
           Have an account?{' '}
-          <Link to="/login" className="link">
-            Sign In
-          </Link>
+          <Link to="/login" className="link">Sign In</Link>
         </p>
 
         {error && <p className="errorMessage">{error}</p>}
@@ -58,7 +47,7 @@ function Signup() {
             <input
               type="text"
               value={username}
-              onChange={(event) => setUsername(event.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
@@ -68,19 +57,28 @@ function Signup() {
             <input
               type="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
 
-          <div className="inputGroup">
+          <div className="inputGroup passwordInput">
             <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            />
+            <div className="passwordField">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="eyeButton"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
 
           <button type="submit" className="submitButton">

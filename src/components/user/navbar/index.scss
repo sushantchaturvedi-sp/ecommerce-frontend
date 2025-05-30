@@ -102,17 +102,24 @@ $background-hover-color: #575757;
   }
 }
 
-
   .search-ph {
-    padding-right: 15rem;
-    padding-left: 1rem;
-    background-color: white;
-    margin-right: 10rem;
-    width: 191px;
-    color: black;
-    height: 2rem;
-    align-items: center;
+  background-color: white;
+  margin-right: 10rem;
+  width: 450px;
+  color: black;
+  height: 2rem;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding-left: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #999;
   }
+}
 
   .buttons-nav {
     display: flex;

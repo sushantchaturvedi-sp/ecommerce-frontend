@@ -26,8 +26,8 @@ function ResetPassword() {
   };
 
   return (
-    <div className="resetPasswordContainer">
-      <div className="loginContainer">
+    <div className="reset-password-box">
+      <div className="reset-passwordContainer">
         <h1>Reset Password</h1>
         <p>
           Remembered your password?{' '}
