@@ -5,7 +5,7 @@ import './index.scss';
 
 function Layout() {
   return (
-    <div className="layout-wrapper">
+    <div className="layout-wrapper-admin">
       <TopNavbar />
       <Sidebar />
       <div className="main-content">

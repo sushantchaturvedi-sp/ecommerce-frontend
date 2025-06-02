@@ -14,7 +14,7 @@ const NotFound = () => {
         alt="404 Background"
         className="background-gif"
       />
-      <div className="overlay">
+      <div className="overlay-404">
         <h1>Oops! Page Not Found</h1>
         <p>The page you're looking for doesn’t exist or has been moved.</p>
         <button className="home-btn" onClick={() => navigate('/')}>
