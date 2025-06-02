@@ -83,17 +83,15 @@ $background-hover-color: #575757;
     top: -4px;
     right: -1px;
     background-color: $input-bg-color;
-    color: $highlight-color;
-    font-size: 0.7rem;
-    font-weight: bold;
-    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 15px;
     height: 15px;
     line-height: 0;
-    box-shadow: 0 0 0 2px white;
     z-index: 1;
   }
 
@@ -164,6 +162,8 @@ $background-hover-color: #575757;
 
   &.open {
     left: 0;
+    opacity:1;
+    background-color: black;
   }
 
   .closebtn {
