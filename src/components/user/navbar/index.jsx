@@ -53,11 +53,11 @@ const Navbar = () => {
             </button>
           </Link>
 
-          <button>
-            <i className="wishlist-icon">
+          <Link to="/wishlist">
+            <button className="wishlist-icon">
               <Heart size={18} />
-            </i>
-          </button>
+            </button>
+          </Link>
 
           {isAuthenticated ? (
             <button className="nav-item" onClick={logout} title="Logout">

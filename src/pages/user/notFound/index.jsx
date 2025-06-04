@@ -9,11 +9,7 @@ const NotFound = () => {
 
   return (
     <div className="notfound-container">
-      <img
-        src={gifURL}
-        alt="404 Background"
-        className="background-gif"
-      />
+      <img src={gifURL} alt="404 Background" className="background-gif" />
       <div className="overlay">
         <h1>Oops! Page Not Found</h1>
         <p>The page you're looking for doesn’t exist or has been moved.</p>

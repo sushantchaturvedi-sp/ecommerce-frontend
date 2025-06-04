@@ -84,3 +84,10 @@ export const createBanner = (formData) =>
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 export const deleteBanner = (id) => API.delete(`/banners/${id}`);
+
+// Wishlist APIs
+export const getWishlist = () => API.get('/wishlist');
+export const addToWishlist = (productId) =>
+  API.post('/wishlist/add', { productId });
+export const removeFromWishlist = (productId) =>
+  API.post('/wishlist/remove', { productId });

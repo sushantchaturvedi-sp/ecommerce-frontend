@@ -1,9 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getProductById } from '../../../services/api';
+import {
+  getProductById,
+  addToWishlist,
+  removeFromWishlist,
+  getWishlist,
+} from '../../../services/api';
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { toast } from 'react-toastify';
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import './ProductView.scss';
 
 function UserProductView() {
@@ -11,6 +17,7 @@ function UserProductView() {
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState('');
   const [showFullDesc, setShowFullDesc] = useState(false);
+  const [isInWishlist, setIsInWishlist] = useState(false);
   const { addToCart } = useCart();
   const { user } = useContext(AuthContext);
 
@@ -27,6 +34,27 @@ function UserProductView() {
     fetchProduct();
   }, [id]);
 
+  // Fetch wishlist status on mount or when product/user changes
+  useEffect(() => {
+    if (!user?._id) {
+      setIsInWishlist(false);
+      return;
+    }
+
+    async function checkWishlist() {
+      try {
+        const res = await getWishlist();
+        const wishlistProducts = res.data || [];
+        const found = wishlistProducts.some((p) => p._id === id);
+        setIsInWishlist(found);
+      } catch (err) {
+        console.error('Failed to fetch wishlist', err);
+      }
+    }
+
+    checkWishlist();
+  }, [id, user]);
+
   if (!product) return <p className="loading">Loading product...</p>;
 
   function handleAddToCart() {
@@ -35,15 +63,31 @@ function UserProductView() {
       return;
     }
 
-    const cartItem = [
-      {
-        productId: product._id,
-        quantity: 1,
-      },
-    ];
-
+    const cartItem = [{ productId: product._id, quantity: 1 }];
     addToCart(cartItem);
     toast.success('Item added to cart!');
+  }
+
+  async function toggleWishlist() {
+    if (!user?._id) {
+      toast.error('Please log in to modify wishlist.');
+      return;
+    }
+
+    try {
+      if (isInWishlist) {
+        await removeFromWishlist(product._id);
+        setIsInWishlist(false);
+        toast.info('Removed from wishlist.');
+      } else {
+        await addToWishlist(product._id);
+        setIsInWishlist(true);
+        toast.success('Added to wishlist!');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to update wishlist.');
+    }
   }
 
   const truncatedDescription = product.description?.slice(0, 150);
@@ -57,7 +101,7 @@ function UserProductView() {
       </div>
 
       <div className="product-details">
-        <div className="product-images">
+        <div className="product-images" style={{ position: 'relative' }}>
           <img
             className="main-image"
             src={
@@ -65,6 +109,20 @@ function UserProductView() {
             }
             alt={product.name}
           />
+
+          {/* Wishlist heart overlay */}
+          <button
+            className="wishlist-overlay-btn"
+            onClick={toggleWishlist}
+            title={isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+          >
+            {isInWishlist ? (
+              <FaHeart style={{ color: 'red' }} />
+            ) : (
+              <FaRegHeart style={{ color: 'red' }} />
+            )}
+          </button>
+
           <div className="thumbnails">
             {product.images?.map((img, index) => (
               <img
@@ -102,6 +160,17 @@ function UserProductView() {
           <div className="actions">
             <button className="btn outline" onClick={handleAddToCart}>
               Add to Cart
+            </button>
+            <button
+              className="btn outline wishlist-btn"
+              onClick={toggleWishlist}
+              title={isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+            >
+              {isInWishlist ? (
+                <FaHeart style={{ color: 'red' }} />
+              ) : (
+                <FaRegHeart style={{ color: 'red' }} />
+              )}
             </button>
           </div>
         </div>

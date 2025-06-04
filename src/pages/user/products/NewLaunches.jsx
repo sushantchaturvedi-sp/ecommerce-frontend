@@ -1,24 +1,37 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
-import { getProducts } from '../../../services/api';
+import {
+  getProducts,
+  getWishlist,
+  addToWishlist,
+  removeFromWishlist,
+} from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { toast } from 'react-toastify';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { useWishlist } from '../../../context/WishlistContext';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './NewLaunches.scss';
 
 function NewLaunches() {
   const [products, setProducts] = useState([]);
+  const [wishlistIds, setWishlistIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const { searchQuery } = useContext(SearchContext);
   const { user } = useContext(AuthContext);
   const { addToCart } = useCart();
+
+  const { wishlist, toggleWishlist } = useWishlist();
+
   const navigate = useNavigate();
 
+  // Fetch new launch products
   const fetchNewLaunches = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -31,7 +44,7 @@ function NewLaunches() {
               p.description.toLowerCase().includes(searchQuery.toLowerCase())
           )
         : fetched;
-      setProducts(filtered.slice(0, 10)); // Limit to 10 products
+      setProducts(filtered.slice(0, 10)); // limit to 10
     } catch (error) {
       console.error('Failed to load new launches:', error);
       toast.error('Failed to load new products');
@@ -40,9 +53,21 @@ function NewLaunches() {
     }
   }, [searchQuery]);
 
+  // Fetch wishlist
+  const fetchWishlist = useCallback(async () => {
+    try {
+      const response = await getWishlist();
+      const ids = response.data.map((p) => p._id);
+      setWishlistIds(ids);
+    } catch (err) {
+      console.error('Failed to load wishlist', err);
+    }
+  }, []);
+
   useEffect(() => {
     fetchNewLaunches();
-  }, [fetchNewLaunches]);
+    if (user?._id) fetchWishlist();
+  }, [fetchNewLaunches, user, fetchWishlist]);
 
   const handleProductClick = (id) => navigate(`/product/${id}`);
 
@@ -54,6 +79,29 @@ function NewLaunches() {
     }
     addToCart([{ productId: product._id, quantity: 1 }]);
     toast.success(`${product.name} added to cart!`);
+  };
+
+  const handleWishlistToggle = async (e, productId) => {
+    e.stopPropagation();
+    if (!user?._id) {
+      toast.warn('Please log in to manage your wishlist.');
+      return;
+    }
+
+    try {
+      if (wishlistIds.includes(productId)) {
+        await removeFromWishlist(productId);
+        setWishlistIds((prev) => prev.filter((id) => id !== productId));
+        toast.success('Removed from wishlist');
+      } else {
+        await addToWishlist(productId);
+        setWishlistIds((prev) => [...prev, productId]);
+        toast.success('Added to wishlist');
+      }
+    } catch (err) {
+      console.error('Wishlist error:', err);
+      toast.error('Failed to update wishlist');
+    }
   };
 
   const settings = {
@@ -95,14 +143,39 @@ function NewLaunches() {
               onClick={() => handleProductClick(product._id)}
             >
               <div className="product-card">
-                <img
-                  src={
-                    product.images?.[0] ||
-                    'https://via.placeholder.com/300x400?text=No+Image'
-                  }
-                  alt={product.name}
-                  className="product-img"
-                />
+                <div className="image-wrapper">
+                  <img
+                    src={
+                      product.images?.[0] ||
+                      'https://via.placeholder.com/300x400?text=No+Image'
+                    }
+                    alt={product.name}
+                    className="product-img"
+                  />
+                  {/* <div
+                    className="wishlist-icon"
+                    onClick={(e) => handleWishlistToggle(e, product._id)}
+                  >
+                    {wishlistIds.includes(product._id) ? (
+                      <FaHeart />
+                    ) : (
+                      <FaRegHeart />
+                    )}
+                  </div> */}
+                  <div
+                    className="wishlist-icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleWishlist(product._id);
+                    }}
+                  >
+                    {wishlist.includes(product._id) ? (
+                      <FaHeart color="red" />
+                    ) : (
+                      <FaRegHeart color="gray" />
+                    )}
+                  </div>
+                </div>
                 <h3>{product.name}</h3>
                 <p className="price">₹ {product.price}</p>
                 <button

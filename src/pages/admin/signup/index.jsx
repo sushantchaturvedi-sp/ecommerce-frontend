@@ -36,7 +36,9 @@ function Signup() {
         <h1>Create an Account</h1>
         <p>
           Have an account?{' '}
-          <Link to="/login" className="link">Sign In</Link>
+          <Link to="/login" className="link">
+            Sign In
+          </Link>
         </p>
 
         {error && <p className="errorMessage">{error}</p>}

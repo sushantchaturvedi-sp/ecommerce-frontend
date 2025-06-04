@@ -56,6 +56,7 @@ $product-primary: #1e2753;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      position: relative; // ⭐️ Added for wishlist button positioning
 
       .main-image {
         width: 100%;
@@ -63,6 +64,32 @@ $product-primary: #1e2753;
         object-fit: contain;
         border-radius: 6px;
         margin-bottom: 1rem;
+      }
+
+      // ❤️ Wishlist heart button
+      .wishlist-overlay-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.85);
+        border: none;
+        border-radius: 50%;
+        padding: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 1);
+        }
+
+        svg {
+          font-size: 22px;
+          color: red;
+        }
       }
 
       .thumbnails {
