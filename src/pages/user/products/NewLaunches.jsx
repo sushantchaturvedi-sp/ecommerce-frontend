@@ -31,7 +31,6 @@ function NewLaunches() {
 
   const navigate = useNavigate();
 
-  // Fetch new launch products
   const fetchNewLaunches = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -44,7 +43,7 @@ function NewLaunches() {
               p.description.toLowerCase().includes(searchQuery.toLowerCase())
           )
         : fetched;
-      setProducts(filtered.slice(0, 10)); // limit to 10
+      setProducts(filtered.slice(0, 10)); 
     } catch (error) {
       console.error('Failed to load new launches:', error);
       toast.error('Failed to load new products');
@@ -152,16 +151,6 @@ function NewLaunches() {
                     alt={product.name}
                     className="product-img"
                   />
-                  {/* <div
-                    className="wishlist-icon"
-                    onClick={(e) => handleWishlistToggle(e, product._id)}
-                  >
-                    {wishlistIds.includes(product._id) ? (
-                      <FaHeart />
-                    ) : (
-                      <FaRegHeart />
-                    )}
-                  </div> */}
                   <div
                     className="wishlist-icon"
                     onClick={(e) => {

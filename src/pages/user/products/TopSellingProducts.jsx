@@ -130,16 +130,6 @@ const TopSellingProducts = () => {
                     className="product-img"
                     onError={(e) => (e.target.src = '')}
                   />
-                  {/* <div
-                    className="wishlist-icon"
-                    onClick={(e) => handleWishlistToggle(e, product._id)}
-                  >
-                    {wishlistIds.includes(product._id) ? (
-                      <FaHeart />
-                    ) : (
-                      <FaRegHeart />
-                    )}
-                  </div> */}
                   <div
                     className="wishlist-icon"
                     onClick={(e) => {

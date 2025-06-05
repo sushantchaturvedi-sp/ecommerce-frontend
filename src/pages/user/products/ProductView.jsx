@@ -34,7 +34,6 @@ function UserProductView() {
     fetchProduct();
   }, [id]);
 
-  // Fetch wishlist status on mount or when product/user changes
   useEffect(() => {
     if (!user?._id) {
       setIsInWishlist(false);
@@ -110,7 +109,6 @@ function UserProductView() {
             alt={product.name}
           />
 
-          {/* Wishlist heart overlay */}
           <button
             className="wishlist-overlay-btn"
             onClick={toggleWishlist}

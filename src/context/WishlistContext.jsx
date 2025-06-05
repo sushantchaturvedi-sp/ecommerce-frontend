@@ -1,4 +1,3 @@
-// context/WishlistContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
   getWishlist,
@@ -37,6 +36,7 @@ export const WishlistProvider = ({ children }) => {
         toast.info('Removed from wishlist.');
       } else {
         await addToWishlist(productId);
+        await fetchWishlist();
         setWishlist((prev) => [...prev, productId]);
         toast.success('Added to wishlist!');
       }
@@ -50,7 +50,7 @@ export const WishlistProvider = ({ children }) => {
     if (user?._id) {
       fetchWishlist();
     } else {
-      setWishlist([]); // Clear when logged out
+      setWishlist([]); 
     }
   }, [user]);
 

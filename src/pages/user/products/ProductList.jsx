@@ -13,8 +13,6 @@ import TopSellingProducts from './TopSellingProducts';
 import './ProductList.scss';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-// import { useWishlist } from '../../../context/WishlistContext';
-
 const UserProductList = () => {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
@@ -63,7 +61,7 @@ const UserProductList = () => {
     setCurrentPage(1);
     setProducts([]);
     fetchProducts(1);
-    fetchWishlist(); // <-- central wishlist loading
+    fetchWishlist(); 
   }, [searchQuery]);
 
   useEffect(() => {
@@ -116,7 +114,7 @@ const UserProductList = () => {
 
   const handleWishlistClick = (e, productId) => {
     e.stopPropagation();
-    toggleWishlist(productId); // <- clean single call
+    toggleWishlist(productId); 
   };
 
   const settings = {
@@ -170,16 +168,6 @@ const UserProductList = () => {
                             'https://via.placeholder.com/300x400?text=No+Image')
                         }
                       />
-                      {/* <div
-                        className="wishlist-icon"
-                        onClick={(e) => handleWishlistClick(e, product._id)}
-                      >
-                        {wishlist.includes(product._id) ? (
-                          <FaHeart color="red" size={18} />
-                        ) : (
-                          <FaRegHeart color="gray" size={18} />
-                        )}
-                      </div> */}
                       <div
                         className="wishlist-icon"
                         onClick={(e) => {
