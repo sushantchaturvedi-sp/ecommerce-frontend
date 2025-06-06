@@ -45,7 +45,9 @@ function Login() {
         <h1>Sign In</h1>
         <p>
           New to Our Product?{' '}
-          <Link to="/signup" className="link">Create an Account</Link>
+          <Link to="/signup" className="link">
+            Create an Account
+          </Link>
         </p>
 
         {error && <p className="errorMessage">{error}</p>}
@@ -91,7 +93,9 @@ function Login() {
           </div>
 
           <div className="forgot-password-inputGroup">
-            <Link to="/reset-password" className="link">Forgot your password?</Link>
+            <Link to="/reset-password" className="link">
+              Forgot your password?
+            </Link>
           </div>
 
           <button type="submit" className="loginButton">

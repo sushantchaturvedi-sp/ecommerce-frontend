@@ -32,6 +32,7 @@ import MyAccount from './pages/user/myAccount/index';
 import Orders from './pages/user/orders/index';
 
 import cartUpdate from './hooks/cartUpdate';
+import WishlistPage from './pages/user/wishlist';
 
 import NotFound from './pages/user/notFound';
 
@@ -72,6 +73,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<MyAccount />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

@@ -1,18 +1,17 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
 import Slider from 'react-slick';
+import { useWishlist } from '../../../context/WishlistContext';
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
-
 import Carousel from '../../../components/carousel';
 import NewLaunches from './NewLaunches';
 import TopSellingProducts from './TopSellingProducts';
-
 import './ProductList.scss';
+import { Heart } from 'lucide-react';
 
 const UserProductList = () => {
   const [products, setProducts] = useState([]);
@@ -26,8 +25,12 @@ const UserProductList = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
+  const { wishlist, toggleWishlist, fetchWishlist } = useWishlist();
+
   const sliderRef = useRef(null);
   const sentinelRef = useRef(null);
+
+  // const { wishlist, toggleWishlist } = useWishlist();
 
   const fetchProducts = async (page = 1) => {
     setIsLoading(true);
@@ -58,6 +61,7 @@ const UserProductList = () => {
     setCurrentPage(1);
     setProducts([]);
     fetchProducts(1);
+    fetchWishlist(); 
   }, [searchQuery]);
 
   useEffect(() => {
@@ -66,7 +70,6 @@ const UserProductList = () => {
     }
   }, [currentPage]);
 
-  // Lazy load
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -109,6 +112,11 @@ const UserProductList = () => {
 
   const handleProductClick = (id) => navigate(`/product/${id}`);
 
+  const handleWishlistClick = (e, productId) => {
+    e.stopPropagation();
+    toggleWishlist(productId); 
+  };
+
   const settings = {
     dots: false,
     infinite: false,
@@ -117,18 +125,9 @@ const UserProductList = () => {
     slidesToScroll: 1,
     arrows: true,
     responsive: [
-      {
-        breakpoint: 1200,
-        settings: { slidesToShow: 3 },
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 480,
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 1200, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 480, settings: { slidesToShow: 1 } },
     ],
   };
 
@@ -156,18 +155,33 @@ const UserProductList = () => {
                   onClick={() => handleProductClick(product._id)}
                 >
                   <div className="product-card">
-                    <img
-                      src={
-                        product.images?.[0] ||
-                        'https://via.placeholder.com/300x400?text=No+Image'
-                      }
-                      alt={product.name}
-                      className="product-img"
-                      onError={(e) =>
-                        (e.target.src =
-                          'https://via.placeholder.com/300x400?text=No+Image')
-                      }
-                    />
+                    <div className="image-wrapper">
+                      <img
+                        src={
+                          product.images?.[0] 
+                        }
+                        alt={product.name}
+                        className="product-img"
+                        onError={(e) =>
+                          (e.target.src =
+                            'LINK1_URL')
+                        }
+                      />
+                      <div
+                        className="wishlist-icon"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleWishlist(product._id);
+                        }}
+                      >
+                        {wishlist.includes(product._id) ? (
+                          <Heart color="red" fill="red" />
+                        ) : (
+                          <Heart />
+                        )}
+                      </div>
+                    </div>
+
                     <h3>{product.name}</h3>
                     <p className="price">₹ {product.price}</p>
                     <button

@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { SearchProvider } from './context/SearchContext.jsx';
 import { CartProvider } from './context/CartContext.jsx';
 import CommonToastContainer from './components/CommonToastContainer/index.jsx';
+import { WishlistProvider } from './context/WishlistContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')).render(
       <SearchProvider>
         <CartProvider>
           <BrowserRouter>
-            <App />
+            <WishlistProvider>
+              <App />
+            </WishlistProvider>
           </BrowserRouter>
         </CartProvider>
       </SearchProvider>
