@@ -1,10 +1,20 @@
+$background-color-light: #F9F9F9;
+$hover-bg-color: #5311B1;
+$order-btn-bg-color: #6210d5;
+$border-color: #ccc;
+$black-color: #000;
+$white-color: #fff;
+$text-muted-color: #888;
+$border-light-color: #ddd;
+$text-dark-color: #333;
+
 .checkout-page {
   display: flex;
   justify-content: space-between;
   padding: 40px 60px;
-  background-color: #ffffff;
+  background-color: $white-color;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #000;
+  color: $black-color;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -29,7 +39,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    color: #333;
+    color: $text-dark-color;
   }
 }
 
@@ -77,14 +87,14 @@
     input[type='text'],
     input[type='email'] {
       padding: 12px;
-      border: 1px solid #ddd;
+      border: 1px solid $border-light-color;
       border-radius: 4px;
       font-size: 14px;
-      background-color: #fff;
-      color: #000;
+      background-color: $white-color;
+      color: $black-color;
 
       &::placeholder {
-        color: #000;
+        color: $black-color;
         opacity: 0.7;
       }
     }
@@ -93,12 +103,12 @@
       display: flex;
       align-items: center;
       font-size: 14px;
-      color: #000;
+      color: $black-color;
       margin-top: 10px;
 
       input[type='checkbox'] {
         margin-right: 10px;
-        accent-color: #6210d5;
+        accent-color: $order-btn-bg-color;
       }
     }
   }
@@ -106,11 +116,11 @@
 
 .order-summary {
   flex: 1;
-  background: #fff;
+  background: $white-color;
   padding: 30px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid $white-color;
   border-radius: 8px;
-  color: #000;
+  color: $black-color;
 
   h3 {
     font-size: 22px;
@@ -138,19 +148,19 @@
           height: 40px;
           object-fit: contain;
           margin-right: 10px;
-          border: 1px solid #ccc;
+          border: 1px solid $border-color;
           border-radius: 4px;
         }
 
         span {
           font-size: 15px;
-          color: #000;
+          color: $black-color;
         }
       }
 
-      > span {
+      >span {
         font-size: 15px;
-        color: #000;
+        color: $black-color;
       }
     }
   }
@@ -160,7 +170,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
     font-size: 15px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $border-light-color;
     padding-top: 10px;
   }
 
@@ -171,7 +181,7 @@
     font-size: 17px;
     font-weight: bold;
     padding-top: 12px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid $border-color;
   }
 
   .payment-method {
@@ -182,7 +192,7 @@
       align-items: center;
       margin-bottom: 10px;
       font-size: 15px;
-      color: #000;
+      color: $black-color;
 
       input {
         margin-right: 10px;
@@ -191,7 +201,7 @@
       .cards {
         margin-left: 10px;
         font-size: 18px;
-        color: #888;
+        color: $text-muted-color;
       }
     }
   }
@@ -204,19 +214,19 @@
       flex: 1;
       padding: 10px;
       font-size: 14px;
-      border: 1px solid #ccc;
+      border: 1px solid $border-color;
       border-radius: 4px 0 0 4px;
-      background-color: #fff;
-      color: #000;
+      background-color: $white-color;
+      color: $black-color;
 
       &::placeholder {
-        color: #000;
+        color: $black-color;
         opacity: 0.7;
       }
     }
 
     .apply-btn {
-      background-color: #6210d5;
+      background-color: $order-btn-bg-color;
       color: white;
       padding: 10px 16px;
       border: none;
@@ -225,13 +235,13 @@
       font-size: 14px;
 
       &:hover {
-        background-color: #5311B1;
+        background-color: $hover-bg-color;
       }
     }
   }
 
   .place-order-btn {
-    background-color: #6210d5;
+    background-color: $order-btn-bg-color;
     color: white;
     padding: 9px 16px;
     border: none;
@@ -244,8 +254,9 @@
     width: 40%;
 
     &:hover {
-      background-color: #5311B1;
+      background-color: $hover-bg-color;
     }
+
   }
 }
 
@@ -255,6 +266,6 @@
   color: green;
 }
 
-.layout-wrapper-user{
-  background-color: #F9F9F9;
+.layout-wrapper-user {
+  background-color: $background-color-light;
 }

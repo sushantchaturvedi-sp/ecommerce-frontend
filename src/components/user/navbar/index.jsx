@@ -47,16 +47,12 @@ const Navbar = () => {
         </ul>
 
         <div className="buttons-nav">
-          <Link to="/contact">
-            <button className="nav-item">
-              <Phone size={18} />
-            </button>
+          <Link to="/contact" className="nav-item" title="Contact">
+            <Phone size={18} />
           </Link>
 
-          <Link to="/wishlist">
-            <button className="wishlist-icon">
-              <Heart size={18} />
-            </button>
+          <Link to="/wishlist" className="wishlist-icon" title="Wishlist">
+            <Heart size={18} />
           </Link>
 
           {isAuthenticated ? (
@@ -64,21 +60,19 @@ const Navbar = () => {
               <LogOut size={18} />
             </button>
           ) : (
-            <Link to="/signup">
-              <button className="nav-item">
-                <CircleUserRound size={18} />
-              </button>
+            <Link to="/signup" className="nav-item" title="Signup">
+              <CircleUserRound size={18} />
             </Link>
           )}
 
-          <Link to="/cart">
-            <button className="cart-count">
-              <i className="shoppingcart-icon">
-                <ShoppingCart size={18} />
-              </i>
-              <span className="cart-count-badge">{totalCartCount}</span>
-            </button>
+
+          <Link to="/cart" className="cart-count">
+            <i className="shoppingcart-icon">
+              <ShoppingCart size={18} />
+            </i>
+            <span className="cart-count-badge">{totalCartCount}</span>
           </Link>
+
         </div>
       </nav>
 

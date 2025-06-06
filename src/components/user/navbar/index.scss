@@ -13,14 +13,13 @@ $background-hover-color: #575757;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
   height: 60px;
-  // width: 100px;
 
   .menu-icon {
     cursor: pointer;
 
     &:hover {
-        color: $highlight-color;
-      }
+      color: $highlight-color;
+    }
   }
 
   .navbar-brand {
@@ -31,10 +30,11 @@ $background-hover-color: #575757;
     position: absolute;
     left: 4%;
 
-  a {
-    color: inherit;
-    text-decoration: none;
-}}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
 
   .navbar-nav {
     list-style: none;
@@ -60,64 +60,65 @@ $background-hover-color: #575757;
   }
 
   .cart-count {
-  position: relative;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .shoppingcart-icon {
     position: relative;
-
-    svg {
-      fill: #333;
-      transition: transform 0.2s ease;
-    }
-  }
-
-  .cart-count-badge {
-    position: absolute;
-    top: -4px;
-    right: -1px;
-    background-color: $input-bg-color;
-    color: white;
-    font-size: 12px;
-    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 15px;
-    height: 15px;
-    line-height: 0;
-    z-index: 1;
-  }
 
-  &:hover .shoppingcart-icon svg {
-    transform: scale(1.1);
+    .shoppingcart-icon {
+      position: relative;
+
+      svg {
+        stroke: $primary-color;
+        fill: none;
+        transition: transform 0.2s ease;
+      }
+    }
+
+    .cart-count-badge {
+      position: absolute;
+      top: -4px;
+      right: -1px;
+      background-color: $input-bg-color;
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 15px;
+      height: 15px;
+      line-height: 0;
+      z-index: 1;
+    }
+
+    &:hover .shoppingcart-icon svg {
+      transform: scale(1.1);
+    }
   }
-}
 
   .search-ph {
-  background-color: white;
-  margin-right: 10rem;
-  width: 450px;
-  color: black;
-  height: 2rem;
-  align-items: center;
-  border: 1px solid #ccc;
-  padding-left: 0.75rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
+    background-color: white;
+    margin-right: 10rem;
+    width: 450px;
+    color: black;
+    height: 2rem;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding-left: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
 
-  &:focus {
-    outline: none;
-    box-shadow: none;
-    border-color: #999;
+    &:focus {
+      outline: none;
+      box-shadow: none;
+      border-color: #999;
+    }
   }
-}
 
   .buttons-nav {
     display: flex;
@@ -145,6 +146,36 @@ $background-hover-color: #575757;
         color: $highlight-color;
       }
     }
+
+    button.nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+
+    a.nav-item,
+    a.wishlist-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      color: $primary-color;
+      transition: color 0.3s;
+      text-decoration: none;
+
+      &:hover {
+        color: $highlight-color;
+      }
+
+      svg {
+        pointer-events: none;
+      }
+    }
   }
 }
 
@@ -162,7 +193,7 @@ $background-hover-color: #575757;
 
   &.open {
     left: 0;
-    opacity:1;
+    opacity: 1;
     background-color: black;
   }
 
@@ -206,7 +237,7 @@ $background-hover-color: #575757;
 }
 
 #content-wrapper.blurred {
-  filter: blur(500px); /* Apply blur only to the background */
+  filter: blur(500px);
 }
 
 

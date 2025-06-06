@@ -30,8 +30,6 @@ const UserProductList = () => {
   const sliderRef = useRef(null);
   const sentinelRef = useRef(null);
 
-  // const { wishlist, toggleWishlist } = useWishlist();
-
   const fetchProducts = async (page = 1) => {
     setIsLoading(true);
     try {
