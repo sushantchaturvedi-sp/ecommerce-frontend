@@ -1,3 +1,7 @@
+$no-orders-color: #e48381;
+$product-highlight-color: #2a9d8f;
+$order-count-color: #e48381;
+
 .top-selling-container {
   padding: 0.8rem;
   position: relative;
@@ -81,7 +85,7 @@
         right: 8px;
         font-size: 1.2rem;
         color: red;
-        background-color: #fff;
+        background-color: white;
         border-radius: 50%;
         padding: 6px;
         cursor: pointer;
@@ -106,12 +110,12 @@
     .price {
       font-size: 1rem;
       font-weight: bold;
-      color: #000;
+      color: black;
     }
 
     .order-count {
       font-size: 0.85rem;
-      color: #e48381;
+      color: $order-count-color;
       font-style: italic;
       font-weight: 400;
     }
@@ -124,12 +128,12 @@
     font-weight: 500;
 
     &.highlight {
-      color: #2a9d8f; // popular product highlight
+      color: $product-highlight-color;
       font-weight: 600;
     }
 
     &.first-order {
-      color: #e48381; // orange tone for no orders yet
+      color: $no-orders-color;
       font-style: italic;
       font-weight: 400;
     }
@@ -155,7 +159,7 @@
     z-index: 10;
     width: 42px;
     height: 42px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: black;
     border-radius: 50%;
     display: flex !important;
     justify-content: center;
@@ -169,7 +173,7 @@
     }
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: black;
     }
   }
 

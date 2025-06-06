@@ -1,7 +1,7 @@
 $primary: #6210d5;
 $accent: #5311B1;
-
-
+$text-color: #999;
+$btn-color: #333;
 .cart-page {
     padding: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,20 +25,20 @@ $accent: #5311B1;
       border-collapse: collapse;
   
       thead {
-        background-color: #fafafa;
+        background-color: white;
   
         th {
           text-align: left;
           padding: 16px;
           font-weight: 600;
           font-size: 15px;
-          border-bottom: 1px solid #eee;
+          border-bottom: 1px solid white;
         }
       }
   
       tbody {
         tr {
-          border-bottom: 1px solid #eee;
+          border-bottom: 1px solid white;
   
           td {
             padding: 16px;
@@ -62,10 +62,10 @@ $accent: #5311B1;
               padding: 6px;
               font-size: 14px;
               width: 60px;
-              border: 1px solid #ccc;
+              border: 1px solid white;
               border-radius: 4px;
               background-color: white;
-              color: #333;
+              color: $btn-color;
             }
   
             input::placeholder,
@@ -85,15 +85,15 @@ $accent: #5311B1;
       button {
         padding: 10px 20px;
         font-size: 14px;
-        border: 1px solid #ccc;
-        color: #333;
-        background-color: #fff;
+        border: 1px solid white;
+        color: $btn-color;
+        background-color: white;
         cursor: pointer;
         border-radius: 4px;
         transition: 0.2s ease;
   
         &:hover {
-          background-color: #f3f3f3;
+          background-color: white;
         }
       }
     }
@@ -112,19 +112,19 @@ $accent: #5311B1;
         input {
           padding: 10px;
           width: 200px;
-          border: 1px solid #ccc;
+          border: 1px solid white;
           border-radius: 4px;
           background-color: white;
         }
   
         input::placeholder {
           background-color: white;
-          text-color: #999;
+          text-color: $text-color;
         }
   
         button {
           background-color: $primary;
-          color: #fff;
+          color: white;
           border: none;
           padding: 10px 20px;
           font-size: 14px;
@@ -139,7 +139,7 @@ $accent: #5311B1;
       }
   
       .cart-summary {
-        border: 1px solid #ccc;
+        border: 1px solid white;
         padding: 20px;
         width: 320px;
         border-radius: 6px;
@@ -159,7 +159,7 @@ $accent: #5311B1;
   
         .total {
           font-weight: 700;
-          border-top: 1px solid #ddd;
+          border-top: 1px solid white;
           padding-top: 10px;
           margin-top: 10px;
         }
