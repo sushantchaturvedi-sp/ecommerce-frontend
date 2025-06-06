@@ -14,8 +14,6 @@ const WishlistPage = () => {
       try {
         const response = await getWishlist();
         const { data } = response;
-        console.log('Fetched wishlist:', data);
-
         setWishlist(data);
       } catch (error) {
         console.error('Error fetching wishlist:', error);
@@ -30,7 +28,6 @@ const WishlistPage = () => {
 
   const handleRemove = async (id) => {
     try {
-      console.log('call');
       await removeFromWishlist(id);
       setWishlist((prev) => prev.filter((p) => p._id !== id));
     } catch (error) {

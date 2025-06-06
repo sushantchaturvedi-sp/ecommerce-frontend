@@ -11,7 +11,7 @@ import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { toast } from 'react-toastify';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { Heart } from 'lucide-react';
 import { useWishlist } from '../../../context/WishlistContext';
 
 import 'slick-carousel/slick/slick.css';
@@ -145,8 +145,7 @@ function NewLaunches() {
                 <div className="image-wrapper">
                   <img
                     src={
-                      product.images?.[0] ||
-                      'https://via.placeholder.com/300x400?text=No+Image'
+                      product.images?.[0] 
                     }
                     alt={product.name}
                     className="product-img"
@@ -159,9 +158,9 @@ function NewLaunches() {
                     }}
                   >
                     {wishlist.includes(product._id) ? (
-                      <FaHeart color="red" />
+                      <Heart color="red" fill="red" />
                     ) : (
-                      <FaRegHeart color="gray" />
+                      <Heart />
                     )}
                   </div>
                 </div>

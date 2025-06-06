@@ -56,7 +56,7 @@ $product-primary: #1e2753;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      position: relative; // ⭐️ Added for wishlist button positioning
+      position: relative; 
 
       .main-image {
         width: 100%;
@@ -66,7 +66,6 @@ $product-primary: #1e2753;
         margin-bottom: 1rem;
       }
 
-      // ❤️ Wishlist heart button
       .wishlist-overlay-btn {
         position: absolute;
         top: 15px;
