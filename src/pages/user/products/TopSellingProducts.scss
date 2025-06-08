@@ -1,13 +1,19 @@
+$content-color: #6c2bd9;
+$grey: #888;
+$pink: #e48381;
+$blue: #5311b1;
+$goodGreen: #2a9d8f;
+
 .top-selling-container {
   padding: 0.8rem;
   position: relative;
-  background-color: #f9f9f9;
+  background-color: white;
 
   h2 {
     position: relative;
     font-size: 2rem;
     font-weight: 700;
-    color: #000;
+    color: black;
     display: inline-block;
 
     &::after {
@@ -17,7 +23,7 @@
       bottom: -5px;
       width: 30%;
       height: 4px;
-      background-color: #6c2bd9;
+      background-color: $content-color;
       border-radius: 4px;
     }
   }
@@ -25,7 +31,7 @@
   .loading,
   .no-results {
     font-size: 1.1rem;
-    color: #888;
+    color: $grey;
     text-align: center;
     margin-top: 2rem;
   }
@@ -50,7 +56,7 @@
   }
 
   .product-card {
-    color: #000;
+    color: black;
     text-decoration: none;
     width: 220px;
     min-height: 240px;
@@ -59,8 +65,8 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    box-shadow: 0 2px 8px black;
     overflow: hidden;
     position: relative;
 
@@ -81,7 +87,7 @@
         right: 8px;
         font-size: 1.2rem;
         color: red;
-        background-color: #fff;
+        background-color: white;
         border-radius: 50%;
         padding: 6px;
         cursor: pointer;
@@ -106,12 +112,12 @@
     .price {
       font-size: 1rem;
       font-weight: bold;
-      color: #000;
+      color: black;
     }
 
     .order-count {
       font-size: 0.85rem;
-      color: #e48381;
+      color: $pink;
       font-style: italic;
       font-weight: 400;
     }
@@ -120,16 +126,16 @@
   .order-count {
     font-size: 0.95rem;
     margin-top: 0.5rem;
-    color: #5311b1;
+    color: $blue;
     font-weight: 500;
 
     &.highlight {
-      color: #2a9d8f; // popular product highlight
+      color: $goodGreen; // popular product highlight
       font-weight: 600;
     }
 
     &.first-order {
-      color: #e48381; // orange tone for no orders yet
+      color: $pink; // orange tone for no orders yet
       font-style: italic;
       font-weight: 400;
     }
@@ -155,7 +161,7 @@
     z-index: 10;
     width: 42px;
     height: 42px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: black;
     border-radius: 50%;
     display: flex !important;
     justify-content: center;
@@ -169,7 +175,7 @@
     }
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: black;
     }
   }
 

@@ -1,17 +1,20 @@
+$grey: #888;
+$blue: #6c2bd9;
+
 .user-product-list {
   position: relative;
-  background-color: #f9f9f9;
+  background-color: white;
 
   .product-list-container {
     padding: 0.8rem;
     position: relative;
-    background-color: #f9f9f9;
+    background-color: white;
 
     h2 {
       position: relative;
       font-size: 2rem;
       font-weight: 700;
-      color: #000;
+      color: black;
       display: inline-block;
       margin-bottom: 1.5rem;
 
@@ -22,7 +25,7 @@
         bottom: -5px;
         width: 30%;
         height: 4px;
-        background-color: #6c2bd9;
+        background-color: $blue;
         border-radius: 4px;
       }
     }
@@ -30,7 +33,7 @@
     .no-results,
     .loading {
       font-size: 1.1rem;
-      color: #888;
+      color: $grey;
       text-align: center;
       margin-top: 2rem;
     }
@@ -101,8 +104,8 @@
     }
 
     .product-card {
-      background-color: #fff;
-      color: #000;
+      background-color: white;
+      color: black;
       width: 220px;
       height: 280px;
       border-radius: 10px;
@@ -110,7 +113,7 @@
       flex-direction: column;
       justify-content: flex-start;
       padding: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 8px black;
       transition: transform 0.2s ease;
       overflow: hidden;
 
@@ -131,10 +134,10 @@
           right: 8px;
           cursor: pointer;
           z-index: 10;
-          background-color: #fff;
+          background-color: white;
           border-radius: 50%;
           padding: 4px;
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 4px black;
           transition: transform 0.2s ease;
 
           &:hover {
@@ -169,7 +172,7 @@
       .add-to-cart {
         margin-top: auto;
         background-color: rgb(90, 49, 221);
-        color: #fff;
+        color: white;
         padding: 6px 0;
         border: none;
         border-radius: 5px;
@@ -184,3 +187,5 @@
     }
   }
 }
+
+

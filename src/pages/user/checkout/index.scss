@@ -1,10 +1,15 @@
+$checkout-color: #333;
+$input-accent-color: #6210d5;
+$img-border: #ccc;
+$hover-color: #5311B1; 
+
 .checkout-page {
   display: flex;
   justify-content: space-between;
   padding: 40px 60px;
-  background-color: #ffffff;
+  background-color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #000;
+  color: black;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -29,7 +34,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    color: #333;
+    color: $checkout-color;
   }
 }
 
@@ -77,14 +82,14 @@
     input[type='text'],
     input[type='email'] {
       padding: 12px;
-      border: 1px solid #ddd;
+      border: 1px solid white;
       border-radius: 4px;
       font-size: 14px;
-      background-color: #fff;
-      color: #000;
+      background-color: white;
+      color: black;
 
       &::placeholder {
-        color: #000;
+        color: black;
         opacity: 0.7;
       }
     }
@@ -93,12 +98,12 @@
       display: flex;
       align-items: center;
       font-size: 14px;
-      color: #000;
+      color: black;
       margin-top: 10px;
 
       input[type='checkbox'] {
         margin-right: 10px;
-        accent-color: #6210d5;
+        accent-color: $input-accent-color;
       }
     }
   }
@@ -106,11 +111,11 @@
 
 .order-summary {
   flex: 1;
-  background: #fff;
+  background: white;
   padding: 30px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid white;
   border-radius: 8px;
-  color: #000;
+  color: black;
 
   h3 {
     font-size: 22px;
@@ -138,19 +143,19 @@
           height: 40px;
           object-fit: contain;
           margin-right: 10px;
-          border: 1px solid #ccc;
+          border: 1px solid $img-border;
           border-radius: 4px;
         }
 
         span {
           font-size: 15px;
-          color: #000;
+          color: black;
         }
       }
 
       > span {
         font-size: 15px;
-        color: #000;
+        color: black;
       }
     }
   }
@@ -160,7 +165,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
     font-size: 15px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid white;
     padding-top: 10px;
   }
 
@@ -171,7 +176,7 @@
     font-size: 17px;
     font-weight: bold;
     padding-top: 12px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid $img-border;
   }
 
   .payment-method {
@@ -182,7 +187,7 @@
       align-items: center;
       margin-bottom: 10px;
       font-size: 15px;
-      color: #000;
+      color: black;
 
       input {
         margin-right: 10px;
@@ -191,7 +196,7 @@
       .cards {
         margin-left: 10px;
         font-size: 18px;
-        color: #888;
+        color: $img-border;
       }
     }
   }
@@ -204,19 +209,19 @@
       flex: 1;
       padding: 10px;
       font-size: 14px;
-      border: 1px solid #ccc;
+      border: 1px solid $img-border;
       border-radius: 4px 0 0 4px;
-      background-color: #fff;
-      color: #000;
+      background-color: white;
+      color: black;
 
       &::placeholder {
-        color: #000;
+        color: black;
         opacity: 0.7;
       }
     }
 
     .apply-btn {
-      background-color: #6210d5;
+      background-color: $input-accent-color;
       color: white;
       padding: 10px 16px;
       border: none;
@@ -225,13 +230,13 @@
       font-size: 14px;
 
       &:hover {
-        background-color: #5311B1;
+        background-color: $hover-color;
       }
     }
   }
 
   .place-order-btn {
-    background-color: #6210d5;
+    background-color: $input-accent-color;
     color: white;
     padding: 9px 16px;
     border: none;
@@ -244,7 +249,7 @@
     width: 40%;
 
     &:hover {
-      background-color: #5311B1;
+      background-color: $hover-color;
     }
   }
 }
@@ -256,5 +261,5 @@
 }
 
 .layout-wrapper-user{
-  background-color: #ccc;
+  background-color: $img-border;
 }
