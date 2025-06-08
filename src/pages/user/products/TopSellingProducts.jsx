@@ -9,7 +9,7 @@ import {
 } from '../../../services/api';
 import { AuthContext } from '../../../context/AuthContext';
 import { toast } from 'react-toastify';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { Heart } from 'lucide-react';
 import './TopSellingProducts.scss';
 import { useWishlist } from '../../../context/WishlistContext';
 
@@ -138,9 +138,9 @@ const TopSellingProducts = () => {
                     }}
                   >
                     {wishlist.includes(product._id) ? (
-                      <FaHeart color="red" />
+                      <Heart color="red" fill="red" />
                     ) : (
-                      <FaRegHeart color="gray" />
+                      <Heart />
                     )}
                   </div>
                 </div>

@@ -1,7 +1,3 @@
-$h2-color: #4b0082;
-$h3-color: #333;
-$order-date-color: #999;
-
 .orders-page {
   padding: 2rem;
   background: white;
@@ -45,7 +41,7 @@ $order-date-color: #999;
 
     p, li {
       font-size: 0.95rem;
-      color: $h3-color;
+      color: #555;
       margin: 0.2rem 0;
     }
 
@@ -56,7 +52,7 @@ $order-date-color: #999;
     .order-date {
       margin-top: 1rem;
       font-size: 0.85rem;
-      color: #999;
+      color: $order-date-color;
     }
 
     ul {

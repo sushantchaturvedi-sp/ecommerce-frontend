@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useWishlist } from '../../../context/WishlistContext';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { Heart } from 'lucide-react';
+
 
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
@@ -122,7 +123,7 @@ const AllProductList = () => {
               >
                 <div className="product-image-container">
                   <img
-                    src={product.images?.[0] || ''}
+                    src={product.images?.[0]}
                     alt={product.name}
                     className="product-image"
                     onError={(e) => (e.target.src = '')}
@@ -141,9 +142,9 @@ const AllProductList = () => {
                     title="Add to wishlist"
                   >
                     {wishlist.some((p) => p?._id === product._id) ? (
-                      <FaHeart />
+                      <Heart color="red" fill="red" />
                     ) : (
-                      <FaRegHeart />
+                      <Heart />
                     )}
                   </button>
                 </div>

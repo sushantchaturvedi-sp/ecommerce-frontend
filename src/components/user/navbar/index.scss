@@ -20,8 +20,8 @@ $focus-border-color: #999;
     cursor: pointer;
 
     &:hover {
-        color: $highlight-color;
-      }
+      color: $highlight-color;
+    }
   }
 
   .navbar-brand {
@@ -32,10 +32,11 @@ $focus-border-color: #999;
     position: absolute;
     left: 4%;
 
-  a {
-    color: inherit;
-    text-decoration: none;
-}}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
 
   .navbar-nav {
     list-style: none;
@@ -61,47 +62,45 @@ $focus-border-color: #999;
   }
 
   .cart-count {
-  position: relative;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .shoppingcart-icon {
     position: relative;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .shoppingcart-icon {
+      position: relative;
 
     svg {
-      fill: $svg-color;
+      fill: #333;
       transition: transform 0.2s ease;
     }
   }
 
-  .cart-count-badge {
-    position: absolute;
-    top: -4px;
-    right: -1px;
-    background-color: $input-bg-color;
-    color: $highlight-color;
-    font-size: 0.7rem;
-    font-weight: bold;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 15px;
-    height: 15px;
-    line-height: 0;
-    box-shadow: 0 0 0 2px white;
-    z-index: 1;
-  }
+    .cart-count-badge {
+      position: absolute;
+      top: -4px;
+      right: -1px;
+      background-color: $input-bg-color;
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 15px;
+      height: 15px;
+      line-height: 0;
+      z-index: 1;
+    }
 
-  &:hover .shoppingcart-icon svg {
-    transform: scale(1.1);
+    &:hover .shoppingcart-icon svg {
+      transform: scale(1.1);
+    }
   }
-}
 
   .search-ph {
   background-color: white;
@@ -110,7 +109,7 @@ $focus-border-color: #999;
   color: black;
   height: 2rem;
   align-items: center;
-  border: 1px solid white;
+  border: 1px solid #ccc;
   padding-left: 0.75rem;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -118,7 +117,7 @@ $focus-border-color: #999;
   &:focus {
     outline: none;
     box-shadow: none;
-    border-color: $focus-border-color;
+    border-color: #999;
   }
 }
 
@@ -148,6 +147,36 @@ $focus-border-color: #999;
         color: $highlight-color;
       }
     }
+
+    button.nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+
+    a.nav-item,
+    a.wishlist-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      color: $primary-color;
+      transition: color 0.3s;
+      text-decoration: none;
+
+      &:hover {
+        color: $highlight-color;
+      }
+
+      svg {
+        pointer-events: none;
+      }
+    }
   }
 }
 
@@ -165,6 +194,8 @@ $focus-border-color: #999;
 
   &.open {
     left: 0;
+    opacity: 1;
+    background-color: black;
   }
 
   .closebtn {
@@ -207,7 +238,7 @@ $focus-border-color: #999;
 }
 
 #content-wrapper.blurred {
-  filter: blur(500px); 
+  filter: blur(500px); /* Apply blur only to the background */
 }
 
 

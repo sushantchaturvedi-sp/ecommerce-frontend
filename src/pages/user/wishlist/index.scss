@@ -1,7 +1,3 @@
-$hover-color: #e63946;
-$remove-btn-color: #ff4d4f;
-$h2-color: #222;
-
 .wishlist-container {
   max-width: 1200px;
   margin: 2rem auto;
@@ -12,7 +8,7 @@ $h2-color: #222;
     font-size: 2rem;
     margin-bottom: 1.5rem;
     text-align: center;
-    color: $h2-color;
+    color: #222;
   }
 
   .wishlist-grid {
@@ -25,7 +21,7 @@ $h2-color: #222;
     background: white;
     border-radius: 12px;
     padding: 1rem;
-    box-shadow: 0 4px 12px black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease;
     display: flex;
     flex-direction: column;
@@ -58,7 +54,7 @@ $h2-color: #222;
 
       .product-price {
         font-size: 1rem;
-        color: $product-name-color;
+        color: #666;
         line-height: 1.3;
       }
     }
@@ -66,7 +62,7 @@ $h2-color: #222;
     .remove-btn {
       margin-top: 1rem;
       padding: 0.6rem;
-      background-color: $remove-btn-color;
+      background-color: #ff4d4f;
       color: white;
       border: none;
       border-radius: 6px;
@@ -74,7 +70,7 @@ $h2-color: #222;
       transition: background 0.3s ease;
 
       &:hover {
-        background-color: $hover-color:
+        background-color: #e63946;
       }
     }
   }

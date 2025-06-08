@@ -11,7 +11,7 @@ import Carousel from '../../../components/carousel';
 import NewLaunches from './NewLaunches';
 import TopSellingProducts from './TopSellingProducts';
 import './ProductList.scss';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { Heart } from 'lucide-react';
 
 const UserProductList = () => {
   const [products, setProducts] = useState([]);
@@ -29,8 +29,6 @@ const UserProductList = () => {
 
   const sliderRef = useRef(null);
   const sentinelRef = useRef(null);
-
-  // const { wishlist, toggleWishlist } = useWishlist();
 
   const fetchProducts = async (page = 1) => {
     setIsLoading(true);
@@ -158,14 +156,13 @@ const UserProductList = () => {
                     <div className="image-wrapper">
                       <img
                         src={
-                          product.images?.[0] ||
-                          'https://via.placeholder.com/300x400?text=No+Image'
+                          product.images?.[0] 
                         }
                         alt={product.name}
                         className="product-img"
                         onError={(e) =>
                           (e.target.src =
-                            'https://via.placeholder.com/300x400?text=No+Image')
+                            'LINK1_URL')
                         }
                       />
                       <div
@@ -176,9 +173,9 @@ const UserProductList = () => {
                         }}
                       >
                         {wishlist.includes(product._id) ? (
-                          <FaHeart color="red" />
+                          <Heart color="red" fill="red" />
                         ) : (
-                          <FaRegHeart color="gray" />
+                          <Heart />
                         )}
                       </div>
                     </div>

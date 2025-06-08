@@ -1,47 +1,50 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  #root {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+$background-light: #f9f9f9;
 
-  .layout {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .header {
-    height: 60px;
-  }
-  
-  .navbar {
-    width: 1170;
-    height: 38;
-    top: 88px;
-    left: 135px;
-    gap: 130px;
-    }
-  
-  .footer {
-    width: 1440;
-    height: 440;
-    top: 1653px;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  }
-  
-  .main-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-    background-color: white;
-  }
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  height: 60px;
+}
+
+.navbar {
+  width: 1170;
+  height: 38;
+  top: 88px;
+  left: 135px;
+  gap: 130px;
+}
+
+.footer {
+  width: 1440;
+  height: 440;
+  top: 1653px;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: $background-light;
+
+}
 
   .outlet-layout-user{
-    background-color: white;
+    background-color: #f9f9f9;
   }

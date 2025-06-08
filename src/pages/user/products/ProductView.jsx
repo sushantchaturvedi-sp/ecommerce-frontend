@@ -9,7 +9,7 @@ import {
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { toast } from 'react-toastify';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { Heart } from 'lucide-react';
 import './ProductView.scss';
 
 function UserProductView() {
@@ -34,24 +34,24 @@ function UserProductView() {
     fetchProduct();
   }, [id]);
 
+  const checkWishlist = async (user, id, setIsInWishlist) => {
+    try {
+      const res = await getWishlist();
+      const wishlistProducts = res.data || [];
+      const found = wishlistProducts.some((p) => p._id === id);
+      setIsInWishlist(found);
+    } catch (err) {
+      console.error('Failed to fetch wishlist', err);
+    }
+  };
+
   useEffect(() => {
     if (!user?._id) {
       setIsInWishlist(false);
       return;
     }
 
-    async function checkWishlist() {
-      try {
-        const res = await getWishlist();
-        const wishlistProducts = res.data || [];
-        const found = wishlistProducts.some((p) => p._id === id);
-        setIsInWishlist(found);
-      } catch (err) {
-        console.error('Failed to fetch wishlist', err);
-      }
-    }
-
-    checkWishlist();
+    checkWishlist(user, id, setIsInWishlist);
   }, [id, user]);
 
   if (!product) return <p className="loading">Loading product...</p>;
@@ -100,11 +100,11 @@ function UserProductView() {
       </div>
 
       <div className="product-details">
-        <div className="product-images" style={{ position: 'relative' }}>
+        <div className="product-images" >
           <img
             className="main-image"
             src={
-              mainImage || 'https://via.placeholder.com/450x500?text=No+Image'
+              mainImage
             }
             alt={product.name}
           />
@@ -115,9 +115,9 @@ function UserProductView() {
             title={isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
           >
             {isInWishlist ? (
-              <FaHeart style={{ color: 'red' }} />
+              <Heart color="red" fill="red" />
             ) : (
-              <FaRegHeart style={{ color: 'red' }} />
+              <Heart />
             )}
           </button>
 

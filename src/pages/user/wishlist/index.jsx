@@ -7,30 +7,26 @@ const WishlistPage = () => {
   const { token } = useAuth();
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log('Token:', token);
+
+  const getWishListItem = async () => {
+    try {
+      const response = await getWishlist();
+      const { data } = response;
+      setWishlist(data);
+    } catch (error) {
+      console.error('Error fetching wishlist:', error);
+      setWishlist([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getWishListItem = async () => {
-      try {
-        const response = await getWishlist();
-        const { data } = response;
-        console.log('Fetched wishlist:', data);
-
-        setWishlist(data);
-      } catch (error) {
-        console.error('Error fetching wishlist:', error);
-        setWishlist([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     getWishListItem();
   }, []);
 
   const handleRemove = async (id) => {
     try {
-      console.log('call');
       await removeFromWishlist(id);
       setWishlist((prev) => prev.filter((p) => p._id !== id));
     } catch (error) {
