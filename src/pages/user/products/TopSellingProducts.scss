@@ -1,3 +1,6 @@
+$pink: #e48381;
+$googGreen: #2a9d8f;
+
 .top-selling-container {
   padding: 0.8rem;
   position: relative;
@@ -111,7 +114,7 @@
 
     .order-count {
       font-size: 0.85rem;
-      color: #e48381;
+      color: $pink;
       font-style: italic;
       font-weight: 400;
     }
@@ -124,12 +127,12 @@
     font-weight: 500;
 
     &.highlight {
-      color: #2a9d8f; // popular product highlight
+      color: $googGreen; // popular product highlight
       font-weight: 600;
     }
 
     &.first-order {
-      color: #e48381; // orange tone for no orders yet
+      color: $pink; // orange tone for no orders yet
       font-style: italic;
       font-weight: 400;
     }
