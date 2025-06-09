@@ -43,7 +43,7 @@ function NewLaunches() {
               p.description.toLowerCase().includes(searchQuery.toLowerCase())
           )
         : fetched;
-      setProducts(filtered.slice(0, 10)); 
+      setProducts(filtered.slice(0, 10));
     } catch (error) {
       console.error('Failed to load new launches:', error);
       toast.error('Failed to load new products');
@@ -144,9 +144,7 @@ function NewLaunches() {
               <div className="product-card">
                 <div className="image-wrapper">
                   <img
-                    src={
-                      product.images?.[0] 
-                    }
+                    src={product.images?.[0]}
                     alt={product.name}
                     className="product-img"
                   />

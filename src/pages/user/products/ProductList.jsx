@@ -53,7 +53,7 @@ const UserProductList = () => {
     setCurrentPage(1);
     setProducts([]);
     fetchProducts(1);
-    fetchWishlist(); 
+    fetchWishlist();
   }, [searchQuery]);
   useEffect(() => {
     if (currentPage > 1) {
@@ -98,7 +98,7 @@ const UserProductList = () => {
   const handleProductClick = (id) => navigate(`/product/${id}`);
   const handleWishlistClick = (e, productId) => {
     e.stopPropagation();
-    toggleWishlist(productId); 
+    toggleWishlist(productId);
   };
   const settings = {
     dots: false,
@@ -136,13 +136,10 @@ const UserProductList = () => {
                   <div className="product-card">
                     <div className="image-wrapper">
                       <img
-                        src={ product.images?.[0] 
-                        }
+                        src={product.images?.[0]}
                         alt={product.name}
                         className="product-img"
-                        onError={(e) =>
-                          (e.target.src ='LINK1_URL')
-                        }
+                        onError={(e) => (e.target.src = 'LINK1_URL')}
                       />
                       <div
                         className="wishlist-icon"
@@ -179,4 +176,3 @@ const UserProductList = () => {
   );
 };
 export default UserProductList;
-  

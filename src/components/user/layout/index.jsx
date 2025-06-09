@@ -9,7 +9,6 @@ function UserLayout() {
     <div className="layout-wrapper-user">
       <Header />
       <Navbar />
-
       <main className="outlet-layout-user">
         <Outlet />
       </main>

@@ -49,7 +49,7 @@ function UserProductView() {
       setIsInWishlist(false);
       return;
     }
-     checkWishlist();
+    checkWishlist();
     checkWishlist(user, id, setIsInWishlist);
   }, [id, user]);
 
@@ -93,24 +93,14 @@ function UserProductView() {
       </div>
 
       <div className="product-details">
-         <div className="product-images" >
-          <img
-            className="main-image"
-            src={
-              mainImage
-            }
-            alt={product.name}
-          />
+        <div className="product-images">
+          <img className="main-image" src={mainImage} alt={product.name} />
           <button
             className="wishlist-overlay-btn"
             onClick={toggleWishlist}
             title={isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
           >
-            {isInWishlist ? (
-               <Heart color="red" fill="red" />
-            ) : (
-               <Heart />
-            )}
+            {isInWishlist ? <Heart color="red" fill="red" /> : <Heart />}
           </button>
 
           <div className="thumbnails">
@@ -153,11 +143,7 @@ function UserProductView() {
               onClick={toggleWishlist}
               title={isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
             >
-              {isInWishlist ? (
-                <Heart color="red" fill="red" />
-              ) : (
-                <Heart />
-              )}
+              {isInWishlist ? <Heart color="red" fill="red" /> : <Heart />}
             </button>
           </div>
         </div>

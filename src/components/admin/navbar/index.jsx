@@ -44,7 +44,6 @@ function TopNavbar() {
           <Link to="/login" className="auth-button">
             Login
           </Link>
-
         )}
       </div>
     </div>

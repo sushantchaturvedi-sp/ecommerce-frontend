@@ -1,42 +1,71 @@
 import React, { useState, useEffect } from 'react';
+
 import './index.scss';
+
 import { useCart } from '../../../context/CartContext';
+
 import { useAuth } from '../../../context/AuthContext';
+
 import { CreditCard } from 'lucide-react';
-import { placeOrder } from '../../../services/api';
+
+import { placeOrder, validateCoupon } from '../../../services/api';
+
+import { toast } from 'react-toastify';
 
 function Checkout() {
   const { cartItems } = useCart();
+
   const { user } = useAuth();
 
   const [billingDetails, setBillingDetails] = useState({
     firstName: '',
+
     companyName: '',
+
     street: '',
+
     apartment: '',
+
     city: '',
+
     phone: '',
+
     email: user?.email || '',
   });
 
   const [paymentMethod, setPaymentMethod] = useState('cod');
+
   const [coupon, setCoupon] = useState('');
+
+  const [couponError, setCouponError] = useState('');
+
+  const [discount, setDiscount] = useState(0);
+
+  const [finalTotal, setFinalTotal] = useState(0);
+
   const [saveInfo, setSaveInfo] = useState(true);
+
   const [orderSuccess, setOrderSuccess] = useState(false);
 
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
+
     0
   );
-  const shipping = 0;
-  const total = subtotal;
+
+  useEffect(() => {
+    setFinalTotal(subtotal);
+  }, [subtotal]);
 
   useEffect(() => {
     if (user?.shippingAddress) {
       setBillingDetails((prev) => ({
         ...prev,
+
         street: user.shippingAddress.street || '',
+
         city: user.shippingAddress.city || '',
+
         email: user.email || '',
       }));
     }
@@ -46,22 +75,44 @@ function Checkout() {
     setBillingDetails({ ...billingDetails, [e.target.name]: e.target.value });
   };
 
-  const handlePlaceOrder = async () => {
-    if (!user) {
-      alert('Please login to place an order.');
-      return;
-    }
+  const handleApplyCoupon = async () => {
+    try {
+      const { data } = await validateCoupon({
+        code: coupon,
+        cartTotal: subtotal,
+      });
 
-    if (cartItems.length === 0) {
-      alert('Cart is empty.');
-      return;
+      setDiscount(data.discount);
+
+      setFinalTotal(data.newTotal);
+
+      setCouponError('');
+    } catch (error) {
+      setDiscount(0);
+
+      setFinalTotal(subtotal);
+
+      setCouponError(
+        toast.error(
+          error.response?.data?.message || 'Invalid or expired coupon'
+        )
+      );
     }
+  };
+
+  const handlePlaceOrder = async () => {
+    if (!user) return alert('Please login to place an order.');
+
+    if (cartItems.length === 0) return alert('Cart is empty.');
 
     try {
       const formattedItems = cartItems.map((item) => ({
         productId: item.productId || item.id,
+
         name: item.name,
+
         quantity: item.quantity,
+
         price: item.price,
       }));
 
@@ -69,21 +120,31 @@ function Checkout() {
 
       const shippingAddress = {
         street: billingDetails.street,
+
         city: billingDetails.city,
+
         state: '',
+
         zipcode: '',
+
         country: '',
       };
 
-      await placeOrder(formattedItems, payment, shippingAddress);
+      await placeOrder(
+        formattedItems,
+
+        payment,
+
+        shippingAddress,
+
+        finalTotal
+      );
 
       setOrderSuccess(true);
     } catch (error) {
-      console.error('Order placement failed:', error);
-      alert(
-        error.response?.data?.message ||
-          'Failed to place order. Please try again.'
-      );
+      console.error('Order failed:', error);
+
+      toast.error(error.response?.data?.message || 'Failed to place order.');
     }
   };
 
@@ -93,63 +154,36 @@ function Checkout() {
 
   return (
     <div className="checkout-page">
+      {/* Billing Section */}
       <div className="billing-section">
         <h2>Billing Details</h2>
         <form>
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First Name*"
-            value={billingDetails.firstName}
-            onChange={handleInputChange}
-            required
-          />
-          <input
-            type="text"
-            name="companyName"
-            placeholder="Company Name"
-            value={billingDetails.companyName}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="street"
-            placeholder="Street Address*"
-            value={billingDetails.street}
-            onChange={handleInputChange}
-            required
-          />
-          <input
-            type="text"
-            name="apartment"
-            placeholder="Apartment, floor, etc. (optional)"
-            value={billingDetails.apartment}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="city"
-            placeholder="Town/City*"
-            value={billingDetails.city}
-            onChange={handleInputChange}
-            required
-          />
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone Number*"
-            value={billingDetails.phone}
-            onChange={handleInputChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address*"
-            value={billingDetails.email}
-            onChange={handleInputChange}
-            required
-          />
+          {[
+            ['firstName', 'First Name*'],
+
+            ['companyName', 'Company Name'],
+
+            ['street', 'Street Address*'],
+
+            ['apartment', 'Apartment, floor, etc. (optional)'],
+
+            ['city', 'Town/City*'],
+
+            ['phone', 'Phone Number*'],
+
+            ['email', 'Email Address*'],
+          ].map(([name, placeholder]) => (
+            <input
+              key={name}
+              type={name === 'email' ? 'email' : 'text'}
+              name={name}
+              placeholder={placeholder}
+              value={billingDetails[name]}
+              onChange={handleInputChange}
+              required={placeholder.includes('*')}
+            />
+          ))}
+
           <label className="save-info">
             <input
               type="checkbox"
@@ -161,13 +195,14 @@ function Checkout() {
         </form>
       </div>
 
+      {/* Order Summary */}
       <div className="order-summary">
         <h3>Order Summary</h3>
         <ul className="item-list">
           {cartItems.map((item) => (
             <li key={item.productId || item.id} className="checkout-item">
               <img
-                src={`${item.images?.[0]}`}
+                src={item.images?.[0]}
                 alt={item.name}
                 className="checkout-item-img"
               />
@@ -187,11 +222,19 @@ function Checkout() {
           <span>Shipping:</span>
           <span>Free</span>
         </div>
+
+        {discount > 0 && (
+          <div className="summary-line">
+            <span>Discount:</span>
+            <span className="discount">− ₹{discount}</span>
+          </div>
+        )}
         <div className="summary-total">
           <strong>Total:</strong>
-          <strong>₹{total}</strong>
+          <strong>₹{finalTotal}</strong>
         </div>
 
+        {/* Payment */}
         <div className="payment-method">
           <label className="payment-option">
             <input
@@ -218,6 +261,7 @@ function Checkout() {
           </label>
         </div>
 
+        {/* Coupon */}
         <div className="coupon">
           <input
             type="text"
@@ -225,9 +269,15 @@ function Checkout() {
             value={coupon}
             onChange={(e) => setCoupon(e.target.value)}
           />
-          <button type="button" className="apply-btn">
+          <button
+            type="button"
+            className="apply-btn"
+            onClick={handleApplyCoupon}
+          >
             Apply Coupon
           </button>
+
+          {/* {couponError && <p className="error-msg">{couponError}</p>} */}
         </div>
 
         <button className="place-order-btn" onClick={handlePlaceOrder}>
