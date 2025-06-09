@@ -50,7 +50,7 @@ export const WishlistProvider = ({ children }) => {
     if (user?._id) {
       fetchWishlist();
     } else {
-      setWishlist([]); 
+      setWishlist([]);
     }
   }, [user]);
 

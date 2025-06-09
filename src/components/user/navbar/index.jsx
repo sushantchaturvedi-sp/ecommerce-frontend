@@ -38,7 +38,6 @@ const Navbar = () => {
         <div className="navbar-brand">
           <Link to="/">Exclusive</Link>
         </div>
-
         <ul className="navbar-nav">
           <input
             className="search-ph"
@@ -80,7 +79,6 @@ const Navbar = () => {
               <span className="cart-count-badge">{totalCartCount}</span>
             </button>
           </Link>
-
         </div>
       </nav>
 

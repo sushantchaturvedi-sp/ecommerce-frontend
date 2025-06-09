@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { useWishlist } from '../../../context/WishlistContext';
 import { Heart } from 'lucide-react';
 
-
 import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
@@ -124,10 +123,8 @@ const AllProductList = () => {
                     title="Add to wishlist"
                   >
                     {wishlist.some((p) => p?._id === product._id) ? (
-                     
                       <Heart color="red" fill="red" />
                     ) : (
-                      
                       <Heart />
                     )}
                   </button>
