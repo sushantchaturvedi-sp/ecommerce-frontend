@@ -1,11 +1,13 @@
 $primary: #6210d5;
 $accent: #5311B1;
-
+$cart: #333;
+$tbody_input-select: #ccc;
+$text-color: #999;
 
 .cart-page {
     padding: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: $cart;
+    color: #333;
     background-color: white;
   
     h1 {
@@ -62,10 +64,10 @@ $accent: #5311B1;
               padding: 6px;
               font-size: 14px;
               width: 60px;
-              border: 1px solid #ccc;
+              border: 1px solid $tbody_input-select;
               border-radius: 4px;
               background-color: white;
-              color: #333;
+              color: $tbody_input-select;
             }
   
             input::placeholder,
@@ -85,9 +87,9 @@ $accent: #5311B1;
       button {
         padding: 10px 20px;
         font-size: 14px;
-        border: 1px solid #ccc;
-        color: #333;
-        background-color: #fff;
+        border: 1px solid $tbody_input-select;
+        color: $cart;
+        background-color: white;
         cursor: pointer;
         border-radius: 4px;
         transition: 0.2s ease;
@@ -112,14 +114,14 @@ $accent: #5311B1;
         input {
           padding: 10px;
           width: 200px;
-          border: 1px solid #ccc;
+          border: 1px solid $tbody_input-select;
           border-radius: 4px;
           background-color: white;
         }
   
         input::placeholder {
           background-color: white;
-          text-color: $text-color;
+          color: $text-color;
         }
   
         button {
@@ -139,7 +141,7 @@ $accent: #5311B1;
       }
   
       .cart-summary {
-        border: 1px solid #ccc;
+        border: 1px solid $tbody_input-select;
         padding: 20px;
         width: 320px;
         border-radius: 6px;
@@ -159,7 +161,7 @@ $accent: #5311B1;
   
         .total {
           font-weight: 700;
-          border-top: 1px solid #ddd;
+          border-top: 1px solid $tbody_input-select;
           padding-top: 10px;
           margin-top: 10px;
         }

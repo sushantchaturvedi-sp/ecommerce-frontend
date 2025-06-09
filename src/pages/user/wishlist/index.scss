@@ -1,14 +1,18 @@
+$error-bg-color: #e63946;
+$bttn-bg-color: #ff4d4f;
+$product-price-color: #666;
+$product-name-color: #333;
+
 .wishlist-container {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 1rem;
-  color: $h2-color;
-
   h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     text-align: center;
     color: #222;
+    color: black;
   }
 
   .wishlist-grid {
@@ -18,19 +22,19 @@
   }
 
   .wishlist-card {
+    background: #fff;
     background: white;
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px black(0, 0, 0, 0.08);
     transition: transform 0.2s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     &:hover {
       transform: translateY(-5px);
     }
-
     img {
       width: 100%;
       height: 180px;
@@ -38,16 +42,15 @@
       border-radius: 8px;
       margin-bottom: 1rem;
     }
-
     .product-info {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
       padding: 0.5rem 0;
-
       .product-name {
         font-size: 1.1rem;
         font-weight: bold;
+        color: #333;
         color: $product-name-color;
         line-height: 1.4;
       }
@@ -55,6 +58,7 @@
       .product-price {
         font-size: 1rem;
         color: #666;
+        color: product-price-color;
         line-height: 1.3;
       }
     }
@@ -63,6 +67,7 @@
       margin-top: 1rem;
       padding: 0.6rem;
       background-color: #ff4d4f;
+      background-color: $bttn-bg-color;
       color: white;
       border: none;
       border-radius: 6px;
@@ -71,6 +76,7 @@
 
       &:hover {
         background-color: #e63946;
+        background-color: $error-bg-color;
       }
     }
   }

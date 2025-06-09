@@ -1,5 +1,8 @@
+$content-color: #6c2bd9;
+$grey: #888;
 $pink: #e48381;
-$googGreen: #2a9d8f;
+$blue: #5311b1;
+$goodGreen: #2a9d8f;
 
 .top-selling-container {
   padding: 0.8rem;
@@ -127,7 +130,7 @@ $googGreen: #2a9d8f;
     font-weight: 500;
 
     &.highlight {
-      color: $googGreen; // popular product highlight
+      color: $goodGreen; // popular product highlight
       font-weight: 600;
     }
 

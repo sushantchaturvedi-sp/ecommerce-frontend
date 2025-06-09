@@ -20,7 +20,6 @@ function UserProductView() {
   const [isInWishlist, setIsInWishlist] = useState(false);
   const { addToCart } = useCart();
   const { user } = useContext(AuthContext);
-
   useEffect(() => {
     async function fetchProduct() {
       try {
@@ -50,29 +49,25 @@ function UserProductView() {
       setIsInWishlist(false);
       return;
     }
-
+     checkWishlist();
     checkWishlist(user, id, setIsInWishlist);
   }, [id, user]);
 
   if (!product) return <p className="loading">Loading product...</p>;
-
   function handleAddToCart() {
     if (!user?._id) {
       toast.error('Please log in to add items to your cart.');
       return;
     }
-
     const cartItem = [{ productId: product._id, quantity: 1 }];
     addToCart(cartItem);
     toast.success('Item added to cart!');
   }
-
   async function toggleWishlist() {
     if (!user?._id) {
       toast.error('Please log in to modify wishlist.');
       return;
     }
-
     try {
       if (isInWishlist) {
         await removeFromWishlist(product._id);
@@ -88,10 +83,8 @@ function UserProductView() {
       toast.error('Failed to update wishlist.');
     }
   }
-
   const truncatedDescription = product.description?.slice(0, 150);
   const isTruncated = product.description?.length > 150;
-
   return (
     <div className="product-page">
       <div className="breadcrumbs">
@@ -100,7 +93,7 @@ function UserProductView() {
       </div>
 
       <div className="product-details">
-        <div className="product-images" >
+         <div className="product-images" >
           <img
             className="main-image"
             src={
@@ -108,16 +101,15 @@ function UserProductView() {
             }
             alt={product.name}
           />
-
           <button
             className="wishlist-overlay-btn"
             onClick={toggleWishlist}
             title={isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
           >
             {isInWishlist ? (
-              <Heart color="red" fill="red" />
+               <Heart color="red" fill="red" />
             ) : (
-              <Heart />
+               <Heart />
             )}
           </button>
 
@@ -133,11 +125,9 @@ function UserProductView() {
             ))}
           </div>
         </div>
-
         <div className="product-info">
           <h1>{product.name}</h1>
           <div className="price">₹ {product.price}</div>
-
           <div className="description">
             <h3>Description</h3>
             <p>
@@ -154,7 +144,6 @@ function UserProductView() {
               )}
             </p>
           </div>
-
           <div className="actions">
             <button className="btn outline" onClick={handleAddToCart}>
               Add to Cart
@@ -165,9 +154,9 @@ function UserProductView() {
               title={isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
             >
               {isInWishlist ? (
-                <FaHeart style={{ color: 'red' }} />
+                <Heart color="red" fill="red" />
               ) : (
-                <FaRegHeart style={{ color: 'red' }} />
+                <Heart />
               )}
             </button>
           </div>
@@ -176,5 +165,4 @@ function UserProductView() {
     </div>
   );
 }
-
 export default UserProductView;

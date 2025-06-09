@@ -18,24 +18,20 @@ const UserProductList = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-
   const productsPerPage = 10;
   const { searchQuery } = useContext(SearchContext);
   const { user } = useContext(AuthContext);
   const { addToCart } = useCart();
   const navigate = useNavigate();
-
   const { wishlist, toggleWishlist, fetchWishlist } = useWishlist();
-
   const sliderRef = useRef(null);
   const sentinelRef = useRef(null);
-
+  // const { wishlist, toggleWishlist } = useWishlist();
   const fetchProducts = async (page = 1) => {
     setIsLoading(true);
     try {
       const res = await getProducts(page, productsPerPage);
       let fetched = res?.data?.products || [];
-
       if (searchQuery) {
         const q = searchQuery.toLowerCase();
         fetched = fetched.filter(
@@ -44,7 +40,6 @@ const UserProductList = () => {
             p.description.toLowerCase().includes(q)
         );
       }
-
       setProducts((prev) => (page === 1 ? fetched : [...prev, ...fetched]));
       setTotalProducts(res?.data?.total || 0);
     } catch (error) {
@@ -54,20 +49,17 @@ const UserProductList = () => {
       setIsLoading(false);
     }
   };
-
   useEffect(() => {
     setCurrentPage(1);
     setProducts([]);
     fetchProducts(1);
     fetchWishlist(); 
   }, [searchQuery]);
-
   useEffect(() => {
     if (currentPage > 1) {
       fetchProducts(currentPage);
     }
   }, [currentPage]);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -85,36 +77,29 @@ const UserProductList = () => {
         threshold: 1.0,
       }
     );
-
     if (sentinelRef.current) {
       observer.observe(sentinelRef.current);
     }
-
     return () => {
       if (sentinelRef.current) {
         observer.unobserve(sentinelRef.current);
       }
     };
   }, [products, totalProducts, isLoading]);
-
   const handleAddToCart = (e, product) => {
     e.stopPropagation();
     if (!user?._id) {
       toast.warn('Please log in to add items to your cart.');
       return;
     }
-
     addToCart([{ productId: product._id, quantity: 1 }]);
     toast.success(`${product.name} added to cart!`);
   };
-
   const handleProductClick = (id) => navigate(`/product/${id}`);
-
   const handleWishlistClick = (e, productId) => {
     e.stopPropagation();
     toggleWishlist(productId); 
   };
-
   const settings = {
     dots: false,
     infinite: false,
@@ -128,19 +113,15 @@ const UserProductList = () => {
       { breakpoint: 480, settings: { slidesToShow: 1 } },
     ],
   };
-
   return (
     <div className="user-product-list">
       <div className="carousel-container">
         <Carousel />
       </div>
-
       <NewLaunches />
       <TopSellingProducts />
-
       <div className="product-list-container">
         <h2>Browse Products</h2>
-
         {products.length === 0 && !isLoading ? (
           <p className="no-results">No products match your search.</p>
         ) : (
@@ -155,14 +136,12 @@ const UserProductList = () => {
                   <div className="product-card">
                     <div className="image-wrapper">
                       <img
-                        src={
-                          product.images?.[0] 
+                        src={ product.images?.[0] 
                         }
                         alt={product.name}
                         className="product-img"
                         onError={(e) =>
-                          (e.target.src =
-                            'LINK1_URL')
+                          (e.target.src ='LINK1_URL')
                         }
                       />
                       <div
@@ -179,7 +158,6 @@ const UserProductList = () => {
                         )}
                       </div>
                     </div>
-
                     <h3>{product.name}</h3>
                     <p className="price">₹ {product.price}</p>
                     <button
@@ -192,9 +170,7 @@ const UserProductList = () => {
                 </div>
               ))}
             </Slider>
-
             <div ref={sentinelRef} className="sentinel" />
-
             {isLoading && <p className="loading">Loading more products...</p>}
           </>
         )}
@@ -202,5 +178,5 @@ const UserProductList = () => {
     </div>
   );
 };
-
 export default UserProductList;
+  
