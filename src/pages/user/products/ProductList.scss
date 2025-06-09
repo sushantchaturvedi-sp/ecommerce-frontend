@@ -1,20 +1,17 @@
 .user-product-list {
   position: relative;
-  background-color: white;
-
+  background-color: #f9f9f9;
   .product-list-container {
     padding: 0.8rem;
     position: relative;
-    background-color: white;
-
+    background-color: #f9f9f9;
     h2 {
       position: relative;
       font-size: 2rem;
       font-weight: 700;
-      color: black;
+      color: #000;
       display: inline-block;
       margin-bottom: 1.5rem;
-
       &::after {
         content: '';
         position: absolute;
@@ -26,28 +23,25 @@
         border-radius: 4px;
       }
     }
-
     .no-results,
     .loading {
       font-size: 1.1rem;
-      color: $grey;
+      color: #888;
       text-align: center;
       margin-top: 2rem;
     }
 
+    // Slick adjustments
     .slick-slider {
       position: relative;
     }
-
     .slick-slide {
       display: flex;
       justify-content: center;
     }
-
     .slick-list {
       padding-bottom: 1rem;
     }
-
     .slick-arrow {
       position: absolute;
       top: 50%;
@@ -62,31 +56,25 @@
       align-items: center;
       cursor: pointer;
       color: white;
-
       &:before {
         color: white !important;
         opacity: 1 !important;
       }
-
       &:hover {
         background-color: rgba(0, 0, 0, 0.8);
       }
     }
-
     .slick-prev {
       left: 5px;
     }
-
     .slick-next {
       right: 5px;
     }
-
     .sentinel {
       flex: 0 0 auto;
       width: 1px;
       height: 1px;
     }
-
     .product-card-wrapper {
       min-width: 220px;
       flex-shrink: 0;
@@ -94,15 +82,13 @@
       transition: transform 0.2s ease;
       display: flex;
       justify-content: center;
-
       &:hover {
         transform: translateY(-4px);
       }
     }
-
     .product-card {
-      background-color: white;
-      color: black;
+      background-color: #fff;
+      color: #000;
       width: 220px;
       height: 280px;
       border-radius: 10px;
@@ -110,13 +96,11 @@
       flex-direction: column;
       justify-content: flex-start;
       padding: 12px;
-      box-shadow: 0 2px 8px black;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s ease;
       overflow: hidden;
-
       .image-wrapper {
         position: relative;
-
         img.product-img {
           width: 100%;
           height: 140px;
@@ -124,33 +108,30 @@
           border-radius: 6px;
           transition: transform 0.3s ease;
         }
-
         .wishlist-icon {
           position: absolute;
           top: 6px;
           right: 8px;
+          font-size: 1.2rem;
+          color: red;
           cursor: pointer;
-          z-index: 10;
+          z-index: 2;
           background-color: white;
           border-radius: 50%;
-          padding: 4px;
-          box-shadow: 0 1px 4px black;
+          padding: 6px;
+          // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
           transition: transform 0.2s ease;
-
           &:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
           }
-
           svg {
             pointer-events: none;
           }
         }
       }
-
       &:hover img.product-img {
         transform: scale(1.05);
       }
-
       h3 {
         font-size: 0.95rem;
         margin: 10px 0 5px;
@@ -159,24 +140,21 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
       .price {
         font-size: 1rem;
         font-weight: bold;
         color: #000;
       }
-
       .add-to-cart {
         margin-top: auto;
         background-color: rgb(90, 49, 221);
-        color: white;
+        color: #fff;
         padding: 6px 0;
         border: none;
         border-radius: 5px;
         font-size: 0.9rem;
         cursor: pointer;
         transition: background-color 0.2s ease;
-
         &:hover {
           background-color: rgb(60, 30, 180);
         }
@@ -184,5 +162,3 @@
     }
   }
 }
-
-
