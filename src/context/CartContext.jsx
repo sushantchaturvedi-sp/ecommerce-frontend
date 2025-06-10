@@ -6,7 +6,6 @@ import { useAuth } from './AuthContext';
 
 import React, { createContext, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
@@ -16,16 +15,12 @@ export const CartProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
 
-  const [appliedCoupon, setAppliedCoupon] = useState(null);
-  const [discountedTotal, setDiscountedTotal] = useState(null);
-
   const addToCart = async (items) => {
     setLoading(true);
     try {
       await saveCartAPI(user?._id, items);
       await getCart();
     } catch (error) {
-      console.error('Error adding to cart:', error);
       toast.error('Failed to add items to cart.');
     } finally {
       setLoading(false);
@@ -56,7 +51,6 @@ export const CartProvider = ({ children }) => {
 
       setCartItems(formattedCart);
     } catch (error) {
-      console.error('Error fetching cart:', error);
       toast.error('Failed to fetch cart.');
     }
   };
@@ -86,46 +80,9 @@ export const CartProvider = ({ children }) => {
       await saveCartAPI(user._id, formattedItems);
       toast.success('Cart updated successfully!');
     } catch (error) {
-      console.error('Error updating cart:', error);
       toast.error('Failed to update cart');
     }
   };
-
-  const applyCoupon = (coupon) => {
-    console.log("couponssss,", coupon)
-    setAppliedCoupon(coupon);
-    calculateDiscountedTotal(coupon);
-  };
-
-  const removeCoupon = () => {
-    setAppliedCoupon(null);
-    setDiscountedTotal(null);
-  };
-
-  const calculateDiscountedTotal = (coupon) => {
-    const total = cartItems.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
-
-    if (!coupon) {
-      setDiscountedTotal(null);
-      return;
-    }
-
-    if (coupon.discountType === 'percentage') {
-      const discount = (total * coupon.discountValue) / 100;
-      setDiscountedTotal(total - discount);
-    } else if (coupon.discountType === 'flat') {
-      setDiscountedTotal(total - coupon.discountValue);
-    }
-  };
-
-  useEffect(() => {
-    if (appliedCoupon) {
-      calculateDiscountedTotal(appliedCoupon);
-    }
-  }, [cartItems, appliedCoupon]);
 
   return (
     <CartContext.Provider
@@ -136,10 +93,6 @@ export const CartProvider = ({ children }) => {
         loading,
         updateQuantity,
         updateCart,
-        appliedCoupon,
-        applyCoupon,
-        removeCoupon,
-        discountedTotal,
       }}
     >
       {children}
