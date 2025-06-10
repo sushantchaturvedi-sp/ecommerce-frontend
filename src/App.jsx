@@ -26,6 +26,7 @@ import Checkout from './pages/user/checkout/index';
 import MyAccount from './pages/user/myAccount/index';
 import Orders from './pages/user/orders/index';
 import WishlistPage from './pages/user/wishlist';
+import SearchResults from './pages/user/SearchResults';
 
 import NotFound from './pages/user/notFound';
 import AdminRoute from './routes/AdminRoute';
@@ -74,6 +75,8 @@ function App() {
         <Route path="account" element={<MyAccount />} />
         <Route path="orders" element={<Orders />} />
         <Route path="wishlist" element={<WishlistPage />} />
+        <Route path="search" element={<SearchResults />} />
+
       </Route>
 
       {/* Catch-all Route */}

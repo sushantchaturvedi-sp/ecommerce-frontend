@@ -61,7 +61,7 @@ const ProductList = () => {
       </div>
 
       {isLoading ? (
-        <p>Loading products...</p>
+        <p>...</p>
       ) : products.length === 0 ? (
         <p>No products available.</p>
       ) : (

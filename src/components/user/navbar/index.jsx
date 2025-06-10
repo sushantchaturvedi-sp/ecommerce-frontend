@@ -10,11 +10,14 @@ import {
 import { Link } from 'react-router-dom';
 import { useCart } from '../../../context/CartContext';
 import { useAuth } from '../../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { cartItems } = useCart();
   const { user, isAuthenticated, logout } = useAuth();
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -28,6 +31,12 @@ const Navbar = () => {
     (sum, item) => sum + item.quantity,
     0
   );
+
+  const handleSearchKeyPress = (e) => {
+    if (e.key === 'Enter' && searchTerm.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
+    }
+  };
 
   return (
     <>
@@ -43,6 +52,9 @@ const Navbar = () => {
             className="search-ph"
             type="text"
             placeholder=" 🔍︎   What are you looking for?"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleSearchKeyPress}
           />
         </ul>
 

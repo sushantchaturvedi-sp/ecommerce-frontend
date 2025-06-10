@@ -105,3 +105,7 @@ export const getAllOrders = () => API.get('/orders');
 export const updateOrderStatus = (id, data) =>
   API.put(`/orders/${id}/status`, data);
 export const deleteOrder = (id) => API.delete(`/orders/${id}`);
+
+
+export const searchProducts = (query) =>
+  API.get(`/products?search=${encodeURIComponent(query)}`);
