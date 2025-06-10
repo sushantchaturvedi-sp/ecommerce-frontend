@@ -3,7 +3,7 @@ $highlight-color: rgb(228, 131, 129);
 $input-bg-color: rgb(83, 17, 177);
 $border-color: #ccc;
 $background-hover-color: #575757;
-
+ 
 .navbar {
   display: flex;
   align-items: center;
@@ -14,15 +14,15 @@ $background-hover-color: #575757;
   flex-wrap: wrap;
   height: 60px;
   // width: 100px;
-
+ 
   .menu-icon {
     cursor: pointer;
-
+ 
     &:hover {
         color: $highlight-color;
       }
   }
-
+ 
   .navbar-brand {
     font-weight: bold;
     font-size: 1.2rem;
@@ -30,35 +30,35 @@ $background-hover-color: #575757;
     cursor: pointer;
     position: absolute;
     left: 4%;
-
+ 
   a {
     color: inherit;
     text-decoration: none;
 }}
-
+ 
   .navbar-nav {
     list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
-
+ 
     .nav-item {
       align-items: center;
       margin-right: 15px;
-
+ 
       a {
         text-decoration: none;
         color: $primary-color;
         font-size: 0.9rem;
         transition: color 0.3s;
-
+ 
         &:hover {
           color: $highlight-color;
         }
       }
     }
   }
-
+ 
   .cart-count {
   position: relative;
   background-color: transparent;
@@ -68,16 +68,16 @@ $background-hover-color: #575757;
   display: flex;
   align-items: center;
   justify-content: center;
-
+ 
   .shoppingcart-icon {
     position: relative;
-
+ 
     svg {
       fill: #333;
       transition: transform 0.2s ease;
     }
   }
-
+ 
   .cart-count-badge {
     position: absolute;
     top: -4px;
@@ -94,12 +94,12 @@ $background-hover-color: #575757;
     line-height: 0;
     z-index: 1;
   }
-
+ 
   &:hover .shoppingcart-icon svg {
     transform: scale(1.1);
   }
 }
-
+ 
   .search-ph {
   background-color: white;
   margin-right: 10rem;
@@ -111,18 +111,18 @@ $background-hover-color: #575757;
   padding-left: 0.75rem;
   border-radius: 6px;
   font-size: 0.85rem;
-
+ 
   &:focus {
     outline: none;
     box-shadow: none;
     border-color: #999;
   }
 }
-
+ 
   .buttons-nav {
     display: flex;
     align-items: center;
-
+ 
     input[type='text'] {
       padding: 6px 10px;
       font-size: 0.9rem;
@@ -132,7 +132,7 @@ $background-hover-color: #575757;
       color: $primary-color;
       margin-right: 10px;
     }
-
+ 
     button {
       background-color: transparent;
       border: none;
@@ -140,14 +140,14 @@ $background-hover-color: #575757;
       font-size: 1rem;
       color: $primary-color;
       transition: color 0.3s;
-
+ 
       &:hover {
         color: $highlight-color;
       }
     }
   }
 }
-
+ 
 .sidebar {
   position: fixed;
   top: 0;
@@ -159,24 +159,24 @@ $background-hover-color: #575757;
   transition: left 0.3s ease-in-out;
   padding: 20px;
   z-index: 1000;
-
+ 
   &.open {
     left: 0;
     opacity:1;
     background-color: black;
   }
-
+ 
   .closebtn {
     font-size: 36px;
     cursor: pointer;
   }
-
+ 
   .sidebar-user {
     margin-bottom: 20px;
     font-size: 1.2rem;
     color: #fff;
   }
-
+ 
   a {
     display: block;
     color: white;
@@ -184,13 +184,13 @@ $background-hover-color: #575757;
     padding: 10px;
     font-size: 1.1rem;
     margin-top: 10px;
-
+ 
     &:hover {
       background-color: $background-hover-color;
     }
   }
 }
-
+ 
 .overlay {
   position: fixed;
   top: 0;
@@ -200,16 +200,16 @@ $background-hover-color: #575757;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
-
+ 
 #content-wrapper {
   transition: filter 0.3s ease-in-out;
 }
-
+ 
 #content-wrapper.blurred {
   filter: blur(500px); /* Apply blur only to the background */
 }
-
-
+ 
+ 
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

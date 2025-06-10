@@ -1,5 +1,5 @@
 import TopNavbar from '../navbar/index';
-import Sidebar from '../sidebar/index';
+import AdminSidebar from '../AdminSidebar/index';
 import { Outlet } from 'react-router-dom';
 import './index.scss';
 
@@ -7,7 +7,7 @@ function Layout() {
   return (
     <div className="layout-wrapper-admin">
       <TopNavbar />
-      <Sidebar />
+      <AdminSidebar />
       <div className="main-content">
         <Outlet />
       </div>

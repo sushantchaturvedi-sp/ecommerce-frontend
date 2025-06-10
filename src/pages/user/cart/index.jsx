@@ -1,19 +1,14 @@
 import React, { useEffect } from 'react';
 import { useCart } from '../../../context/CartContext';
-import './index.scss';
 import { Link } from 'react-router-dom';
+import './index.scss';
 
 function CartPage() {
-  const { cartItems, getCart, updateQuantity, updateCart } = useCart();
+  const { cartItems, getCart, updateQuantity, updateCart, applyCoupon } = useCart();
 
   useEffect(() => {
     getCart();
   }, []);
-
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
 
   return (
     <div className="cart-page">
@@ -41,7 +36,7 @@ function CartPage() {
                         <img
                           src={
                             item.images?.[0]
-                              ? `${item.images[0]}`
+                              ? item.images[0]
                               : '/fallback-image.jpg'
                           }
                           alt={item.name}
@@ -76,24 +71,6 @@ function CartPage() {
 
           <div className="cart-bottom">
             <div className="coupon-box">
-              <input type="text" placeholder="Coupon Code" />
-              <button>Apply Coupon</button>
-            </div>
-
-            <div className="cart-summary">
-              <h3>Cart Total</h3>
-              <div className="summary-row">
-                <span>Subtotal:</span>
-                <span>₹ {total}</span>
-              </div>
-              <div className="summary-row">
-                <span>Shipping:</span>
-                <span>Free</span>
-              </div>
-              <div className="summary-row total">
-                <span>Total:</span>
-                <span>₹ {total}</span>
-              </div>
               <Link to="/checkout">
                 <button className="checkout-btn">Proceed to Checkout</button>
               </Link>

@@ -1,12 +1,27 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import Slider from 'react-slick';
-import { getTopSellingProducts } from '../../../services/api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  getTopSellingProducts,
+  getWishlist,
+  addToWishlist,
+  removeFromWishlist,
+} from '../../../services/api';
+import { AuthContext } from '../../../context/AuthContext';
+import { toast } from 'react-toastify';
+import { Heart } from 'lucide-react';
 import './TopSellingProducts.scss';
+import { useWishlist } from '../../../context/WishlistContext';
 
 const TopSellingProducts = () => {
   const [products, setProducts] = useState([]);
+  const [wishlistIds, setWishlistIds] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const { wishlist, toggleWishlist } = useWishlist();
 
   const fetchTopSelling = useCallback(async () => {
     setLoading(true);
@@ -26,9 +41,45 @@ const TopSellingProducts = () => {
     }
   }, []);
 
+  const fetchWishlist = useCallback(async () => {
+    try {
+      const response = await getWishlist();
+      const ids = response.data.map((p) => p._id);
+      setWishlistIds(ids);
+    } catch (err) {
+      console.error('Failed to load wishlist', err);
+    }
+  }, []);
+
   useEffect(() => {
     fetchTopSelling();
-  }, [fetchTopSelling]);
+    if (user?._id) fetchWishlist();
+  }, [fetchTopSelling, user, fetchWishlist]);
+
+  const handleWishlistToggle = async (e, productId) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!user?._id) {
+      toast.warn('Please log in to manage your wishlist.');
+      return;
+    }
+
+    try {
+      if (wishlistIds.includes(productId)) {
+        await removeFromWishlist(productId);
+        setWishlistIds((prev) => prev.filter((id) => id !== productId));
+        toast.success('Removed from wishlist');
+      } else {
+        await addToWishlist(productId);
+        setWishlistIds((prev) => [...prev, productId]);
+        toast.success('Added to wishlist');
+      }
+    } catch (err) {
+      console.error('Wishlist error:', err);
+      toast.error('Failed to update wishlist');
+    }
+  };
 
   const settings = {
     dots: false,
@@ -72,12 +123,27 @@ const TopSellingProducts = () => {
           {products.map((product) => (
             <div className="product-card-wrapper" key={product._id}>
               <Link to={`/product/${product._id}`} className="product-card">
-                <img
-                  src={product.images?.[0] || ''}
-                  alt={product.name}
-                  className="product-img"
-                  onError={(e) => (e.target.src = '')}
-                />
+                <div className="image-wrapper">
+                  <img
+                    src={product.images?.[0] || ''}
+                    alt={product.name}
+                    className="product-img"
+                    onError={(e) => (e.target.src = '')}
+                  />
+                  <div
+                    className="wishlist-icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleWishlist(product._id);
+                    }}
+                  >
+                    {wishlist.includes(product._id) ? (
+                      <Heart color="red" fill="red" />
+                    ) : (
+                      <Heart />
+                    )}
+                  </div>
+                </div>
                 <h3>{product.name}</h3>
                 <div className="price">₹{product.price}</div>
                 <div

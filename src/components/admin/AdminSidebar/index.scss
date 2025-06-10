@@ -1,9 +1,10 @@
-.sidebar {
+.admin-sidebar {
   position: absolute;
   width: 250px;
   height: 100vh;
   left: 0px;
   top: 68px;
+    text-decoration: none;
 
   background: #1e2752;
   backdrop-filter: blur(4px);
@@ -11,20 +12,22 @@
   padding: 20px;
   box-sizing: border-box;
 
-  .nav-section {
+  .admin-nav-section {
     margin-bottom: 30px;
+      text-decoration: none;
 
-    .section-title {
+    .admin-section-title {
       font-weight: 600;
       color: #a0a4c4;
       margin-bottom: 10px;
       text-transform: uppercase;
     }
 
-    .nav-list {
+    .admin-nav-list {
       list-style: none;
       padding: 0;
       margin: 0;
+      text-decoration: none;
 
       li {
         display: flex;

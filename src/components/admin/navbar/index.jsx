@@ -42,7 +42,7 @@ function TopNavbar() {
           </button>
         ) : (
           <Link to="/login" className="auth-button">
-            <button>Login</button>
+            Login
           </Link>
         )}
       </div>

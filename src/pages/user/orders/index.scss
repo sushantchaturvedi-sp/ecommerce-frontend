@@ -1,10 +1,14 @@
+$h2-color: #4b0082;
+$h3-color: #333;
+$order-date-color: #999;
+
 .orders-page {
   padding: 2rem;
-  background: #f8f8ff;
+  background: white;
   min-height: 100vh;
 
   h2 {
-    color: #4b0082;
+    color: $h2-color;
     margin-bottom: 2rem;
   }
 
@@ -32,16 +36,16 @@
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px black;
 
     h3 {
       margin: 0 0 0.5rem;
-      color: #333;
+      color: $h3-color;
     }
 
     p, li {
       font-size: 0.95rem;
-      color: #555;
+      color: $h3-color;
       margin: 0.2rem 0;
     }
 
@@ -52,7 +56,7 @@
     .order-date {
       margin-top: 1rem;
       font-size: 0.85rem;
-      color: #999;
+      color: $order-date-color;
     }
 
     ul {

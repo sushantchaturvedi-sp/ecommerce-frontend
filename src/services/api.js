@@ -84,3 +84,28 @@ export const createBanner = (formData) =>
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 export const deleteBanner = (id) => API.delete(`/banners/${id}`);
+
+// Wishlist APIs
+export const getWishlist = () => API.get('/wishlist');
+export const addToWishlist = (productId) =>
+  API.post('/wishlist/add', { productId });
+export const removeFromWishlist = (productId) =>
+  API.post('/wishlist/remove', { productId });
+
+//Coupons API's
+
+export const getAllCoupons = () => API.get('/coupons');
+export const createCoupon = (data) => API.post('/coupons', data);
+export const updateCoupon = (id, data) => API.put(`/coupons/${id}`, data);
+export const deleteCoupon = (id) => API.delete(`/coupons/${id}`);
+export const validateCoupon = (data) => API.post('/coupons/validate', data);
+
+//Order's Admin
+export const getAllOrders = () => API.get('/orders');
+export const updateOrderStatus = (id, data) =>
+  API.put(`/orders/${id}/status`, data);
+export const deleteOrder = (id) => API.delete(`/orders/${id}`);
+
+
+export const searchProducts = (query) =>
+  API.get(`/products?search=${encodeURIComponent(query)}`);

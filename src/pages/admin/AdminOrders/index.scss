@@ -1,0 +1,50 @@
+.admin-orders {
+  padding: 2rem;
+ 
+  h2 {
+    margin-bottom: 1rem;
+  }
+ 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    color:black;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+ 
+    th, td {
+      padding: 1rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+ 
+    th {
+      background-color: #f4f4f4;
+    }
+ 
+    button {
+      margin-right: 0.5rem;
+      padding: 0.3rem 0.7rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      background-color: #f33145;
+    }
+ 
+    .delivered {
+      background-color: #28a745;
+      color: white;
+    }
+ 
+    .pending {
+      background-color: #ffc107;
+      color: black;
+    }
+ 
+    .delete {
+      background-color: #f33145;
+      color: white;
+    }
+  }
+}

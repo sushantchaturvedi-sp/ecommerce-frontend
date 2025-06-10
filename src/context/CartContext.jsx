@@ -6,7 +6,6 @@ import { useAuth } from './AuthContext';
 
 import React, { createContext, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
-
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
@@ -22,7 +21,6 @@ export const CartProvider = ({ children }) => {
       await saveCartAPI(user?._id, items);
       await getCart();
     } catch (error) {
-      console.error('Error adding to cart:', error);
       toast.error('Failed to add items to cart.');
     } finally {
       setLoading(false);
@@ -53,7 +51,6 @@ export const CartProvider = ({ children }) => {
 
       setCartItems(formattedCart);
     } catch (error) {
-      console.error('Error fetching cart:', error);
       toast.error('Failed to fetch cart.');
     }
   };
@@ -83,7 +80,6 @@ export const CartProvider = ({ children }) => {
       await saveCartAPI(user._id, formattedItems);
       toast.success('Cart updated successfully!');
     } catch (error) {
-      console.error('Error updating cart:', error);
       toast.error('Failed to update cart');
     }
   };
@@ -103,3 +99,6 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+
+

@@ -2,7 +2,6 @@
   padding: 0.8rem;
   position: relative;
   background-color: #f9f9f9;
-
   h2 {
     position: relative;
     font-size: 2rem;
@@ -10,7 +9,6 @@
     color: #000;
     display: inline-block;
     margin-bottom: 1.5rem;
-
     &::after {
       content: '';
       position: absolute;
@@ -22,7 +20,6 @@
       border-radius: 4px;
     }
   }
-
   .no-results,
   .loading {
     font-size: 1.1rem;
@@ -30,21 +27,17 @@
     text-align: center;
     margin-top: 2rem;
   }
-
   // Slick adjustments
   .slick-slider {
     position: relative;
   }
-
   .slick-slide {
     display: flex;
     justify-content: center;
   }
-
   .slick-list {
     padding-bottom: 1rem;
   }
-
   .slick-arrow {
     z-index: 10;
     top: 50%;
@@ -57,24 +50,19 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
-
     &::before {
       color: #fff;
     }
-
     &:hover {
       background-color: rgba(0, 0, 0, 0.6);
     }
   }
-
   .slick-prev {
     left: 5px;
   }
-
   .slick-next {
     right: 5px;
   }
-
   .product-card-wrapper {
     min-width: 220px;
     flex-shrink: 0;
@@ -82,12 +70,10 @@
     transition: transform 0.2s ease;
     display: flex;
     justify-content: center;
-
     &:hover {
       transform: translateY(-4px);
     }
   }
-
   .product-card {
     background-color: #fff;
     color: #000;
@@ -101,16 +87,41 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
     overflow: hidden;
+  .image-wrapper {
+      position: relative;
 
-    img.product-img {
-      width: 100%;
-      height: 140px;
-      object-fit: contain;
-      border-radius: 6px;
-      transition: transform 0.3s ease;
+      .product-img {
+        width: 100%;
+        height: 140px;
+        object-fit: contain;
+        border-radius: 6px;
+        transition: transform 0.3s ease;
+      }
+
+      .wishlist-icon {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 50%;
+        padding: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+
+        svg {
+          font-size: 18px;
+          color: red;
+        }
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
+      }
     }
-
-    &:hover img.product-img {
+     &:hover .product-img {
       transform: scale(1.05);
     }
 
@@ -122,13 +133,11 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .price {
       font-size: 1rem;
       font-weight: bold;
       color: #000;
     }
-
     .add-to-cart {
       background-color: rgb(90, 49, 221);
       color: #fff;
@@ -138,13 +147,11 @@
       font-size: 0.9rem;
       cursor: pointer;
       transition: background-color 0.2s ease;
-
       &:hover {
         background-color: rgb(60, 30, 180);
       }
     }
   }
-
   .sentinel {
     width: 1px;
     height: 1px;
