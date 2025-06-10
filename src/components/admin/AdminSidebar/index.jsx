@@ -37,23 +37,12 @@ function AdminSidebar() {
               <Tag size={18} /> Products
             </Link>
           </li>
-          {/* <li>
-            <ChartColumnIncreasing size={18} /> Banners
-          </li> */}
           <li>
             <Folder size={18} /> Categories
           </li>
           <li>
             <UsersRound size={18} /> Customers
           </li>
-          {/* <li>
-            <Link to="/admin/coupons">
-              <Star size={18} /> Coupons
-            </Link>
-          </li> */}
-          {/* <li>
-            <MessageSquareText size={18} /> Inbox
-          </li> */}
         </ul>
       </div>
     </div>
