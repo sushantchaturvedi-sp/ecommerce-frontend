@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom'; 
 import { searchProducts } from '../../../services/api';
 import './index.scss';
-
 
 const SearchResults = () => {
   const [params] = useSearchParams();
@@ -34,11 +33,18 @@ const SearchResults = () => {
       ) : (
         <div className="product-list">
           {products.map((product) => (
-            <div key={product._id} className="product-card">
-              <img src={product.images[0]} alt={product.name} />
+            <Link
+              to={`/product/${product._id}`}
+              key={product._id}
+              className="product-card"
+            >
+              <img
+                src={product.images?.[0] || 'https://via.placeholder.com/200'}
+                alt={product.name}
+              />
               <h3>{product.name}</h3>
               <p>₹{product.price}</p>
-            </div>
+            </Link>
           ))}
         </div>
       )}

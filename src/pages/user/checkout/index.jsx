@@ -99,7 +99,6 @@ function Checkout() {
               required={placeholder.includes('*')}
             />
           ))}
-          
         </form>
       </div>
 
@@ -129,9 +128,9 @@ function Checkout() {
           <span>Shipping:</span>
           <span>Free</span>
         </div>
-        
-          
-        
+
+
+
         <div className="summary-total">
           <strong>Total:</strong>
           <strong>₹{finalTotal}</strong>
@@ -139,7 +138,7 @@ function Checkout() {
 
         {/* Payment Method */}
         <div className="payment-method">
-          
+
           <label className="payment-option">
             <input
               type="radio"
@@ -152,7 +151,7 @@ function Checkout() {
           </label>
         </div>
 
-        
+
 
         <button className="place-order-btn" onClick={handlePlaceOrder}>
           Place Order

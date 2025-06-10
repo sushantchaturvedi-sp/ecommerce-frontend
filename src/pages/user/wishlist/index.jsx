@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getWishlist, removeFromWishlist } from '../../../services/api';
 import { useAuth } from '../../../context/AuthContext';
+import { Link } from 'react-router-dom';
 import './index.scss';
 
 const WishlistPage = () => {
@@ -43,12 +44,15 @@ const WishlistPage = () => {
         {wishlist.length > 0 ? (
           wishlist.map((product) => (
             <div className="wishlist-card" key={product._id}>
-              <img src={product.images?.[0]} alt={product.name} />
+              <Link to={`/product/${product._id}`} className="wishlist-link">
+                <img src={product.images?.[0]} alt={product.name} />
 
-              <div className="product-info">
-                <div className="product-name">{product.name}</div>
-                <div className="product-price">${product.price}</div>
-              </div>
+                <div className="product-info">
+                  <div className="product-name">{product.name}</div>
+                  <div className="product-price">${product.price}</div>
+                </div>
+
+              </Link>
               <button
                 className="remove-btn"
                 onClick={() => handleRemove(product._id)}

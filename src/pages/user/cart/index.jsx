@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useCart } from '../../../context/CartContext';
 import { Link } from 'react-router-dom';
 import './index.scss';
@@ -9,7 +9,7 @@ function CartPage() {
   useEffect(() => {
     getCart();
   }, []);
-  
+
   return (
     <div className="cart-page">
       <h1>Your Cart</h1>
@@ -69,12 +69,8 @@ function CartPage() {
             <button onClick={updateCart}>Update Cart</button>
           </div>
 
-           <div className="cart-bottom">
+          <div className="cart-bottom">
             <div className="coupon-box">
-              
-        
-
-            
               <Link to="/checkout">
                 <button className="checkout-btn">Proceed to Checkout</button>
               </Link>
