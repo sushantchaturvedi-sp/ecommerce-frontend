@@ -19,22 +19,22 @@ function TopNavbar() {
     <div className="top-navbar">
       <div className="logo">E-Commerce</div>
 
-      <div className="search-bar">
+      {/* <div className="search-bar">
         <input
           type="text"
           placeholder="🔍︎ Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-      </div>
+      </div> */}
 
       <div className="nav-right">
-        <span className="icon">
+        {/* <span className="icon">
           <MessageSquareText />
         </span>
         <span className="icon">
           <Bell />
-        </span>
+        </span> */}
 
         {user ? (
           <button onClick={handleLogout} className="auth-button">
