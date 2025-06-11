@@ -54,9 +54,9 @@ const ProductList = () => {
           <Link to="/admin/products/add" className="addButton">
             Add Product
           </Link>
-          <Link to="/admin/banners" className="bannerButton">
+          {/* <Link to="/admin/banners" className="bannerButton">
             Create Banner
-          </Link>
+          </Link> */}
         </div>
       </div>
 

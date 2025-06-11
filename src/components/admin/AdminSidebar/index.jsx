@@ -7,6 +7,7 @@ import {
   List,
   Folder,
   UsersRound,
+  Fullscreen,
   Star,
   MessageSquareText,
 } from 'lucide-react';
@@ -38,11 +39,16 @@ function AdminSidebar() {
             </Link>
           </li>
           <li>
+            <Link to="/admin/banners">            
+            <Fullscreen size={18} /> Banner
+            </Link>
+          </li>
+          {/* <li>
             <Folder size={18} /> Categories
           </li>
           <li>
             <UsersRound size={18} /> Customers
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
