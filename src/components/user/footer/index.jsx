@@ -9,8 +9,8 @@ const Footer = () => {
       <div className="footer__section">
         <h2>Exclusive</h2>
         <h3>Subscribe</h3>
-        <p>Get 10% off your first order</p>
-        <input type="email" placeholder="Enter your email" />
+        <p>Get FREE delivery on your first order</p>
+        {/* <input type="email" placeholder="Enter your email" /> */}
       </div>
       <div className="footer__section">
         <h3>Support</h3>
@@ -41,7 +41,7 @@ const Footer = () => {
       <div className="footer__section">
         <h3>Quick Link</h3>
         <ul>
-          <li>
+          {/* <li>
             <Link to="/PrivacyPolicy">Privacy Policy</Link>
           </li>
           <li>
@@ -49,7 +49,7 @@ const Footer = () => {
           </li>
           <li>
             <Link to="/FAQ">FAQ</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/contact">Contact</Link>
           </li>
@@ -60,10 +60,10 @@ const Footer = () => {
         <p>Save ₹200 with the app for new users only</p>
         <div className="app-links">
           <img src={QR} alt="QR Code" />
-          <div className="app-buttons">
+          {/* <div className="app-buttons">
             <button>Google Play</button>
             <button>App Store</button>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="footer__bottom">
