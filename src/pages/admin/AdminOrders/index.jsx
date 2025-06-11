@@ -46,7 +46,10 @@ function AdminOrders() {
 
   return (
     <div className="admin-orders">
-      <ToastContainer />
+      <ToastContainer position="top-right"
+        autoClose={3000}
+        newestOnTop
+        style={{ top: '80px', zIndex: 99999 }} />
       <h2>Admin Orders Panel</h2>
       <table>
         <thead>
