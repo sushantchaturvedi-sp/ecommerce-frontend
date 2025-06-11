@@ -4,8 +4,13 @@
   h2 {
     margin-bottom: 1rem;
   }
+
+  // button.add-product {
+  //   margin-bottom: 1.5rem; 
+  // }
  
   table {
+    // margin-top: 1.5rem;
     width: 100%;
     border-collapse: collapse;
     background: white;
@@ -30,6 +35,7 @@
       cursor: pointer;
       font-size: 0.9rem;
       background-color: #f33145;
+      color: white;
     }
  
     .delivered {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getWishlist, removeFromWishlist } from '../../../services/api';
 import { useAuth } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
+import emptyWishlistImage from '/src/assets/empty-wishlist.jpg';
 import './index.scss';
 
 const WishlistPage = () => {
@@ -41,7 +42,13 @@ const WishlistPage = () => {
     <div className="wishlist-container">
       <h2>Your Wishlist</h2>
       <div className="wishlist-grid">
-        {wishlist.length > 0 ? (
+        {wishlist.length === 0 ? (
+          <div className="empty-wishlist">
+            <img src={emptyWishlistImage} alt="Empty Wishlist" />
+            <p>Your wishlist is empty.</p>
+            <Link to="/products" className="browse-btn">Start Browsing</Link>
+          </div>
+        ) : (
           wishlist.map((product) => (
             <div className="wishlist-card" key={product._id}>
               <Link to={`/product/${product._id}`} className="wishlist-link">
@@ -61,8 +68,6 @@ const WishlistPage = () => {
               </button>
             </div>
           ))
-        ) : (
-          <p>Your wishlist is empty.</p>
         )}
       </div>
     </div>
