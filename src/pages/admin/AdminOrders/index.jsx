@@ -51,7 +51,8 @@ function AdminOrders() {
       <table>
         <thead>
           <tr>
-            <th>User</th>
+            <th>Order ID</th>
+            {/* <th>User</th> */}
             <th>Amount</th>
             <th>Payment</th>
             <th>Status</th>
@@ -63,7 +64,8 @@ function AdminOrders() {
           {orders.map((order) => (
             <tr key={order._id}>
               {/* <td>{order.user?.name || 'N/A'}</td> */}
-              <td>{order.user?.name ?? order.user?.email ?? 'User Deleted'}</td>
+              <td title={order._id} style={{ fontSize: '12px', color: '#1f1f1f' }}>{order._id.slice(0, 8)}...</td>
+              {/* <td>{order.user?.name ?? order.user?.email ?? 'User Deleted'}</td> */}
               <td>₹{order.totalAmount}</td>
               <td>{order.paymentMethod}</td>
               <td>
