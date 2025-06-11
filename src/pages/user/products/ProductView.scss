@@ -6,6 +6,13 @@ $border-color: #d5d9d9;
 $accent: #5a31dd;
 $product-primary: #1e2753;
 
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
 .product-page {
   font-family: 'Amazon Ember', Arial, sans-serif;
   background-color: $white;

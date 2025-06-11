@@ -16,6 +16,8 @@ import { useWishlist } from '../../../context/WishlistContext';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import SkeletonCard from '../../../components/SkeletonCard/index';
+
 import './NewLaunches.scss';
 
 function NewLaunches() {
@@ -38,10 +40,10 @@ function NewLaunches() {
       const fetched = response?.data?.products || [];
       const filtered = searchQuery
         ? fetched.filter(
-            (p) =>
-              p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              p.description.toLowerCase().includes(searchQuery.toLowerCase())
-          )
+          (p) =>
+            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.description.toLowerCase().includes(searchQuery.toLowerCase())
+        )
         : fetched;
       setProducts(filtered.slice(0, 10));
     } catch (error) {
@@ -130,7 +132,12 @@ function NewLaunches() {
       <h2>New Launches</h2>
 
       {isLoading ? (
-        <p className="loading">Loading...</p>
+        // <p className="loading">Loading...</p>
+        <div className="skeleton-grid">
+          {Array.from({ length: 5 }).map((_, idx) => (
+            <SkeletonCard key={idx} />
+          ))}
+        </div>
       ) : products.length === 0 ? (
         <p className="no-results">No new products found.</p>
       ) : (

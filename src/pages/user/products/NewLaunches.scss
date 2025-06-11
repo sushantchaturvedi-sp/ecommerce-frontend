@@ -64,7 +64,7 @@
     right: 5px;
   }
   .product-card-wrapper {
-    min-width: 220px;
+    min-width: 260px;
     flex-shrink: 0;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -77,8 +77,8 @@
   .product-card {
     background-color: #fff;
     color: #000;
-    width: 220px;
-    height: 280px;
+    width: 260px;
+    height: 300px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -155,5 +155,12 @@
   .sentinel {
     width: 1px;
     height: 1px;
+  }
+
+  .skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
   }
 }

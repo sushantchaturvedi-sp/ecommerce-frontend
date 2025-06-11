@@ -123,33 +123,33 @@ $product-primary: #1e2753;
       }
 
 
-        .product-cart-button {
-          padding: 0.5rem 1rem;
-          background-color: rgb(90, 49, 221);
-          border: none;
-          color: white;
-          font-weight: 600;
-          cursor: pointer;
-          border-radius: 4px;
-          width: 100%;
+      .product-cart-button {
+        padding: 0.5rem 1rem;
+        background-color: rgb(90, 49, 221);
+        border: none;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 4px;
+        width: 100%;
+      }
+
+      .wishlist-icon-button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 4px;
+
+        svg {
+          font-size: 20px;
+          color: red;
         }
 
-        .wishlist-icon-button {
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          padding: 6px;
-          border-radius: 4px;
-
-          svg {
-            font-size: 20px;
-            color: red;
-          }
-
-          &:hover {
-            background-color: rgb(60, 30, 180);
-          }
+        &:hover {
+          background-color: rgb(60, 30, 180);
         }
+      }
 
     }
   }
@@ -157,4 +157,12 @@ $product-primary: #1e2753;
   .sentinel {
     height: 1px;
   }
+
+  .skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
 }

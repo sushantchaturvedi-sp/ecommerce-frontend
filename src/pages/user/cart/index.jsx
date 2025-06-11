@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useCart } from '../../../context/CartContext';
 import { Link } from 'react-router-dom';
+import emptyCartImage from '/src/assets/empty-cart.jpg';
 import './index.scss';
 
 function CartPage() {
@@ -15,7 +16,18 @@ function CartPage() {
       <h1>Your Cart</h1>
 
       {cartItems.length === 0 ? (
-        <p>Cart is empty</p>
+        <div className="empty-cart">
+          <img
+            src={emptyCartImage}
+            alt="Empty Cart"
+            className="empty-cart-img"
+          />
+          <h2>Your cart is empty</h2>
+          <p>Looks like you haven’t added anything to your cart yet.</p>
+          <Link to="/products">
+            <button className="shop-now-btn">Shop Now</button>
+          </Link>
+        </div>
       ) : (
         <>
           <div className="cart-table-wrapper">

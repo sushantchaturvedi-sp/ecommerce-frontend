@@ -86,8 +86,10 @@ const ProductList = () => {
                     alt={prod.name}
                   />
                 </td>
-                <td>{prod.name}</td>
-                <td>₹ {prod.price}</td>
+                <td className="product-name">{prod.name.length > 20
+                    ? prod.name.slice(0, 40) + '...'
+                    : prod.name}</td>
+                <td className="product-price">₹ {prod.price}</td>
                 <td>{prod.category}</td>
                 <td>
                   {prod.description.length > 20

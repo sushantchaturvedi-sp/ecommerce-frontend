@@ -1,0 +1,46 @@
+.skeleton-card {
+  border: 1px solid #bdc1cf;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background-color: #bdc1cf;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-image {
+  height: 200px;
+  background-color: #bdc1cf;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  height: 10px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+
+  &.short {
+    width: 40%;
+  }
+
+  &.medium {
+    width: 70%;
+  }
+
+  &:not(.short):not(.medium) {
+    width: 100%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -8,6 +8,8 @@ import { getProducts } from '../../../services/api';
 import { SearchContext } from '../../../context/SearchContext';
 import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
+import SkeletonCard from '../../../components/SkeletonCard/index';
+
 import './AllProductList.scss';
 const AllProductList = () => {
   const [products, setProducts] = useState([]);
@@ -143,7 +145,15 @@ const AllProductList = () => {
             ))}
           </div>
           <div ref={sentinelRef} className="sentinel" />
-          {isLoading && <p className="loading">Loading more products...</p>}
+          {/* {isLoading && <p className="loading">Loading more products...</p>} */}
+          {isLoading && (
+            <div className="skeleton-grid">
+              {Array.from({ length: 15 }).map((_, idx) => (
+                <SkeletonCard key={idx} />
+              ))}
+            </div>
+          )}
+
         </>
       )}
     </div>
