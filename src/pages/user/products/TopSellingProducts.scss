@@ -35,7 +35,12 @@ $goodGreen: #2a9d8f;
     text-align: center;
     margin-top: 2rem;
   }
-
+  .skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
   .product-scroll {
     display: flex;
     overflow-x: hidden;
@@ -45,7 +50,7 @@ $goodGreen: #2a9d8f;
   }
 
   .product-card-wrapper {
-    min-width: 220px;
+    min-width: 260px;
     flex-shrink: 0;
     transition: transform 0.2s ease;
     cursor: pointer;
@@ -58,7 +63,8 @@ $goodGreen: #2a9d8f;
   .product-card {
     color: black;
     text-decoration: none;
-    width: 220px;
+    width: 260px;
+    height: 300px;
     min-height: 240px;
     height: auto;
     border-radius: 10px;

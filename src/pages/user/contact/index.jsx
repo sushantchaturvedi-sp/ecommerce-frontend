@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.scss';
 import { Phone, Mail } from 'lucide-react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/contact`, formData);
+      toast.success('Message sent successfully!');
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      toast.error('Failed to send message');
+    }
+  };
   return (
     <div className="contact-page">
       <div className="contact-container">

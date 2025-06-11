@@ -10,6 +10,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import Carousel from '../../../components/carousel';
 import NewLaunches from './NewLaunches';
 import TopSellingProducts from './TopSellingProducts';
+import SkeletonCard from '../../../components/SkeletonCard/index';
 import './ProductList.scss';
 import { Heart } from 'lucide-react';
 
@@ -168,7 +169,14 @@ const UserProductList = () => {
               ))}
             </Slider>
             <div ref={sentinelRef} className="sentinel" />
-            {isLoading && <p className="loading">Loading more products...</p>}
+            {/* {isLoading && <p className="loading">Loading more products...</p>} */}
+            {isLoading && (
+              <div className="skeleton-grid">
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <SkeletonCard key={idx} />
+                ))}
+              </div>
+            )}
           </>
         )}
       </div>

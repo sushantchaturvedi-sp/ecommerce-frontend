@@ -10,6 +10,7 @@ import { useCart } from '../../../context/CartContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { toast } from 'react-toastify';
 import { Heart } from 'lucide-react';
+import SkeletonCard from '../../../components/SkeletonCard/index';
 import './ProductView.scss';
 
 function UserProductView() {
@@ -53,7 +54,13 @@ function UserProductView() {
     checkWishlist(user, id, setIsInWishlist);
   }, [id, user]);
 
-  if (!product) return <p className="loading">Loading product...</p>;
+  if (!product) {
+    return <div className="skeleton-grid">
+      {Array.from({ length: 1 }).map((_, idx) => (
+        <SkeletonCard key={idx} />
+      ))}
+    </div>;
+  }
   function handleAddToCart() {
     if (!user?._id) {
       toast.error('Please log in to add items to your cart.');
@@ -138,13 +145,13 @@ function UserProductView() {
             <button className="btn outline" onClick={handleAddToCart}>
               Add to Cart
             </button>
-            <button
+            {/* <button
               className="btn outline wishlist-btn"
               onClick={toggleWishlist}
               title={isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
             >
               {isInWishlist ? <Heart color="red" fill="red" /> : <Heart />}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

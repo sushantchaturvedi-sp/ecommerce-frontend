@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import { Heart } from 'lucide-react';
 import './TopSellingProducts.scss';
 import { useWishlist } from '../../../context/WishlistContext';
+import SkeletonCard from '../../../components/SkeletonCard/index';
 
 const TopSellingProducts = () => {
   const [products, setProducts] = useState([]);
@@ -115,7 +116,11 @@ const TopSellingProducts = () => {
       <h2>Top Selling Products</h2>
 
       {loading ? (
-        <div className="loading">Loading top selling products...</div>
+        <div className="skeleton-grid">
+          {Array.from({ length: 5 }).map((_, idx) => (
+            <SkeletonCard key={idx} />
+          ))}
+        </div>
       ) : products.length === 0 ? (
         <div className="no-results">No products found</div>
       ) : (
@@ -147,13 +152,12 @@ const TopSellingProducts = () => {
                 <h3>{product.name}</h3>
                 <div className="price">₹{product.price}</div>
                 <div
-                  className={`order-count ${
-                    product.orderCount > 10
+                  className={`order-count ${product.orderCount > 10
                       ? 'highlight'
                       : !product.orderCount
                         ? 'first-order'
                         : ''
-                  }`}
+                    }`}
                 >
                   {product.orderCount > 0
                     ? `Ordered ${product.orderCount} ${product.orderCount === 1 ? 'time' : 'times'}`

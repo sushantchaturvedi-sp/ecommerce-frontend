@@ -24,23 +24,23 @@ function AdminSidebar() {
       <div className="admin-nav-section">
         <ul className="admin-nav-list">
           <li>
-            <Link to="/" className='active'>
-              <Home size={18} /> Dashboard
+            <Link to="/" className='admin-link'>
+              <Home size={18} /> <span>Dashboard</span>
             </Link>
           </li>
           <li>
-            <Link to="/admin/orders" className='active'>
-              <List size={18} /> Orders
+            <Link to="/admin/orders" className='admin-link'>
+              <List size={18} /> <span>Orders</span>
             </Link>
           </li>
           <li>
-            <Link to="/admin" className='active'>
-              <Tag size={18} /> Products
+            <Link to="/admin" className='admin-link'>
+              <Tag size={18} /> <span>Products</span>
             </Link>
           </li>
           <li>
-            <Link to="/admin/banners" className='active'>
-              <Fullscreen size={18} /> Banner
+            <Link to="/admin/banners" className='admin-link'>
+              <Fullscreen size={18} /> <span>Banner</span>
             </Link>
           </li>
           {/* <li>
