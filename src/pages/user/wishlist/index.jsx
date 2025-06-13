@@ -56,7 +56,7 @@ const WishlistPage = () => {
 
                 <div className="product-info">
                   <div className="product-name">{product.name}</div>
-                  <div className="product-price">${product.price}</div>
+                  <div className="product-price">₹{product.price.toLocaleString('en-IN')}</div>
                 </div>
 
               </Link>
